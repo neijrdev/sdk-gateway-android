@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="primary">#215AFF</color>
+    <color name="secondary">#0F194B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark">#333333</color>
+    <color name="light">#faf9f9</color>
+    <color name="warning">#FFD166</color>
+    <color name="danger">#E95062</color>
+    <color name="success">#01c39a</color>
+    <color name="grey_dark">#717477</color>
+    <color name="grey">#a8a8a8</color>
+    <color name="grey2">#707070</color>
+    <color name="grey3">#EBEBEB</color>
+    <color name="blue_dark">#1E2642</color>
+    <color name="blue_grewish">#4E5872</color>
+    <color name="light_bg">#F4F4F6</color>
+
+    <color name="red_200">#EF9A9A</color>
+    <color name="pink_200">#F48FB1</color>
+    <color name="purple_200">#CE93D8</color>
+    <color name="indigo_200">#9FA8DA</color>
+    <color name="blue_200">#90CAF9</color>
+    <color name="cyan_200">#80DEEA</color>
+    <color name="teal_200">#80CBC4</color>
+    <color name="green_200">#A5D6A7</color>
+    <color name="light_green_200">#C5E1A5</color>
+    <color name="lime_green_200">#E6EE9C</color>
+    <color name="yellow_200">#FFF59D</color>
+    <color name="orange_200">#FFCC80</color>
+    <color name="brown_200">#BCAAA4</color>
+    <color name="green_400">#BDBDBD</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

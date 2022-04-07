@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#215AFF</color>
+    <color name="purple_500">#215AFF</color>
+    <color name="purple_700">#215AFF</color>
+    <color name="teal_200">#0F194B</color>
+    <color name="teal_700">#0F194B</color>
+
+    <color name="primary">#215AFF</color>
+    <color name="primary_2">#0031BF</color>
+    <color name="secondary">#0F194B</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark">#333333</color>
+    <color name="light">#faf9f9</color>
+    <color name="warning">#FFD166</color>
+    <color name="warning2">#f5a951</color>
+    <color name="warning3">#f5f5dc</color>
+    <color name="danger">#E95062</color>
+    <color name="success">#01c39a</color>
+    <color name="grey_dark">#717477</color>
+    <color name="grey">#C8C8C8</color>
+    <color name="grey2">#707070</color>
+    <color name="grey3">#EBEBEB</color>
+    <color name="grey4">#CFCFCF</color>
+    <color name="blue_dark">#1E2642</color>
+    <color name="blue_grewish">#4E5872</color>
+    <color name="light_bg">#F4F4F6</color>
+
+    <color name="ucrop_color_toolbar">@color/light</color>
+    <color name="ucrop_color_statusbar">@color/primary</color>
+    <color name="ucrop_color_widget_active">@color/primary</color>
+
+</resources>

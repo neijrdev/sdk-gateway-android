@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.transactions.finishscreen.deposit.billet.BilletBarCodeFragment">
+
+    <ImageView
+        android:id="@+id/barCodeBillet"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCode"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:lineHeight="18sp"
+        android:paddingHorizontal="20dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/dark"
+        android:textIsSelectable="true"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barCodeBillet" />
+
+
+    <Button
+        android:id="@+id/btnCopyCodeBillet"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:minHeight="60dp"
+        android:text="@string/label_copy_code"
+        android:textAllCaps="false"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtCode"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/btnOpenBillet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="7dp"
+        android:backgroundTint="@drawable/color_button_start_payment"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:minHeight="60dp"
+        android:text="@string/label_save_billet"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCopyCodeBillet"
+        app:rippleColor="@color/primary_2" />
+
+    <TextView
+        android:id="@+id/txtTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:lineHeight="18sp"
+        android:layout_marginTop="20dp"
+        android:text="@string/tip_msg_billet"
+        android:textAlignment="textStart"
+        android:textColor="@color/dark"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnOpenBillet" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+{
+  "status": "error",
+  "status_code": 400,
+  "message": "Email not found.",
+  "data": {
+    "email": "usertest@test.com"
+  }
+}
