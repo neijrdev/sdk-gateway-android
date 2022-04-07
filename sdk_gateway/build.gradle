@@ -5,6 +5,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'jacoco'
+    id 'maven-publish'
 }
 
 tasks.withType(Test) {
@@ -180,4 +181,17 @@ dependencies {
     implementation "io.sentry:sentry-android-okhttp:$sentry_version"
     implementation "io.sentry:sentry-android-fragment:$sentry_version"
 
+}
+
+afterEvaluate {
+    publishing {
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.paylivre'
+                artifactId = 'sdk_gateway_android'
+                version = '1.0'
+            }
+        }
+    }
 }
