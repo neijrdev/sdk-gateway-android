@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/containerByPaylivre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:minHeight="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewErrorEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/payment_by_paylivre"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            />
+
+        <ImageView
+            android:id="@+id/logoPaylivre"
+            android:layout_width="wrap_content"
+            android:maxHeight="18dp"
+            android:maxWidth="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_logo_paylivre_blue" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Congratulations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerByPaylivre"
+        android:text="@string/thanks_for_using_paylivre"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

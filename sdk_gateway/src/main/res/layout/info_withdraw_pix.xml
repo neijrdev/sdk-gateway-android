@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/container"
+    android:visibility="visible"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginVertical="40dp"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:paddingVertical="30dp">
+
+            <LinearLayout
+                android:id="@+id/containerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/avenir_next_lt_pro_regular"
+                    android:textStyle="bold"
+                    android:lineHeight="20sp"
+                    android:text="@string/label_title_withdraw_pix"
+                    android:textAlignment="center"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/iconPix"
+                    android:layout_width="50dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/instructions_make_pix_text_1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_pix"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/containerInfoFast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerTitle">
+
+                <ImageView
+                    android:id="@+id/iconFastClock"
+                    android:layout_width="23dp"
+                    android:layout_height="13dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="9dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="icon"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_clock_fast"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textTitleFastClock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_next_lt_pro_bold"
+                        android:lineHeight="18sp"
+                        android:text="@string/label_fast"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/primary"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textBodyFastClock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:lineHeight="18sp"
+                        android:text="@string/info_withdraw_pix_fast"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/containerInfoSimple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerInfoFast">
+
+                <ImageView
+                    android:id="@+id/iconSimple"
+                    android:layout_width="21dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="none"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_arrow_fast"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textTitleSafe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_next_lt_pro_bold"
+                        android:lineHeight="18sp"
+                        android:text="@string/label_simple"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/primary"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textBodySafe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:lineHeight="18sp"
+                        android:text="@string/info_withdraw_pix_simple"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerInfoSafe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerInfoSimple">
+
+                <ImageView
+                    android:id="@+id/iconSafe"
+                    android:layout_width="17dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="@color/white"
+                    android:contentDescription="@string/instructions_make_pix_text_1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_security"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textTitleSimple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_next_lt_pro_bold"
+                        android:lineHeight="18sp"
+                        android:text="@string/label_safe"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/primary"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textBodySimple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:lineHeight="18sp"
+                        android:text="@string/info_withdraw_pix_safe"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

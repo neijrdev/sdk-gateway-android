@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    tools:context=".InsertUrlActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-5dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:lineHeight="18dp"
+        android:paddingVertical="5dp"
+        android:text="Back"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_arrow_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBack">
+
+        <TextView
+            android:id="@+id/txtTitleUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter the gateway url below:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editUrlLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL Gateway Paylivre"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTitleUrl">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="8"
+                android:inputType="textMultiLine"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonPasteUrl"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Paste clipboard URL"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textColor="@color/secondary"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editUrlLayout"
+            app:strokeColor="@color/secondary"
+            app:strokeWidth="2dp" />
+
+        <Button
+            android:id="@+id/buttonClearUrl"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Clear URL"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textColor="@color/secondary"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonPasteUrl"
+            app:strokeColor="@color/secondary"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Select Language (OPTIONAL)"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonClearUrl" />
+
+        <RadioGroup
+            android:id="@+id/checkGroupLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textLanguage">
+
+            <RadioButton
+                android:id="@+id/checkLangPt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="pt"
+                android:theme="@style/MyRadioButton" />
+
+            <RadioButton
+                android:id="@+id/checkLangEn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="en"
+                android:theme="@style/MyRadioButton" />
+
+            <RadioButton
+                android:id="@+id/checkLangEs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="es"
+                android:theme="@style/MyRadioButton" />
+
+            <RadioButton
+                android:id="@+id/checkLangNone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="none"
+                android:theme="@style/MyRadioButton" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttonStartCheckoutByURl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondary"
+            android:minHeight="60dp"
+            android:layout_marginTop="20dp"
+            android:text="Start Checkout by URL"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkGroupLanguage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

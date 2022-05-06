@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="rectangle"
+    android:color="@color/primary"
+    tools:targetApi="lollipop">
+
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="#66215AFF" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/background">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle" >
+
+            <solid
+                android:color="@android:color/transparent" >
+            </solid>
+
+            <!-- View border color and width -->
+            <stroke
+                android:width="1dp"
+                android:color="@color/primary" >
+            </stroke>
+
+            <!-- The radius makes the corners rounded -->
+            <corners
+                android:radius="5dp"   >
+            </corners>
+        </shape>
+    </item>
+</ripple >

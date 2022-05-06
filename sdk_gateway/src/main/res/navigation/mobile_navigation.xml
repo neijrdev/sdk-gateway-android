@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_check_services">
+
+    <fragment
+        android:id="@+id/navigation_check_services"
+        android:name="com.paylivre.sdk.gateway.android.ui.checkservices.CheckServicesStatus"
+        android:label="loading"
+        tools:layout="@layout/fragment_check_services_status" />
+
+    <fragment
+        android:id="@+id/navigation_form_start_payment"
+        android:name="com.paylivre.sdk.gateway.android.ui.form.FormStartPaymentFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/form_start_payment" />
+
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.paylivre.sdk.gateway.android.ui.loading.LoadingScreenFragment"
+        android:label="loading"
+        tools:layout="@layout/fragment_loading_screen" />
+
+    <fragment
+        android:id="@+id/navigation_loading_transaction"
+        android:name="com.paylivre.sdk.gateway.android.ui.loadingTransaction.LoadingTransaction"
+        android:label="loading"
+        tools:layout="@layout/fragment_loading_transaction" />
+
+    <fragment
+        android:id="@+id/navigation_transaction_completion"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.TransactionCompletionScreen"
+        android:label="loading"
+        tools:layout="@layout/fragment_transaction_completion_screen" />
+
+    <fragment
+        android:id="@+id/navigation_fatal_error"
+        android:name="com.paylivre.sdk.gateway.android.ui.error.FragmentFatalError"
+        android:label="Fatal Error"
+        tools:layout="@layout/fragment_fatal_error" />
+
+    <fragment
+        android:id="@+id/navigation_error_kyc_limit"
+        android:name="com.paylivre.sdk.gateway.android.ui.error.ErrorKycLimitFragment"
+        android:label="Fatal Error"
+        tools:layout="@layout/fragment_error_kyc_limit" />
+
+    <fragment
+        android:id="@+id/navigation_error_kyc_user_blocked"
+        android:name="com.paylivre.sdk.gateway.android.ui.error.ErrorKycUserBlocked"
+        android:label="Fatal Error"
+        tools:layout="@layout/fragment_error_kyc_user_blocked" />
+
+    <fragment
+        android:id="@+id/navigation_finish_screen_deposit_pix"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.pix.DepositPixFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_deposit_pix" />
+
+    <fragment
+        android:id="@+id/navigation_finish_screen_deposit_wallet"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.wallet.DepositWalletFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_deposit_wallet" />
+
+    <fragment
+        android:id="@+id/navigation_finish_screen_withdraw_pix"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.WithdrawFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_withdraw" />
+
+    <fragment
+        android:id="@+id/navigation_loading_withdraw"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.WithdrawLoadingFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_loading_withdraw" />
+
+    <fragment
+        android:id="@+id/navigation_finish_screen_deposit_billet"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.wallet.DepositBilletFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_deposit_billet" />
+
+    <fragment
+        android:id="@+id/navigation_finish_screen_deposit_wiretransfer"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.wiretransfer.WireTransferFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_deposit_wire_transfer" />
+</navigation>

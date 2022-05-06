@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerDialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <RelativeLayout
+        android:id="@+id/btn_locale_pt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <RelativeLayout
+            android:id="@+id/option_pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/lang_option_pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/portuguese"
+                android:textColor="@color/dark" />
+
+            <ImageView
+                android:id="@+id/img_option_pt"
+                android:layout_width="48dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/lang_option_pt"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/english"
+                android:scaleType="centerCrop"
+                android:src="@drawable/brasil"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@id/btn_locale_pt"
+        android:id="@+id/btn_locale_en"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <RelativeLayout
+            android:id="@+id/option_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/lang_option_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/english"
+                android:textColor="@color/dark" />
+
+            <ImageView
+                android:id="@+id/img_option_en"
+                android:layout_width="48dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/lang_option_en"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/english"
+                android:scaleType="centerCrop"
+                android:src="@drawable/eua"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/btn_locale_en"
+        android:id="@+id/btn_locale_es"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <RelativeLayout
+            android:id="@+id/option_es"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/lang_option_es"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/spanish"
+                android:textColor="@color/dark" />
+
+            <ImageView
+                android:id="@+id/img_option_es"
+                android:layout_width="48dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/lang_option_es"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/english"
+                android:scaleType="centerCrop"
+                android:src="@drawable/espanha"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

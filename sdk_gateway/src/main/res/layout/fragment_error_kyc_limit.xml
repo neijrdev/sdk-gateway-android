@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.error.ErrorKycLimitFragment"
+    tools:ignore="MissingDefaultResource">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="40dp">
+
+            <ImageView
+                android:id="@+id/logoMerchant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="160dp"
+                android:maxHeight="160dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TextIconError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:text=":("
+                android:layout_marginTop="50dp"
+                android:textAlignment="textStart"
+                android:textSize="70sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/logoMerchant"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/TextViewError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_next_lt_pro_bold"
+                android:text="@string/warning_label"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextIconError" />
+
+
+            <TextView
+                android:id="@+id/TextViewMsgSubtitleError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:text="@string/warning_limit_exceeded_subtitle"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewError" />
+
+            <TextView
+                android:id="@+id/textViewLimits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:lineHeight="25dp"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewMsgSubtitleError" />
+
+            <TextView
+                android:id="@+id/textViewMsgMakeNewTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:lineHeight="25dp"
+                android:text="make a new transaction."
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLimits" />
+
+
+            <TextView
+                android:id="@+id/textViewMsgSubtitle3Error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:lineHeight="25dp"
+                android:text="@string/label_for_more_information_access_support_site"
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMsgMakeNewTransaction" />
+
+            <TextView
+                android:id="@+id/linkPageSupportHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingVertical="5dp"
+                android:paddingRight="10dp"
+                android:text="paylivrehelp.zendesk.com"
+                android:textAlignment="textStart"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMsgSubtitle3Error" />
+
+
+            <TextView
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:clickable="true"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:lineHeight="20sp"
+                android:paddingRight="10dp"
+                android:text="@string/close_underline"
+                android:textAlignment="textStart"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linkPageSupportHelp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

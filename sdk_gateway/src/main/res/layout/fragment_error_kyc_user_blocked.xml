@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.error.ErrorKycLimitFragment"
+    tools:ignore="MissingDefaultResource">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="40dp">
+
+            <ImageView
+                android:id="@+id/logoMerchant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxWidth="160dp"
+                android:maxHeight="160dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.10" />
+
+            <TextView
+                android:id="@+id/TextIconError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:text=":("
+                android:textAlignment="textStart"
+                android:textSize="70sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logoMerchant" />
+
+            <TextView
+                android:id="@+id/TextViewError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenir_next_lt_pro_bold"
+                android:text="@string/warning_label"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextIconError" />
+
+
+            <TextView
+                android:id="@+id/TextViewMsgSubtitleError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:lineHeight="22sp"
+                android:text=""
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewError" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerLink"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:paddingVertical="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewMsgSubtitleError">
+
+                <TextView
+                    android:id="@+id/textViewForMoreInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenir_next_lt_pro_regular"
+                    android:lineHeight="25dp"
+                    android:text="@string/label_for_more_information_go_to"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:fontFamily="@font/avenir_next_lt_pro_regular"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="teste"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp"
+                    android:lineHeight="25dp"
+                    android:visibility="visible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewForMoreInformation" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:clickable="true"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:lineHeight="20sp"
+                android:paddingRight="10dp"
+                android:text="@string/close_underline"
+                android:textAlignment="textStart"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/containerLink" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

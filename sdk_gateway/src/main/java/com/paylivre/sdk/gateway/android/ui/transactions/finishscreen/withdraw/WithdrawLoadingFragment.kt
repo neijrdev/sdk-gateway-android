@@ -1,0 +1,86 @@
+package com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw
+
+import android.os.Bundle
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import com.paylivre.sdk.gateway.android.R
+import com.paylivre.sdk.gateway.android.data.model.order.CheckStatusOrderDataRequest
+import com.paylivre.sdk.gateway.android.databinding.FragmentLoadingWithdrawBinding
+import com.paylivre.sdk.gateway.android.domain.model.Type
+import com.paylivre.sdk.gateway.android.ui.error.handleNavigateToErrorScreen
+import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
+
+const val TIMER_INTERVAL_LOADING_WAIT_WITHDRAW: Long = 1000 * 10;
+
+class WithdrawLoadingFragment : Fragment() {
+    private var _binding: FragmentLoadingWithdrawBinding? = null
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private val binding get() = _binding!!
+    private var language: String? = null
+    private var orderId: Int = -1
+    private var token: String = ""
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+
+        _binding = FragmentLoadingWithdrawBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    private fun navigateToFinishScreen(view: View, typeWithdraw: Int?) {
+        if (typeWithdraw == Type.PIX.code) {
+            Navigation.findNavController(view)
+                .navigate(R.id.navigation_finish_screen_withdraw_pix)
+        } else {
+            Navigation.findNavController(view)
+                .navigate(R.id.navigation_finish_screen_withdraw_pix)
+        }
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainViewModel.language.observe(viewLifecycleOwner) { language = it }
+
+
+        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner) {
+            if (it != null && it.isSuccess == true) {
+                if (it.data?.order?.id != null) {
+                    orderId = it.data?.order?.id
+                }
+                token = it.data?.token ?: ""
+            }
+        }
+
+        Handler().postDelayed({
+            mainViewModel.checkStatusOrder(
+                CheckStatusOrderDataRequest(
+                    orderId,
+                    token
+                )
+            )
+        }, TIMER_INTERVAL_LOADING_WAIT_WITHDRAW)
+
+
+        mainViewModel.checkStatusOrderDataResponse.observe(viewLifecycleOwner) {
+            when (it.isSuccess) {
+                true -> {
+                    navigateToFinishScreen(view, it.data?.withdrawal_type_id)
+                }
+                //Handle error in check status order request
+                false -> {
+                    handleNavigateToErrorScreen(view, it.error)
+                }
+            }
+        }
+    }
+
+}

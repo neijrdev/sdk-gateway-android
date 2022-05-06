@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerFormScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.transactions.data.TransactionDataFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowIdentifier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textIdLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="@string/label_transaction_id"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textIdValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="12345"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowOriginalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowIdentifier">
+
+        <TextView
+            android:id="@+id/textOriginalAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="@string/label_origin_amount"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textOriginalAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowConvertedAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowOriginalAmount">
+
+        <TextView
+            android:id="@+id/textConvertedAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="@string/label_converted_amount"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textConvertedAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="R$ 5,00"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowTaxAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowConvertedAmount">
+
+        <TextView
+            android:id="@+id/textTaxAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="@string/label_tax"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textTaxAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="R$ 3,00"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowTaxAmount">
+
+        <TextView
+            android:id="@+id/textDueDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="@string/label_duedate"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textDueDateValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="18sp"
+            android:text="17/11/2021"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewDividerTotal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/grey3"
+        app:layout_constraintTop_toBottomOf="@+id/rowDueDate" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDividerTotal">
+
+        <TextView
+            android:id="@+id/textTotalAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="20sp"
+            android:text="@string/label_total"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textTotalAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_bold"
+            android:lineHeight="20sp"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="17sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewDividerKycLimit"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/grey3"
+        app:layout_constraintTop_toBottomOf="@+id/rowTotalAmount" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowLimitAmount"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewDividerKycLimit">
+
+        <TextView
+            android:id="@+id/textLimitAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="20sp"
+            android:paddingBottom="5dp"
+            android:text="@string/label_available_limit"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnShowAboutLimit"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="About limit"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_help_question"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textLimitAmountLabel"
+            tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/textLimitAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_lt_pro_regular"
+            android:lineHeight="20sp"
+            android:paddingBottom="5dp"
+            android:text="R$ 999.999.499,00"
+            android:textAlignment="textStart"
+            android:textColor="@color/grey_dark"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

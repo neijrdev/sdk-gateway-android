@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.transactions.finishscreen.deposit.wiretransfer.InsertProofWireTransferFragment">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_next_lt_pro_bold"
+        android:lineHeight="18sp"
+        android:text="@string/title_proof_deposit"
+        android:textAlignment="textStart"
+        android:textColor="@color/grey_dark"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNameSelectedFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:lineHeight="18sp"
+        android:text="@string/no_file_selected"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+
+    <ImageView
+        android:id="@+id/imgPreviewProof"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="@string/title_proof_deposit"
+        android:maxHeight="150dp"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNameSelectedFile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnChooseFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_outline_with_ripple_primary"
+        android:clickable="true"
+        android:minHeight="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgPreviewProof">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtChooseFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:clickable="false"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:text="@string/choose_file"
+                android:textColor="@color/primary"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/iconChooseFile"
+                android:layout_width="20dp"
+                android:layout_height="15.7dp"
+                android:clickable="false"
+                android:outlineSpotShadowColor="@color/primary"
+                android:src="@drawable/ic_upload_file" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/textInstructionFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:lineHeight="18sp"
+        android:text="@string/label_instructions_insert_proof_file"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChooseFile" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@drawable/color_button_start_payment"
+        android:enabled="false"
+        android:fontFamily="@font/avenir_next_lt_pro_regular"
+        android:minHeight="60dp"
+        android:text="@string/submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInstructionFile"
+        app:rippleColor="@color/primary_2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <targetSelectedWithDropDown>
+      <Target>
+        <type value="QUICK_BOOT_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\usuario\.android\avd\Pixel_3a_API_30.avd" />
+          </Key>
+        </deviceKey>
+      </Target>
+    </targetSelectedWithDropDown>
+<<<<<<< HEAD
+    <timeTargetWasSelectedWithDropDown value="2022-01-14T12:48:36.789598Z" />
+=======
+    <timeTargetWasSelectedWithDropDown value="2022-01-13T12:36:48.247996700Z" />
+>>>>>>> 08bfbde (NOVA FEATURE -> Criado fluxo para retornar informações sobre a transação como callback para o app que startou o SDK do Gateway)
+  </component>
+</project>

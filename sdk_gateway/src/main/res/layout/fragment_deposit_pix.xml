@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerFormScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_bg"
+    android:clickable="true"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.transactions.finishscreen.deposit.pix.DepositPixFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/header_title"
+            android:name="com.paylivre.sdk.gateway.android.ui.header.HeaderFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:label="@string/verify_user"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout="@layout/header_title" />
+
+        <View
+            android:id="@+id/dividerLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey4"
+            app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    android:id="@+id/TitlePix"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/avenir_next_lt_pro_bold"
+                    android:text="PIX"
+                    android:textColor="@color/secondary"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerCodePixAndCheckStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TitlePix">
+
+                    <TextView
+                        android:id="@+id/textCodePix"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:text="00020101021226580014BR.GOV.BCB.PIX0136b46359c8-3eaa-4b42-a3c6-0972a9c4a2265204000053039865406111.115802BR5912Pay Livrepix6014Belo Horizonte610830380403620605029X6304BFA4"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/secondary"
+                        android:textIsSelectable="true"
+                        android:textSize="12sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btnCopyCodePix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="15dp"
+                        android:backgroundTint="@drawable/color_button_start_payment"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:minHeight="60dp"
+                        android:text="@string/copy_key_pix"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textCodePix"
+                        app:rippleColor="@color/primary_2" />
+
+                    <LinearLayout
+                        android:id="@+id/containerTimeToExpire"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btnCopyCodePix">
+
+                        <TextView
+                            android:id="@+id/textViewLabelTimePix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:gravity="center"
+                            android:lineHeight="13sp"
+                            android:paddingHorizontal="5dp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/time_to_expire_pix"
+                            android:textColor="@color/primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textViewTimeExpirePix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:gravity="center"
+                            android:lineHeight="13sp"
+                            android:paddingVertical="2dp"
+                            android:text=""
+                            android:textColor="@color/primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textLastStatusDepositPix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/avenir_next_lt_pro_regular"
+                        android:gravity="center"
+                        android:lineHeight="18sp"
+                        android:paddingVertical="20dp"
+                        android:text=""
+                        android:textColor="@color/grey_dark"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/containerTimeToExpire" />
+
+
+                    <LinearLayout
+                        android:id="@+id/containerCheckingStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingVertical="20dp"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/containerTimeToExpire">
+
+                        <TextView
+                            android:id="@+id/textViewMessageLoading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:gravity="center"
+                            android:lineHeight="13sp"
+                            android:paddingHorizontal="5dp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/checking_status_loading"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/loadingBar"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:indeterminate="true"
+                            app:indicatorColor="@color/primary"
+                            app:indicatorSize="18dp"
+                            app:trackThickness="2dp" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragmentDepositStatus"
+                    android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.StatusTransactionFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:label=""
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/containerCodePixAndCheckStatus"
+                    tools:layout="@layout/fragment_status_transaction" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerFragmentTransactionData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentDepositStatus" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerBackMerchantAndInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/containerFragmentTransactionData">
+
+                    <View
+                        android:id="@+id/dividerLineContainerTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/grey3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/containerAcceptTerms"
+                        android:name="com.paylivre.sdk.gateway.android.ui.form.AcceptTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dividerLineContainerTerms"
+                        tools:layout="@layout/fragment_accept_terms" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragmentBackMerchant"
+                        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.BackMerchantFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:label=""
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/containerAcceptTerms"
+                        tools:layout="@layout/fragment_back_merchant" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <View
+            android:id="@+id/dividerLineCard"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/grey4"
+            app:layout_constraintTop_toBottomOf="@+id/CardView" />
+
+        <include
+            android:id="@+id/instructions_pix"
+            layout="@layout/instructions_deposit_pix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerLineCard" />
+
+        <include
+            android:id="@+id/payment_by_paylivre"
+            layout="@layout/payment_by_paylivre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/instructions_pix" />
+
+        <include
+            android:id="@+id/need_helper"
+            layout="@layout/need_helper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_by_paylivre" />
+
+        <include
+            android:id="@+id/legal_notice"
+            layout="@layout/legal_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/need_helper" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
