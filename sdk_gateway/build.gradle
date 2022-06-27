@@ -231,7 +231,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.paylivre'
                 artifactId = 'sdk_gateway_android'
-                version = '1.0.5'
+                version = '1.0.6'
             }
         }
     }
