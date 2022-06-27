@@ -4,11 +4,6 @@
 
 Paylivre SDK Gateway Android
 
-#Config Project:
-- Add in env variables of system:
-  AMPLITUDE_API_KEY=value
-  SENTRY_API_KEY_URL=url_value
-
 - run all test and generate jacoco coverage reports for the debug variant.
   ./gradlew --no-daemon clean jacocoTestDebugUnitTestReport
 
@@ -54,11 +49,11 @@ Paylivre SDK Gateway Android
 * Add it in file settings.gradle
 
 dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-    google()
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-    jcenter() // Warning: this repository is going to shut down soon
-  }
+repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+repositories {
+google()
+mavenCentral()
+maven { url 'https://jitpack.io' }
+jcenter() // Warning: this repository is going to shut down soon
+}
 }

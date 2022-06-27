@@ -12,8 +12,8 @@
         android:requestLegacyExternalStorage="true">
 
         <meta-data
-            android:name="io.sentry.auto-init"
-            android:value="false" />
+            android:name="io.sentry.dsn"
+            android:value="https://b7458e1514c74143b4cea77cef7a6dee@o788119.ingest.sentry.io/6198811" />
         <meta-data
             android:name="io.sentry.traces.sample-rate"
             android:value="1.0" />

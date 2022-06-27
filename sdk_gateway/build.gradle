@@ -80,9 +80,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField "String", "AMPLITUDE_API_KEY", "\"${System.getenv('AMPLITUDE_API_KEY')}\""
-        buildConfigField "String", "SENTRY_API_KEY_URL", "\"${System.getenv('SENTRY_API_KEY_URL')}\""
     }
 
     buildTypes {
@@ -234,7 +231,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.paylivre'
                 artifactId = 'sdk_gateway_android'
-                version = '1.0.2'
+                version = '1.0.5'
             }
         }
     }
