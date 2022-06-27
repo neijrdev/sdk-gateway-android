@@ -9,29 +9,12 @@ import retrofit2.http.POST
 
 import retrofit2.http.Multipart
 
-
 interface ApiService {
-    @POST("/api/v1/gateway/verifyUser")
-    fun verifyUser(
-        @Body
-        requestBody: RequestBody
-    ): Call<ResponseBody>
-
     @GET("/api/v2/gateway/averagePixApprovalTime")
     fun getPixApprovalTime(): Call<ResponseBody>
 
     @GET("/api/v2/gateway/deposit-status")
     fun getServicesStatus(): Call<ResponseBody>
-
-    @POST("/api/v2/gateway")
-    fun newTransactionGateway(
-        @Body
-        requestBody: RequestBody
-    ): Call<ResponseBody>
-
-//    //Mock serve api online
-//    @POST("/mocks/neijrdev/gateway/30370850/api/v2/gateway")
-//    fun newTransactionGateway(@Body requestBody: RequestBody): Call<ResponseBody>
 
     @GET("/api/v2/transaction/deposit/status/{id}")
     fun checkStatusDeposit(
@@ -53,5 +36,19 @@ interface ApiService {
         @Part("token")
         token: RequestBody,
         @Part proof: MultipartBody.Part,
+    ): Call<ResponseBody>
+
+    @POST("/api/v2/gateway")
+    fun newTransactionGateway(
+        @Body
+        requestBody: RequestBody
+    ): Call<ResponseBody>
+
+    @GET("/api/v2/gateway/status/{order_id}/{token}")
+    fun checkStatusOrder(
+        @Path("order_id")
+        order_id: Int,
+        @Path("token")
+        token: String,
     ): Call<ResponseBody>
 }

@@ -3,29 +3,50 @@ package com.paylivre.sdk.gateway.android
 import android.content.Context
 import android.os.Build
 import androidx.test.core.app.ApplicationProvider
+import com.paylivre.sdk.gateway.android.data.model.order.Bank
 import com.paylivre.sdk.gateway.android.data.model.order.BankAccount
 import com.paylivre.sdk.gateway.android.data.model.order.BankAccounts
 import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.wiretransfer.*
+import com.paylivre.sdk.gateway.android.viewmodel.MockMainViewModel
+import org.junit.After
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.stopKoin
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers="pt-port")
+@Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers = "pt-port")
 class GetBankAccountsDataTest {
+    @Before
+    fun setup() {
+        loadKoinModules(MockMainViewModel().mockedAppModule)
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
+    }
+
+
     private val mockBankAccounts = listOf(
         BankAccount(
             "Teste Account Hidden",
             null, null,
             1, null, null, null,
-            null
+            null,
+            bank = null,
+            null,
         ),
         BankAccount(
             "Teste Account Not Hidden",
             null, null,
             null, null, null, null,
+            null,
+            bank = null,
             null
         )
     )
@@ -38,6 +59,8 @@ class GetBankAccountsDataTest {
                     "Teste Account Not Hidden",
                     null, null,
                     null, null, null, null,
+                    null,
+                    bank = null,
                     null
                 )
             ),
@@ -102,26 +125,6 @@ class GetBankAccountsDataTest {
     }
 
 
-    @Test
-    fun `Test getBankAccountInfo`() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-
-        val mockBankAccount = BankAccount(
-            "Teste Account Hidden",
-            "Joao Teste da Silva", "12.345.678/912.1-43",
-            null, 1234, null, "12346",
-            "7"
-        )
-
-        Assert.assertEquals(
-            "Banco: Teste Account Hidden\n" +
-                    "Agência: 1234\n" +
-                    "Conta: 12346-7\n" +
-                    "Joao Teste da Silva\n" +
-                    "12.345.678/912.1-43",
-            getBankAccountInfo(context, mockBankAccount)
-        )
-    }
 
 
 }

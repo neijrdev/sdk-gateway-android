@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/white_color_paylivre_sdk"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,14 +26,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/textViewTitleInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/avenir_next_lt_pro_bold"
                 android:text="@string/title_transfer_instructions"
                 android:textAlignment="center"
-                android:textColor="@color/grey_dark"
+                android:textColor="@color/grey_dark_color_paylivre_sdk"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -47,7 +47,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitleInstructions"
                 >
 
                 <ImageView
@@ -57,19 +57,20 @@
                     android:layout_marginRight="5dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/deposit_transfer_instructions_1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_lens_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:id="@+id/textViewInstruction1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
                     android:text="@string/deposit_transfer_instructions_1"
                     android:textAlignment="textStart"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/grey_color_paylivre_sdk"
                     android:textSize="14sp"
                     android:lineHeight="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -93,19 +94,20 @@
                     android:layout_marginRight="5dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/deposit_transfer_instructions_2"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_lens_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:id="@+id/textViewInstruction2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
                     android:text="@string/deposit_transfer_instructions_2"
                     android:textAlignment="textStart"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/grey_color_paylivre_sdk"
                     android:textSize="14sp"
                     android:lineHeight="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -129,19 +131,20 @@
                     android:layout_marginRight="5dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/deposit_transfer_instructions_3"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_lens_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:id="@+id/textViewInstruction3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
                     android:text="@string/deposit_transfer_instructions_3"
                     android:textAlignment="textStart"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/grey_color_paylivre_sdk"
                     android:textSize="14sp"
                     android:lineHeight="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -165,19 +168,20 @@
                     android:layout_marginRight="5dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/deposit_transfer_instructions_5"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_baseline_lens_24"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:id="@+id/textViewInstruction4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
                     android:text="@string/deposit_transfer_instructions_5"
                     android:textAlignment="textStart"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/grey_color_paylivre_sdk"
                     android:textSize="14sp"
                     android:lineHeight="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/container"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.transactions.finishscreen.deposit.wiretransfer.SelectBankAccountFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:lineHeight="18sp"
         android:text="@string/label_info_bank_paylivre"
         android:textAlignment="textStart"
-        android:textColor="@color/grey_dark"
+        android:textColor="@color/grey_dark_color_paylivre_sdk"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,8 +25,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=""
         android:layout_marginTop="5dp"
+        android:hint=""
         android:padding="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTitle">
@@ -37,26 +37,68 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:text="@string/label_select"
-            android:textColor="@color/grey_dark"
-            android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textColor="@color/grey_dark_color_paylivre_sdk"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textViewBankInfo"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBankInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_next_lt_pro_regular"
-        android:text=""
+        android:layout_marginTop="20dp"
         android:visibility="gone"
-        android:lineHeight="30sp"
-        android:textAlignment="textStart"
-        android:textColor="@color/dark"
-        android:textSize="16sp"
-        android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSpinnerBanksLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/editSpinnerBanksLayout">
+
+        <LinearLayout
+            android:id="@+id/bankName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/bankOffice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bankName" />
+
+        <LinearLayout
+            android:id="@+id/bankAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bankOffice" />
+
+        <LinearLayout
+            android:id="@+id/bankOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bankAccount" />
+
+        <LinearLayout
+            android:id="@+id/bankDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bankOwner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,10 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.paylivre.sdk.gateway.android.data.model.deposit.CheckStatusDepositResponse
 import com.paylivre.sdk.gateway.android.data.model.deposit.handleResponseDepositCheckStatus
-import com.paylivre.sdk.gateway.android.data.model.order.ErrorTransaction
-import com.paylivre.sdk.gateway.android.data.model.order.OrderDataRequest
-import com.paylivre.sdk.gateway.android.data.model.order.ResponseCommonTransactionData
-import com.paylivre.sdk.gateway.android.data.model.order.handleResponseTransaction
+import com.paylivre.sdk.gateway.android.data.model.order.*
 import com.paylivre.sdk.gateway.android.data.model.pixApprovalTime.PixApprovalTimeResponse
 import com.paylivre.sdk.gateway.android.data.model.pixApprovalTime.handleResponsePixApprovalTime
 import com.paylivre.sdk.gateway.android.data.model.servicesStatus.ServiceStatusResponseAdapter
@@ -17,6 +14,7 @@ import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferP
 import com.paylivre.sdk.gateway.android.data.model.transferProof.insertTransferProofHandleResponse
 import com.paylivre.sdk.gateway.android.data.model.transaction.CheckStatusTransactionResponse
 import com.paylivre.sdk.gateway.android.data.model.transaction.handleResponseTransactionCheckStatus
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import io.sentry.Sentry
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -30,9 +28,7 @@ import java.lang.RuntimeException
 import okhttp3.MultipartBody
 
 
-class RemoteDataSource(private val apiService: ApiService) {
-
-
+class RemoteDataSource(private val apiService: ApiService, private val logEventsService : LogEventsService) {
     fun getPixApprovalTime(
         onResponse: (PixApprovalTimeResponse?, Throwable?) -> Unit,
     ) {
@@ -59,11 +55,8 @@ class RemoteDataSource(private val apiService: ApiService) {
                 Sentry.setExtra("error_throwable", t.message.toString())
                 Sentry.setExtra("error", "error_request_not_connect_server")
                 Sentry.captureMessage("ERROR_API (api/v2/gateway/averagePixApprovalTime)")
-
             }
-
         })
-
     }
 
     fun getServicesStatus(
@@ -116,7 +109,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 response: Response<ResponseBody>,
             ) {
                 //Trata os possíveis erros do response
-                handleResponseTransaction(dataRequest, response, onResponse)
+                handleResponseTransaction(dataRequest, response, onResponse, logEventsService)
             }
 
             //Geralmente Erros de Falha de conexão
@@ -156,7 +149,8 @@ class RemoteDataSource(private val apiService: ApiService) {
                 //Log error Sentry
                 Sentry.setExtra("error_throwable_status_deposit", t.message.toString())
                 Sentry.setExtra("error_status_deposit", "error_request_not_connect_server")
-                Sentry.setExtra("request_url_status_deposit", "(/api/v2/transaction/deposit/status/$depositId)")
+                Sentry.setExtra("request_url_status_deposit",
+                    "(/api/v2/transaction/deposit/status/$depositId)")
                 Sentry.captureMessage("ERROR_API (api/v2/transaction/deposit/status/{id})")
             }
 
@@ -188,7 +182,8 @@ class RemoteDataSource(private val apiService: ApiService) {
                 //Log error Sentry
                 Sentry.setExtra("error_throwable_status_transaction", t.message.toString())
                 Sentry.setExtra("error_status_transaction", "error_request_not_connect_server")
-                Sentry.setExtra("request_url_status_transaction", "(/api/v2/transaction/status/$transactionId)")
+                Sentry.setExtra("request_url_status_transaction",
+                    "(/api/v2/transaction/status/$transactionId)")
                 Sentry.captureMessage("ERROR_API (api/v2/transaction/status/{id})")
             }
 
@@ -201,6 +196,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         dataRequest: InsertTransferProofDataRequest,
         onResponse: (InsertTransferProofDataResponse?, Throwable?) -> Unit,
     ) {
+
 
         val file = dataRequest.file
 
@@ -245,6 +241,41 @@ class RemoteDataSource(private val apiService: ApiService) {
 
         })
 
+
     }
 
+    fun checkStatusOrder(
+        dataRequest: CheckStatusOrderDataRequest,
+        onResponse: (CheckStatusOrderDataResponse?, ErrorTransaction?) -> Unit,
+    ) {
+        apiService.checkStatusOrder(
+            dataRequest.order_id,
+            dataRequest.token,
+        ).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: Response<ResponseBody>,
+            ) {
+                //Trata os possíveis erros do response
+                handleResponseCheckStatusOrder(dataRequest, response, onResponse, logEventsService)
+            }
+
+            //Geralmente Erros de Falha de conexão
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                onResponse(
+                    null,
+                    ErrorTransaction("error_request_not_connect_server",
+                        null, null)
+                )
+
+                //Log error Sentry
+                Sentry.setExtra("error_check_status_order", t.message.toString())
+                Sentry.setExtra("error_check_status_order", "error_request_not_connect_server")
+                Sentry.setExtra("error_check_status_order",
+                    "/api/v2/gateway/status/${dataRequest.order_id}/${dataRequest.token}")
+                Sentry.captureMessage("ERROR_API (/api/v2/gateway/status/{order_id}/{token})")
+            }
+
+        })
+    }
 }

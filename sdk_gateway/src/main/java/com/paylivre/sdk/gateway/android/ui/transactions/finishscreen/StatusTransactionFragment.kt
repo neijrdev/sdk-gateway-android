@@ -9,7 +9,7 @@ import com.paylivre.sdk.gateway.android.databinding.FragmentStatusTransactionBin
 
 class StatusTransactionFragment : Fragment() {
     private var _binding: FragmentStatusTransactionBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,

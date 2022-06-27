@@ -4,15 +4,67 @@ import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Type
 
 
+data class DataOrderRequestToHandle(
+    val selected_type: String = "",
+    val operation: String = "",
+    val login_email: String? = "",
+    val api_token: String? = "",
+    val pix_key_type: String? = "",
+    val pix_key: String? = "",
+)
+
+data class ResponseDataOrderRequestToHandle(
+    val login_email: String? = "",
+    val api_token: String? = "",
+    val pix_key_type: String? = "",
+    val pix_key: String? = "",
+)
+
+fun handlesDataOrderRequest(
+    dataOrderRequestToHandle: DataOrderRequestToHandle,
+): ResponseDataOrderRequestToHandle {
+    val loginEmail =
+        if (dataOrderRequestToHandle.operation == Operation.DEPOSIT.code.toString()
+            && dataOrderRequestToHandle.selected_type == Type.WALLET.code.toString()
+        )
+            dataOrderRequestToHandle.login_email else ""
+
+    val apiToken =
+        if (dataOrderRequestToHandle.operation == Operation.DEPOSIT.code.toString()
+            && dataOrderRequestToHandle.selected_type == Type.WALLET.code.toString()
+        )
+            dataOrderRequestToHandle.api_token else ""
+
+    val pixKeyType =
+        if (dataOrderRequestToHandle.operation == Operation.WITHDRAW.code.toString()
+            && dataOrderRequestToHandle.selected_type == Type.PIX.code.toString()
+        )
+            dataOrderRequestToHandle.pix_key_type else ""
+
+    val pixKey =
+        if (dataOrderRequestToHandle.operation == Operation.WITHDRAW.code.toString()
+            && dataOrderRequestToHandle.selected_type == Type.PIX.code.toString()
+        )
+            dataOrderRequestToHandle.pix_key else ""
+
+    return ResponseDataOrderRequestToHandle(
+        loginEmail, apiToken, pixKeyType, pixKey
+    )
+}
+
+
 fun getProcessedDataOrderRequest(dataGenerateSignature: DataGenerateSignature): DataGenerateSignature {
-    val login_email =
-        if (dataGenerateSignature.selected_type == Type.WALLET.code.toString()) dataGenerateSignature.login_email else ""
-    val api_token =
-        if (dataGenerateSignature.selected_type == Type.WALLET.code.toString()) dataGenerateSignature.api_token else ""
-    val pix_key_type =
-        if (dataGenerateSignature.operation == Operation.WITHDRAW.code.toString()) dataGenerateSignature.pix_key_type else ""
-    val pix_key =
-        if (dataGenerateSignature.operation == Operation.WITHDRAW.code.toString()) dataGenerateSignature.pix_key else ""
+
+    val handledDataOrderRequest = handlesDataOrderRequest(
+        DataOrderRequestToHandle(
+            selected_type = dataGenerateSignature.selected_type,
+            operation = dataGenerateSignature.operation,
+            login_email = dataGenerateSignature.login_email,
+            api_token = dataGenerateSignature.api_token,
+            pix_key_type = dataGenerateSignature.pix_key_type,
+            pix_key = dataGenerateSignature.pix_key
+        )
+    )
 
     return DataGenerateSignature(
         dataGenerateSignature.base_url,
@@ -28,10 +80,10 @@ fun getProcessedDataOrderRequest(dataGenerateSignature: DataGenerateSignature): 
         dataGenerateSignature.account_id,
         dataGenerateSignature.email,
         dataGenerateSignature.document_number,
-        login_email,
-        api_token,
-        pix_key_type,
-        pix_key,
+        handledDataOrderRequest.login_email,
+        handledDataOrderRequest.api_token,
+        handledDataOrderRequest.pix_key_type,
+        handledDataOrderRequest.pix_key,
         dataGenerateSignature.auto_approve
     )
 }
@@ -70,9 +122,9 @@ data class OrderDataRequest(
     val account_id: String,
     val email: String,
     val document_number: String,
-    val login_email: String?,
-    val api_token: String?,
-    val pix_key_type: String?,
+    var login_email: String?,
+    var api_token: String?,
+    var pix_key_type: String?,
     var pix_key: String?,
     var signature: String = "",
     var url: String = "",

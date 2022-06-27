@@ -6,20 +6,25 @@ import com.paylivre.sdk.gateway.android.data.api.addSentryBreadcrumb
 import com.paylivre.sdk.gateway.android.data.getGenericErrorData
 import com.paylivre.sdk.gateway.android.data.model.order.KYC.LimitsKyc
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.utils.ERROR_INVALID_USER_NAME_OR_PASSWORD
 import io.sentry.Sentry
 import okhttp3.ResponseBody
 import retrofit2.Response
 import java.lang.Exception
 
+data class StatusWithdrawOrder(
+    val withdrawal_type_id: Int?,
+    val withdrawal_status_id: Int?,
+    val merchant_approval_status_id: Int?,
+    val order_status_id: Int?,
+)
 
 data class StatusTransactionResponse(
     val isLoading: Boolean?,
     val isSuccess: Boolean?,
-    val isErrorWalletInvalidApiToken: Boolean?,
     val data: ResponseCommonTransactionData?,
     val error: ErrorTransaction?,
-    val isErrorKYCLimit: Boolean? = null,
 )
 
 data class ResponseCommonTransactionData(
@@ -44,6 +49,8 @@ data class ResponseCommonTransactionData(
     val order: OrderData?,
     val bank_accounts: List<BankAccount>?,
     val verification_token: String?,
+    val token: String? = null,
+    val withdrawal_type_id: Int? = null,
 )
 
 data class WithdrawalData(
@@ -53,9 +60,14 @@ data class WithdrawalData(
 )
 
 data class OrderData(
+    val id: Int? = null,
+    val status_id: Int? = null,
     val status: String? = "",
+    val order_type_id: Int? = null,
     val merchant_approval_status_id: Int? = null,
     val merchant_approval_status_name: String? = "",
+    val type: Int? = null,
+    val type_name: String? = "",
 )
 
 data class BankAccounts(
@@ -71,6 +83,18 @@ data class BankAccount(
     val office_digit: Int?,
     val account_number: String?,
     val account_digit: String?,
+    val bank: Bank?,
+    val bank_number: Int?,
+)
+
+data class Bank(
+    val id: Int?,
+    val country_cca3: String?,
+    val name: String?,
+    val number: String?,
+    val website: String?,
+    val display: Int?,
+    val blacklisted: Int?,
 )
 
 const val GENERIC_ERROR = "invalid_data_error"
@@ -92,6 +116,30 @@ data class Errors(
     val operation: List<String>? = null,
     val merchant_transaction_id: List<String>? = null,
     val auto_approve: List<String>? = null,
+    //kyc block reasons
+    val blocked_by_kyc: String? = null,
+    val id: Int? = null,
+    val public_reason_pt: String? = null,
+    val public_reason_en: String? = null,
+    val public_reason_es: String? = null,
+    val internal_reason_en: String? = null,
+    val internal_reason_es: String? = null,
+    val internal_reason_pt: String? = null,
+    val deleted_at: String? = null,
+    val created_at: String? = null,
+    val updated_at: String? = null,
+    val created_by: Int? = null,
+    val is_system_reason: Boolean? = null,
+    val link: String? = null,
+    val type: String? = null,
+    //kyc limit exceeded
+    val limit_exceeded: String? = null,
+    val available_limit: Int? = null,
+    val kyc_level: String? = null,
+    val kyc_level_name: String? = null,
+    val limit: Int? = null,
+    val used_limit: Int? = null,
+    val free_transaction_limit: Int? = null,
 )
 
 data class ErrorTransaction(
@@ -99,7 +147,7 @@ data class ErrorTransaction(
     val messageDetails: String? = null,
     val error: ErrorData? = null,
     val errors: Errors? = null,
-    val errorTags: String? = null,
+    var errorTags: String? = null,
     val original_message: String? = null,
 )
 
@@ -184,20 +232,6 @@ fun getErrorCodeWithTagResponseJson(response: Response<ResponseBody>): ErrorTran
 }
 
 
-fun checkIsErrorKycLimits(errorMessage: String?): Boolean {
-    return if (errorMessage != null) {
-        when (errorMessage) {
-            "The amount exceeds the limit available for your KYC Level.",
-            "Kyc validation errors",
-            -> true
-            else -> false
-        }
-    } else {
-        false
-    }
-
-}
-
 fun getErrorCode400ResponseJson(response: Response<ResponseBody>): ErrorTransaction {
     val commonErrorTransaction = getErrorResponseJson(response)
 
@@ -268,14 +302,30 @@ fun handleResponseTransaction(
     dataRequest: OrderDataRequest,
     response: Response<ResponseBody>,
     onResponse: (ResponseCommonTransactionData?, ErrorTransaction?) -> Unit,
-
-    ) {
+    logEventsService: LogEventsService,
+) {
     try {
         if (response.isSuccessful) {
             val res: ResponseCommonTransactionData = getResponseJson(response)
             onResponse(res, null)
+
+            //Set Log Analytics
+            logEventsService.setLogEventAnalyticsWithParams(
+                "SuccessTransaction",
+                Pair("operation", dataRequest.operation),
+                Pair("type", dataRequest.type),
+                Pair("selected_type", dataRequest.selected_type),
+            )
         } else {
             onResponse(null, getErrorDataByCode(response))
+
+            //Set Log Analytics
+            logEventsService.setLogEventAnalyticsWithParams(
+                "ErrorTransaction",
+                Pair("operation", dataRequest.operation),
+                Pair("type", dataRequest.type),
+                Pair("selected_type", dataRequest.selected_type),
+            )
 
             //Sentry config
             Sentry.setExtra("request_body_json_gateway",

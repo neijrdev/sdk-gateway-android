@@ -121,6 +121,7 @@ fun extractDataFromUrl(url: String, returnNullIfParamNotExist: Boolean = true): 
             getQueryParameterUrlStringOrNull(urlDecoded, "pix_key", returnNullIfParamNotExist)
     }
 
+
     return dataStartCheckout
 }
 

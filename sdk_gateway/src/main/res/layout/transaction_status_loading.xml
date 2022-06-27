@@ -21,7 +21,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:indeterminate="true"
-            app:indicatorColor="@color/primary"
+            app:indicatorColor="@color/primary_color_paylivre_sdk"
             app:indicatorSize="50dp"
             app:trackThickness="5dp" />
 
@@ -36,7 +36,7 @@
             android:paddingHorizontal="5dp"
             android:paddingVertical="2dp"
             android:text="@string/checking_status_loading"
-            android:textColor="@color/secondary"
+            android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="18sp"
             android:textStyle="bold" />
 

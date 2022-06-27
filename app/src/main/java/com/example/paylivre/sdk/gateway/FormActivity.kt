@@ -2,11 +2,11 @@ package com.example.paylivre.sdk.gateway
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.paylivre.sdk.gateway.data.*
 import com.example.paylivre.sdk.gateway.databinding.ActivityFormBinding
 import com.example.paylivre.sdk.gateway.model.DataGenerateUrl
@@ -14,13 +14,15 @@ import com.example.paylivre.sdk.gateway.model.GenerateUrlToCheckout
 import com.example.paylivre.sdk.gateway.utils.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
+import com.paylivre.sdk.gateway.android.BuildConfig
+import com.paylivre.sdk.gateway.android.domain.model.TypePixKey
+import com.paylivre.sdk.gateway.android.domain.model.TypesToSelect
 import com.paylivre.sdk.gateway.android.services.argon2i.Argon2iHash
 import com.paylivre.sdk.gateway.android.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import com.paylivre.sdk.gateway.android.BuildConfig
-import com.paylivre.sdk.gateway.android.domain.model.TypePixKey
+import com.example.paylivre.sdk.gateway.utils.setTextThemeStatusBar
 
 
 class FormActivity : AppCompatActivity() {
@@ -31,30 +33,26 @@ class FormActivity : AppCompatActivity() {
         binding = ActivityFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Set Theme do SDK Gateway Paylivre
-        setTheme(R.style.Theme_SDKGatewayAndroid)
-
-
+        setTextThemeStatusBar(this, "Light")
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "Form Generate Checkout - ${BuildConfig.VERSION_NAME}"
+            actionBar.title = "Form Generate Checkout - v${BuildConfig.VERSION_NAME}"
         }
 
-
-        val id_merchant = binding.editMerchantId
-        val merchant_transaction_id = binding.editMerchantTransactionId
-        val gateway_token = binding.editGatewayToken
-        val user_email = binding.editUserEmail
-        val account_id = binding.editAccountId
-        val user_document = binding.editUserDocument
+        val idMerchant = binding.editMerchantId
+        val merchantTransactionId = binding.editMerchantTransactionId
+        val gatewayToken = binding.editGatewayToken
+        val userEmail = binding.editUserEmail
+        val accountId = binding.editAccountId
+        val userDocument = binding.editUserDocument
         val amount = binding.editAmount
         val checkPix = binding.checkPix
         val checkBillet = binding.checkBillet
         val checkWireTransfer = binding.checkWireTransfer
         val checkWallet = binding.checkWallet
         var operation = Operation.DEPOSIT.code
-        val callback_url = binding.editCallbackUrl
-        val base_url = binding.editBaseUrl
+        val callbackUrl = binding.editCallbackUrl
+        val baseUrl = binding.editBaseUrl
         var type = 1
         var typesChecked = TypesChecked(0, 0, 0, 1)
 
@@ -78,16 +76,21 @@ class FormActivity : AppCompatActivity() {
         fun setIsShowPixFields(isShow: Boolean) {
             binding.containerCheckAutoWithdraw.visibility = getVisibility(isShow)
             binding.containerCheckBoxPixKeyType.visibility = getVisibility(isShow)
-            binding.checkIgnorePixKeyType.visibility = getVisibility(isShow)
             binding.layoutEditPixKeyValue.visibility = getVisibility(isShow)
+            binding.checkIgnorePixKeyType.visibility = getVisibility(isShow)
             binding.checkIgnorePixKey.visibility = getVisibility(isShow)
+
 
             binding.layoutEditPixKeyValue.isEnabled = isShow
             binding.editPixKeyValue.isEnabled = isShow
             binding.checksPixKeyType.isEnabled = isShow
+            setIsEnableAllRadiosInRadioGroup(binding.checksPixKeyType, isShow)
+            binding.checkIgnorePixKey.isChecked = !isShow
+            binding.checkIgnorePixKeyType.isChecked = !isShow
         }
 
         fun setValuesDefaultPixFields() {
+            binding.checkTypeWithdrawPix.isChecked = true
             binding.checksPixKeyTypeDocument.isChecked = true
             binding.editPixKeyValue.setText(USER_DOCUMENT_NUMBER)
             binding.checkIgnorePixKeyType.isChecked = false
@@ -118,27 +121,27 @@ class FormActivity : AppCompatActivity() {
         fun setDataMerchantByEnvironment(environment: String) {
             when (environment) {
                 Environments.DEVELOPMENT.toString() -> {
-                    id_merchant.setText(dataMerchantDev.merchant_id)
-                    gateway_token.setText(dataMerchantDev.gateway_token)
-                    base_url.setText(
+                    idMerchant.setText(dataMerchantDev.merchant_id)
+                    gatewayToken.setText(dataMerchantDev.gateway_token)
+                    baseUrl.setText(
                         getBaseUrlByEnvironment(
                             Environments.DEVELOPMENT.toString()
                         )
                     )
                 }
                 Environments.PLAYGROUND.toString() -> {
-                    id_merchant.setText(dataMerchantPlayground.merchant_id)
-                    gateway_token.setText(dataMerchantPlayground.gateway_token)
-                    base_url.setText(
+                    idMerchant.setText(dataMerchantPlayground.merchant_id)
+                    gatewayToken.setText(dataMerchantPlayground.gateway_token)
+                    baseUrl.setText(
                         getBaseUrlByEnvironment(
                             Environments.PLAYGROUND.toString()
                         )
                     )
                 }
                 else -> {
-                    id_merchant.setText(dataMerchantPlayground.merchant_id)
-                    gateway_token.setText(dataMerchantPlayground.gateway_token)
-                    base_url.setText(
+                    idMerchant.setText(dataMerchantPlayground.merchant_id)
+                    gatewayToken.setText(dataMerchantPlayground.gateway_token)
+                    baseUrl.setText(
                         getBaseUrlByEnvironment(
                             Environments.PLAYGROUND.toString()
                         )
@@ -152,13 +155,14 @@ class FormActivity : AppCompatActivity() {
             setDataMerchantByEnvironment(Environments.PLAYGROUND.toString())
             binding.checkPlayground.isChecked = true
 
-            merchant_transaction_id.setText(getRandomString(10))
-            user_email.setText(USER_EMAIL)
-            user_document.setText(USER_DOCUMENT_NUMBER)
-            account_id.setText("123654asd")
+            merchantTransactionId.setText(getRandomString(10))
+            userEmail.setText(USER_EMAIL)
+            userDocument.setText(USER_DOCUMENT_NUMBER)
+            accountId.setText("123654asd")
             amount.setText("500")
             binding.checkGroupCurrency.check(R.id.checkBRL)
-            callback_url.setText(CALLBACK_URL)
+            callbackUrl.setText(CALLBACK_URL)
+            operation = Operation.DEPOSIT.code
             binding.checkGroupOperation.check(R.id.checkTypeDeposit)
             setAllOptionsDeposit(View.VISIBLE)
             setCheckedAllTypes(false)
@@ -167,35 +171,22 @@ class FormActivity : AppCompatActivity() {
             typesChecked = TypesChecked(0, 0, 0, 1)
 
             binding.editRedirectUrl.setText(REDIRECT_URL)
-
             binding.editLogoUrl.setText(LOGO_URL)
-
             binding.checkGroupLanguage.clearCheck()
             binding.checkAutoApprove1.isChecked = true
-
             binding.checkIgnoreLogoUrl.isChecked = false
             binding.checkIgnoreEmail.isChecked = false
             binding.checkIgnoreDocument.isChecked = false
             binding.checkIgnoreRedirectUrl.isChecked = false
+            binding.typesOperationContainer.visibility = View.VISIBLE
+            binding.containerCheckBoxTypeWithdraw.visibility = View.GONE
 
             setIsShowPixFields(false)
         }
 
         setDefaultValue()
 
-
-        fun enableOptionsWithdraw() {
-            setCheckedAllTypes(false)
-            setAllOptionsDeposit(View.INVISIBLE)
-            checkPix.visibility = View.VISIBLE
-            checkPix.isChecked = true
-            type = 1
-            typesChecked = TypesChecked(0, 0, 0, 1)
-            binding.editPixKeyValue.setText(binding.editUserDocument.text.toString())
-        }
-
         fun validateAmount(amountValue: String): Boolean {
-            println("amountValue.toIntOrNull() != null " + amountValue.toIntOrNull() != null)
             return amountValue.toIntOrNull() != null
         }
 
@@ -213,6 +204,18 @@ class FormActivity : AppCompatActivity() {
             }
         }
 
+        fun getType(): Int {
+            return if (operation == Operation.WITHDRAW.code) {
+                when {
+                    binding.checkTypeWithdrawPix.isChecked -> TypesToSelect.PIX.code
+                    binding.checkTypeWithdrawWallet.isChecked -> TypesToSelect.WALLET.code
+                    else -> -1
+                }
+            } else {
+                type
+            }
+        }
+
 
         fun validateDataForm(
             amountValue: String,
@@ -221,7 +224,8 @@ class FormActivity : AppCompatActivity() {
         ): ResponseValidateDataForm {
             val isValidAmount = isNumber(amountValue)
             val isValidMerchantId = isNumber(merchantId)
-            val isValidType = getNumberByTypesChecked(types) != 0
+            val isValidType =
+                if (operation != Operation.WITHDRAW.code) getNumberByTypesChecked(types) != 0 else true
             val msgErrorInvalidAmount =
                 if (isValidAmount) "" else "Invalid Amount"
             val msgErrorInvalidType =
@@ -250,7 +254,11 @@ class FormActivity : AppCompatActivity() {
             }
         }
 
+
         fun getPixKeyTypeChecked(): Int? {
+            if (operation == Operation.WITHDRAW.code && getType() == TypesToSelect.WALLET.code) {
+                return null
+            }
             if (!checkAllEnablesRadiosInRadioGroup(binding.checksPixKeyType)) {
                 return null
             }
@@ -311,10 +319,6 @@ class FormActivity : AppCompatActivity() {
 
             }
 
-            //generate new merchant_transaction_id random
-            merchant_transaction_id.setText(getRandomString(10))
-
-
             startActivity(intent)
         }
 
@@ -322,7 +326,7 @@ class FormActivity : AppCompatActivity() {
         fun startCheckout() {
             val isValidDataForm = validateDataForm(
                 amount.text.toString(),
-                id_merchant.text.toString(),
+                idMerchant.text.toString(),
                 typesChecked,
             )
             if (!isValidDataForm.isValid) {
@@ -336,18 +340,18 @@ class FormActivity : AppCompatActivity() {
             }
 
             val dataStartCheckoutByParams = DataStartCheckoutByParams(
-                merchant_id = id_merchant.text.toString().toInt(),
-                gateway_token = gateway_token.text.toString(),
+                merchant_id = idMerchant.text.toString().toInt(),
+                gateway_token = gatewayToken.text.toString(),
                 operation = operation,
-                merchant_transaction_id = merchant_transaction_id.text.toString(),
+                merchant_transaction_id = merchantTransactionId.text.toString(),
                 amount = amount.text.toString().toInt(),
                 currency = getCurrencyChecked(),
-                type = type,
-                account_id = account_id.text.toString(),
-                callback_url = callback_url.text.toString(),
-                base_url = base_url.text.toString(),
-                email_address = getInputTextValueOrNull(user_email),//Optional,
-                document = getInputTextValueOrNull(user_document), //Optional
+                type = getType(),
+                account_id = accountId.text.toString(),
+                callback_url = callbackUrl.text.toString(),
+                base_url = baseUrl.text.toString(),
+                email_address = getInputTextValueOrNull(userEmail),//Optional,
+                document = getInputTextValueOrNull(userDocument), //Optional
                 auto_approve = getAutoApproveChecked(),
                 logo_url = getInputTextValueOrNull(binding.editLogoUrl), //Optional
                 pix_key_type = getPixKeyTypeChecked(), //Optional in Withdraw
@@ -360,13 +364,15 @@ class FormActivity : AppCompatActivity() {
                 language = getLanguageChecked(),
                 logoUrl = getInputTextValueOrNull(binding.editLogoUrl), //Optional
             )
-        }
 
+            //generate new merchant_transaction_id random
+            merchantTransactionId.setText(getRandomString(10))
+        }
 
         suspend fun startCheckoutByURL() {
             val isValidDataForm = validateDataForm(
                 amount.text.toString(),
-                id_merchant.text.toString(),
+                idMerchant.text.toString(),
                 typesChecked,
             )
             if (!isValidDataForm.isValid) {
@@ -380,37 +386,36 @@ class FormActivity : AppCompatActivity() {
             }
 
             val dataGenerateUrl = DataGenerateUrl(
-                base_url = base_url.text.toString(),
-                merchant_id = id_merchant.text.toString(),
-                merchant_transaction_id = merchant_transaction_id.text.toString(),
+                base_url = baseUrl.text.toString(),
+                merchant_id = idMerchant.text.toString(),
+                merchant_transaction_id = merchantTransactionId.text.toString(),
                 amount = amount.text.toString(),
                 currency = getCurrencyChecked(),
                 operation = operation.toString(),
-                callback_url = callback_url.text.toString(),
-                type = type.toString(),
-                account_id = account_id.text.toString(),
-                email = getInputTextValueOrNull(user_email),//Optional
-                document_number = getInputTextValueOrNull(user_document),//Optional
+                callback_url = callbackUrl.text.toString(),
+                type = getType().toString(),
+                account_id = accountId.text.toString(),
+                email = getInputTextValueOrNull(userEmail),//Optional
+                document_number = getInputTextValueOrNull(userDocument),//Optional
                 auto_approve = getAutoApproveChecked().toString(),
                 redirect_url = getInputTextValueOrNull(binding.editRedirectUrl), //Optional
                 logo_url = getInputTextValueOrNull(binding.editLogoUrl),//Optional
-                gateway_token = gateway_token.text.toString(),
+                gateway_token = gatewayToken.text.toString(),
                 pix_key_type = getPixKeyTypeChecked(),//Optional in Withdraw
                 pix_key = getInputTextValueOrNull(binding.editPixKeyValue)//Optional in Withdraw
             )
 
-//            println(dataGenerateUrl)
-
-
             val generateUrlToCheckout = GenerateUrlToCheckout(
                 dataGenerateUrl,
                 Argon2iHash(),
+                saltRandomString = HASH_ARGON2I
             )
 
             withContext(Dispatchers.Default) {
                 val url = withContext(Dispatchers.Default) {
                     generateUrlToCheckout.getUrlWithSignature()
                 }
+
                 startIntentPreview(
                     TypesStartCheckout.BY_URL.code,
                     url = url,
@@ -418,11 +423,12 @@ class FormActivity : AppCompatActivity() {
                 )
             }
 
-
+            //generate new merchant_transaction_id random
+            merchantTransactionId.setText(getRandomString(10))
         }
 
 
-        fun onBluInputs() {
+        fun onBlurInputs() {
             binding.editMerchantId.clearFocus()
             binding.editMerchantTransactionId.clearFocus()
             binding.editGatewayToken.clearFocus()
@@ -440,25 +446,25 @@ class FormActivity : AppCompatActivity() {
         }
 
         binding.containerForm.setOnClickListener {
-            onBluInputs()
+            onBlurInputs()
         }
 
         with(binding)
         {
             checkBRL.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
             }
 
             checkUSD.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
             }
 
             buttonNewMerchantTransactionId.setOnClickListener {
-                merchant_transaction_id.setText(getRandomString(10))
+                merchantTransactionId.setText(getRandomString(10))
             }
 
             checkTypeDeposit.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
                 setAllOptionsDeposit(View.VISIBLE)
                 setCheckedAllTypes(false)
                 checkPix.isChecked = true
@@ -466,20 +472,28 @@ class FormActivity : AppCompatActivity() {
                 typesChecked = TypesChecked(0, 0, 0, 1)
                 operation = Operation.DEPOSIT.code
                 setIsShowPixFields(false)
+                binding.containerCheckBoxTypeWithdraw.visibility = View.GONE
+                binding.typesOperationContainer.visibility = View.VISIBLE
             }
 
             checkTypeWithdraw.setOnClickListener {
-                onBluInputs()
-                enableOptionsWithdraw()
+                onBlurInputs()
                 operation = Operation.WITHDRAW.code
+
+                binding.containerCheckBoxTypeWithdraw.visibility = View.VISIBLE
+                binding.typesOperationContainer.visibility = View.GONE
+
                 setValuesDefaultPixFields()
                 setIsShowPixFields(true)
             }
 
-//            buttonClearPixData.setOnClickListener {
-//                binding.checksPixKeyType.clearCheck()
-//                binding.editPixKeyValue.setText("")
-//            }
+            checkTypeWithdrawPix.setOnClickListener {
+                setIsShowPixFields(true)
+            }
+
+            checkTypeWithdrawWallet.setOnClickListener {
+                setIsShowPixFields(false)
+            }
 
             checksPixKeyTypeDocument.setOnClickListener {
                 editPixKeyValue.setText(editUserDocument.text.toString())
@@ -494,45 +508,44 @@ class FormActivity : AppCompatActivity() {
             }
 
             buttonStartCheckout.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
                 startCheckout()
             }
 
             buttonStartCheckoutByURl.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
                 runBlocking {
                     startCheckoutByURL()
                 }
-
-            }
-
-            //Types to Transaction
-            checkPix.setOnCheckedChangeListener { _, isChecked ->
-                onBluInputs()
-                typesChecked.PIX = if (isChecked) 1 else 0
-                type = getNumberByTypesChecked(typesChecked)
             }
 
             checkBillet.setOnCheckedChangeListener { _, isChecked ->
-                onBluInputs()
+                onBlurInputs()
                 typesChecked.BILLET = if (isChecked) 1 else 0
                 type = getNumberByTypesChecked(typesChecked)
             }
 
             checkWireTransfer.setOnCheckedChangeListener { _, isChecked ->
-                onBluInputs()
+                onBlurInputs()
                 typesChecked.WIRETRANSFER = if (isChecked) 1 else 0
                 type = getNumberByTypesChecked(typesChecked)
             }
 
+            //Types to Transaction
+            checkPix.setOnCheckedChangeListener { _, isChecked ->
+                onBlurInputs()
+                typesChecked.PIX = if (isChecked) 1 else 0
+                type = getNumberByTypesChecked(typesChecked)
+            }
+
             checkWallet.setOnCheckedChangeListener { _, isChecked ->
-                onBluInputs()
+                onBlurInputs()
                 typesChecked.WALLET = if (isChecked) 1 else 0
                 type = getNumberByTypesChecked(typesChecked)
             }
 
             checkPlayground.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
                 setDataMerchantByEnvironment(Environments.PLAYGROUND.toString())
             }
 
@@ -542,7 +555,7 @@ class FormActivity : AppCompatActivity() {
 //            }
 
             checkDev.setOnClickListener {
-                onBluInputs()
+                onBlurInputs()
                 setDataMerchantByEnvironment(Environments.DEVELOPMENT.toString())
             }
 

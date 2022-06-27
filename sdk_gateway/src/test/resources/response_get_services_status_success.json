@@ -1,0 +1,37 @@
+{
+  "status":"success",
+  "status_code":200,
+  "message":"OK",
+  "data":[
+    {
+      "wire_transfer":{
+        "status":1,
+        "id":1
+      }
+    },
+    {
+      "billet":{
+        "status":1,
+        "id":2
+      }
+    },
+    {
+      "cryptocurrency":{
+        "status":0,
+        "id":3
+      }
+    },
+    {
+      "debit":{
+        "status":0,
+        "id":4
+      }
+    },
+    {
+      "pix":{
+        "status":0,
+        "id":5
+      }
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 package com.paylivre.sdk.gateway.android.domain.model
 
+import com.paylivre.sdk.gateway.android.data.model.order.DataOrderRequestToHandle
+import com.paylivre.sdk.gateway.android.data.model.order.OrderDataRequest
+import com.paylivre.sdk.gateway.android.data.model.order.handlesDataOrderRequest
 import com.paylivre.sdk.gateway.android.utils.*
 
 data class DataStartCheckout(
@@ -52,8 +55,8 @@ enum class TypesToSelect(val code: Int) {
 
 enum class TypePixKey(val code: Int) {
     DOCUMENT(0),
-    PHONE(1),
-    EMAIL(2),
+    PHONE(2),
+    EMAIL(3),
 }
 
 
@@ -93,4 +96,28 @@ fun getHostApiByBaseUrl(baseUrl: String): String {
         BASE_URL_ENVIRONMENT_DEV -> API_HOST_ENVIRONMENT_DEV
         else -> "INVALID_ENVIRONMENT"
     }
+}
+
+
+fun getHandledDataOrderRequestUrl(
+    dataStartPayment: OrderDataRequest,
+): OrderDataRequest {
+
+    val handledDataOrderRequest = handlesDataOrderRequest(
+        DataOrderRequestToHandle(
+            selected_type = dataStartPayment.selected_type,
+            operation = dataStartPayment.operation,
+            login_email = dataStartPayment.login_email,
+            api_token = dataStartPayment.api_token,
+            pix_key_type = dataStartPayment.pix_key_type,
+            pix_key = dataStartPayment.pix_key
+        )
+    )
+
+    dataStartPayment.login_email = handledDataOrderRequest.login_email
+    dataStartPayment.api_token = handledDataOrderRequest.api_token
+    dataStartPayment.pix_key_type = handledDataOrderRequest.pix_key_type
+    dataStartPayment.pix_key = handledDataOrderRequest.pix_key
+
+    return dataStartPayment
 }

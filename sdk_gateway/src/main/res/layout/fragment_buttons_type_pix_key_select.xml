@@ -13,7 +13,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/title_types_operation"
         android:textAlignment="textStart"
-        android:textColor="@color/secondary"
+        android:textColor="@color/secondary_color_paylivre_sdk"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,7 +43,7 @@
             android:visibility="gone">
 
             <FrameLayout
-                android:id="@+id/buttonType1"
+                android:id="@+id/buttonTypePix1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -57,7 +57,7 @@
             android:visibility="gone">
 
             <FrameLayout
-                android:id="@+id/buttonType2"
+                android:id="@+id/buttonTypePix2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -71,7 +71,7 @@
             android:visibility="gone">
 
             <FrameLayout
-                android:id="@+id/buttonType3"
+                android:id="@+id/buttonTypePix3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -81,14 +81,14 @@
     </com.google.android.flexbox.FlexboxLayout>
 
     <TextView
-        android:id="@+id/textViewErrorType"
+        android:id="@+id/textViewErrorTypePix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="5dp"
         android:text="Campo obrigatório."
         android:textAlignment="textStart"
-        android:textColor="@color/danger"
+        android:textColor="@color/danger_color_paylivre_sdk"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"

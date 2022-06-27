@@ -1,4 +1,4 @@
-package com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.wallet
+package com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.billet
 
 import android.os.*
 import androidx.fragment.app.Fragment
@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.activityViewModels
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FragmentDepositBilletBinding
 import com.paylivre.sdk.gateway.android.domain.model.Currency
+import com.paylivre.sdk.gateway.android.domain.model.Operation
+import com.paylivre.sdk.gateway.android.domain.model.Types
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.ui.form.AcceptTerms
 import com.paylivre.sdk.gateway.android.ui.transactions.data.TransactionDataFragment
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.*
-import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.billet.BilletBarCodeFragment
-import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.billet.getBilletDueDateFormatted
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 fun setBilletBarCodeFragment(
@@ -25,7 +27,7 @@ fun setBilletBarCodeFragment(
     containerResourceId: Int,
     container: ConstraintLayout,
     receivableUrl: String? = "",
-    billetDigitableLine: String? = ""
+    billetDigitableLine: String? = "",
 ) {
     val bundle = Bundle()
     if (receivableUrl != null) {
@@ -45,15 +47,15 @@ fun setBilletBarCodeFragment(
 
 class DepositBilletFragment : Fragment() {
     private var _binding: FragmentDepositBilletBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
+    private val logEventsService : LogEventsService by inject()
     private val binding get() = _binding!!
     private var language: String? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentDepositBilletBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -73,16 +75,19 @@ class DepositBilletFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Set Log Analytics
+        logEventsService.setLogFinishScreen(Operation.DEPOSIT, Types.BILLET)
+
         mainViewModel.language.observe(viewLifecycleOwner, { language = it })
 
-        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner, {
+        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner) {
             if (it == true) {
                 binding.containerLoadingStatusDeposit.visibility = View.VISIBLE
                 binding.fragmentDepositStatus.visibility = View.GONE
             }
-        })
+        }
 
-        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner, {
+        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
             val transactionStatusId = it.data?.deposit_status_id
 
             binding.containerLoadingStatusDeposit.visibility = View.GONE
@@ -94,16 +99,16 @@ class DepositBilletFragment : Fragment() {
                 binding.fragmentDepositStatus,
                 transactionStatusId
             )
-        })
+        }
 
 
-        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner, {
+        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner) {
 
             val limitsKycString = Gson().toJson(it.data?.kyc_limits)
 
             binding.containerLoadingStatusDeposit.visibility = View.GONE
 
-            binding.fragmentBackMerchant.visibility = View.VISIBLE
+            binding.containerBackMerchantAndInstructions.visibility = View.VISIBLE
 
             if (it.data?.deposit_id != null) {
                 mainViewModel.checkStatusDeposit(it.data?.deposit_id)
@@ -139,7 +144,7 @@ class DepositBilletFragment : Fragment() {
                 limitsKycString,
                 language
             )
-        })
+        }
 
     }
 

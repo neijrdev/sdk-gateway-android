@@ -1,6 +1,5 @@
 package com.paylivre.sdk.gateway.android.domain.model
 
-import android.view.View
 import com.paylivre.sdk.gateway.android.utils.cellPhoneValidator
 import com.paylivre.sdk.gateway.android.utils.isEmailValid
 
@@ -9,7 +8,7 @@ data class ValidateForm(
     val document: String,
     val typeSelected: Int,
     val emailWalletPaylivre: String,
-    val password: String,
+    val api_token: String,
     val pixKeyTypeSelected: Int,
     val pixKeyValue: String,
 )
@@ -89,12 +88,12 @@ fun getFieldStatusDocument(document: String): FieldErrorStatus {
     )
 }
 
-fun getFieldStatusPassword(password: String): FieldErrorStatus {
-    val isPasswordValidated = password.length >= 6
+fun getFieldStatusApiToken(apiToken: String): FieldErrorStatus {
+    val isApiTokenValidated = !apiToken.isNullOrEmpty()
     val keyStringErrorField =
-        getKeyStringErrorField(!isPasswordValidated, password, "label_password", true)
+        getKeyStringErrorField(!isApiTokenValidated, apiToken, "api_token", true)
     return FieldErrorStatus(
-        isPasswordValidated,
+        isApiTokenValidated,
         keyStringErrorField.isErrorEmpty,
         keyStringErrorField.keyLabelField,
         keyStringErrorField.keyErrorMessage
@@ -121,7 +120,7 @@ fun getFieldStatusPixKeyValue(pixKeyType: Int, pixKeyValue: String): FieldErrorS
 
 fun validateTypesSelected(typeSelected: Int, operation: Int): Boolean {
     return if (operation == Operation.WITHDRAW.code) {
-        typeSelected == Type.PIX.code
+        typeSelected == Type.PIX.code || typeSelected == Type.WALLET.code
     } else when (typeSelected) {
         Type.PIX.code, Type.BILLET.code, Type.WALLET.code, Type.WIRETRANSFER.code -> return true
         else -> return false
@@ -144,12 +143,12 @@ fun validatePixKeyType(pixKeyTypeSelect: Int?): Boolean {
 fun validateForm(
     dataForm: ValidateForm,
     operation: Int,
-    typeSelected: Int
+    typeSelected: Int,
 ): ResponseValidateForm {
     val validatedEmail = getFieldStatusEmail(dataForm.email)
     val validatedDocument = getFieldStatusDocument(dataForm.document)
     val validatedEmailEmailWallet = getFieldStatusEmail(dataForm.emailWalletPaylivre)
-    val validatedPassword = getFieldStatusPassword(dataForm.password)
+    val validatedApiToken = getFieldStatusApiToken(dataForm.api_token)
     val validatedPixKeyValue =
         getFieldStatusPixKeyValue(dataForm.pixKeyTypeSelected, dataForm.pixKeyValue)
     val validatedTypeSelected = validateTypesSelected(typeSelected, operation)
@@ -162,10 +161,13 @@ fun validateForm(
     if (operation == Operation.DEPOSIT.code && typeSelected == Type.WALLET.code) {
         statusFormDataValidated = statusFormDataValidated &&
                 validatedEmailEmailWallet.isValidated &&
-                validatedPassword.isValidated
-    } else if (operation == Operation.WITHDRAW.code) {
+                validatedApiToken.isValidated
+    } else if (operation == Operation.WITHDRAW.code && typeSelected == Type.PIX.code) {
         statusFormDataValidated =
-            statusFormDataValidated && validatedPixKeyValue.isValidated && validatedPixKeyTypeSelected
+            statusFormDataValidated &&
+                    validatedPixKeyValue.isValidated &&
+                    validatedPixKeyTypeSelected
+
     }
 
 
@@ -174,6 +176,6 @@ fun validateForm(
         validatedEmail,
         validatedDocument,
         validatedEmailEmailWallet,
-        validatedPassword
+        validatedApiToken
     )
 }

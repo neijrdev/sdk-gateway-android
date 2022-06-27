@@ -6,20 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.order.KYC.LimitsKyc
 import com.paylivre.sdk.gateway.android.databinding.FragmentTransactionDataBinding
 import com.paylivre.sdk.gateway.android.domain.model.Currency
-import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyBRL
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyUSD
 
 
 class TransactionDataFragment : Fragment() {
-    private val mainViewModel: MainViewModel by activityViewModels()
 
     private var _binding: FragmentTransactionDataBinding? = null
     private var transactionId: Int? = 0

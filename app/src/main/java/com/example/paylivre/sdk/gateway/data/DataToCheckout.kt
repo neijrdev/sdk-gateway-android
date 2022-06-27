@@ -12,15 +12,17 @@ val dataMerchantPlayground = MerchantData(
 
 val dataMerchantDev = MerchantData(
     "302",
-    "iQUxN7OSJgZRqVBhOXX2q14qxC44lTWb"
+    "NHsuzedl6omTPvoxc0p7gVXc7Xthhf6Y"
 )
 
 const val REDIRECT_URL = "https://www.merchant_to_you.com"
-const val CALLBACK_URL = "https://www.google.com"
+const val CALLBACK_URL = "https://api.dev.paylivre.com/api/v2/callback"
 const val LOGO_URL =
     "https://github.com/paylivre/gateway-example-react-js/blob/master/assets/logo_jackpot_new.png?raw=true"
 const val USER_EMAIL = "user_gateway_test@tutanota.com"
 const val USER_DOCUMENT_NUMBER = "61317581075"
+
+const val HASH_ARGON2I = "5iX9MxZ6c399Xfrv"
 
 data class DataStartCheckoutByParams(
     val merchant_id: Int,

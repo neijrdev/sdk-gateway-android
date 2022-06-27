@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SDKGatewayAndroid" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.AppExampleSDKGatewayAndroid"
+        parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:textSize">12sp</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
@@ -13,8 +14,8 @@
         <item name="colorOnSecondary">@color/secondary</item>
         <!-- Status bar color. -->
         <!--        <item name="colorAccent">@color/black</item>-->
-        <item name="colorControlHighlight">@color/light_bg</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorControlHighlight</item>
+        <item name="colorControlHighlight">@color/secondary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/secondary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <!-- Customize your theme here. -->

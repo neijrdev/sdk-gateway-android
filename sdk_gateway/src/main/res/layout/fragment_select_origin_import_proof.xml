@@ -18,12 +18,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtTitle"
+            android:id="@+id/txtTitleSelectImportProof"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenir_next_lt_pro_bold"
             android:text="@string/select_one_of_the_options_below"
-            android:textColor="@color/secondary"
+            android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -39,13 +39,13 @@
             android:minHeight="60dp"
             android:text="@string/open_gallery"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/white_color_paylivre_sdk"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtTitle"
-            app:rippleColor="@color/primary_2" />
+            app:layout_constraintTop_toBottomOf="@id/txtTitleSelectImportProof"
+            app:rippleColor="@color/primary_dark_color_paylivre_sdk" />
 
         <Button
             android:id="@+id/btnOpenCamera"
@@ -57,13 +57,13 @@
             android:minHeight="60dp"
             android:text="@string/open_camera"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/white_color_paylivre_sdk"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnOpenGallery"
-            app:rippleColor="@color/primary_2" />
+            app:rippleColor="@color/primary_dark_color_paylivre_sdk" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,7 +83,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:indeterminate="true"
-            app:indicatorColor="@color/primary"
+            app:indicatorColor="@color/primary_color_paylivre_sdk"
             app:indicatorSize="50dp"
             app:trackThickness="5dp" />
 
@@ -98,7 +98,7 @@
             android:paddingHorizontal="5dp"
             android:paddingVertical="2dp"
             android:text="@string/requesting_email"
-            android:textColor="@color/secondary"
+            android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -131,7 +131,7 @@
             android:lineHeight="22sp"
             android:text="@string/message_request_remember_password"
             android:textAlignment="center"
-            android:textColor="@color/secondary"
+            android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -146,13 +146,13 @@
         android:minHeight="60dp"
         android:text="@string/close"
         android:textAllCaps="false"
-        android:textColor="@color/primary"
+        android:textColor="@color/primary_color_paylivre_sdk"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerSuccess"
-        app:strokeColor="@color/primary"
+        app:strokeColor="@color/primary_color_paylivre_sdk"
         app:strokeWidth="2dp" />
 
 

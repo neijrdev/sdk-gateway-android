@@ -68,13 +68,3 @@ fun checkTypeEnable(types: Int, typeCode: Int): Boolean {
     }
 }
 
-//fun setTypeCheck(isChecked: Boolean, index: Int) {
-//    if (index in 2..5) {
-//        val isCheckedValue = if (isChecked) "1" else "0"
-//        val beforeValue = type.subSequence(0, index)
-//        val afterValue = type.subSequence(index + 1, type.length)
-//        val newType = "$beforeValue$isCheckedValue$afterValue"
-//        type = newType
-//    }
-//}
-

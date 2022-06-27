@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- To personalize StatusBar Paylivre SDK -->
+    <string name="theme_status_bar_sdk_paylivre" translatable="false">Dark</string>
+
     <string name="app_name">SDK Gateway Android</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -45,7 +48,7 @@
     <string name="invalid_document">Invalid document</string>
     <string name="invalid_data_error">Error in verifying the data entered</string>
     <string name="withdraw">Withdraw</string>
-    <string name="type_wallet">Paylivre Balance</string>
+    <string name="type_wallet">Paylivre Wallet</string>
     <string name="type_pix">Pix</string>
     <string name="type_billet">Billet</string>
     <string name="type_wiretransfer">Bank\nTransfer</string>
@@ -83,7 +86,7 @@
     <string name="copy_key_pix">Copy Key Pix</string>
     <string name="action_finalize">Finalize</string>
     <string name="message_pix_code_copied">PIX code copied</string>
-    <string name="label_transaction_id">Transaction ID:</string>
+    <string name="label_transaction_id">Identifier:</string>
     <string name="label_origin_amount">Original amount:</string>
     <string name="label_converted_amount">Converted value:</string>
     <string name="label_tax">Tax:</string>
@@ -171,7 +174,7 @@
     <string name="msg_error_copy_default">Error when copying</string>
     <string name="msg_copied_code_billet">Copied billet code</string>
     <string name="msg_error_copy_code_billet">Error copying bank slip code</string>
-    <string name="error_open_billet">There was an error trying to open the boleto link</string>
+    <string name="error_open_billet">There was an error trying to open the billet link</string>
     <string name="erro_default_open_url">Unable to open this link</string>
     <string name="tip_msg_billet">Tip: Paying your bank slip by 9:00 pm on business days makes your payment confirmation faster.</string>
     <string name="title_instructions_billet">Pay attention to the details</string>
@@ -219,9 +222,9 @@
     <string name="please_contact_support">Please contact support.</string>
     <string name="exceeded_withdrawal_limit_title">The requested withdrawal exceeds the maximum amount.</string>
     <string name="exceeded_withdrawal_limit_valueBRL">Only one withdrawal can be made per day with a
-        maximum value of R$ 2000.00.</string>
+        maximum value of R$ 5000.00.</string>
     <string name="exceeded_withdrawal_limit_valueUSD">Only one withdrawal can be made per day with a
-        maximum value of US$ 400.00.</string>
+        maximum value of US$ 1000.00.</string>
     <string name="alert_limit_withdraw">Only one withdrawal can be performed per day. The
         withdrawal must have a maximum value of %1$s.</string>
     <string name="warning">Warning</string>
@@ -233,4 +236,37 @@
     <string name="label_safety">security</string>
     <string name="label_profile">profile</string>
     <string name="label_generate_api_token">\"generate Api Token\"</string>
+    <string name="warning_label">Warning</string>
+    <string name="label_for_more_information_go_to">For more information go to:</string>
+    <string name="error_pix_key_cpf_divergent">The CPF of the PIX key entered must be the same as the CPF of the user\'s account.</string>
+    <string name="error_pix_key_cnpj_divergent">The CNPJ of the PIX key informed must be the same as the CNPJ of the user\'s account.</string>
+    <string name="label_for_more_information_access_support_site">To learn more about limits, we recommend the article:</string>
+    <string name="warning_limit_exceeded_subtitle">This transaction cannot be carried out. Either value exceeds or limit available.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_above_1">Make a new transaction
+        with a maximum amount of %1$s or wait for your monthly limit to be renewed.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_1">Make a new transaction
+        for a maximum amount of %1$s or register with Paylivre through our app: App Paylivre
+        or through our website: web.paylivre.com, to obtain a monthly limit.</string>
+    <string name="label_limit_kyc_total">Total limit: %1$s</string>
+    <string name="label_limit_kyc_used">Limit used: %1$s</string>
+    <string name="label_limit_kyc_available">Limit available: %1$s</string>
+    <string name="error_screen_limit_emailsend_kyc1">Check your email. We send instructions for you to register with Paylivre.</string>
+    <string name="processing_withdrawal_loading">Processing withdrawal...</string>
+    <string name="check_your_email_for_more_details">Check your email for more details.</string>
+    <string name="status_incomplete">Incomplete</string>
+    <string name="status_awaiting_payment">Awaiting payment</string>
+    <string name="status_refunded">Refunded</string>
+    <string name="status_error">Error</string>
+    <string name="label_message_merchant_approval_pending">Withdrawal will be processed once the withdrawal of the amount from your account is approved. You will receive an email notifying you of the approval.</string>
+    <string name="label_title_withdraw_wallet">Paylivre Balance Instructions</string>
+    <string name="info_withdraw_wallet_body">For this transaction, the balance of the Paylivre wallet was used!</string>
+    <string name="user_not_found_with_document_number">There is no account registered with this
+        document at Paylivre.\n\nThe Withdrawal cannot be processed.\n\nFor more information, register
+        at web.paylivre.com.</string>
+    <string name="title_how_much_you_used_limit">See how much you\'ve used of your monthly limit.</string>
+    <string name="label_for_more_information_article">What are the limits?</string>
+    <string name="label_button_increase_limit">I want to increase my limit on Paylivre</string>
+    <string name="paylivre_gateway_sdk_is_outdated">Feature not available for this version of Paylivre Gateway SDK.</string>
+    <string name="label_favored">Favored</string>
+    <string name="message_copied_value">%1$s copied successfully</string>
 </resources>

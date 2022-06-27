@@ -1,18 +1,35 @@
 package com.paylivre.sdk.gateway.android
 
 import android.os.Build
+import com.paylivre.sdk.gateway.android.data.model.order.OrderDataRequest
 import com.paylivre.sdk.gateway.android.domain.model.*
 import com.paylivre.sdk.gateway.android.utils.BASE_URL_ENVIRONMENT_DEV
 import com.paylivre.sdk.gateway.android.utils.TypesStartCheckout
+import com.paylivre.sdk.gateway.android.viewmodel.MockMainViewModel
+import org.bouncycastle.util.StringList
+import org.junit.After
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.stopKoin
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers="pt-port")
+@Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers = "pt-port")
 class ValidateDataPaymentTest {
+    @Before
+    fun setup() {
+        loadKoinModules(MockMainViewModel().mockedAppModule)
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
+    }
+
     private val mockDataStartCheckoutAllValidByParams = DataStartCheckout(
         10, "123asd4a56sf4a56s4d65as4d",
         Operation.DEPOSIT.code, "12asd323", 500,
@@ -170,8 +187,154 @@ class ValidateDataPaymentTest {
                 null //default
             )
         )
-
-
     }
+
+    @Test
+    fun `Test ResponseValidData`() {
+        Assert.assertEquals(
+            "ResponseValidData(isValid=true, messageMainError=null, errorTags=null, messageDetailsError=null)",
+            ResponseValidData(true, null, null, null).toString()
+        )
+    }
+
+    @Test
+    fun `Test DataTransaction`() {
+        Assert.assertEquals(
+            "DataTransaction(operation=0, currency=, type=0, amount=0, merchant_transaction_id=, auto_approve=0)",
+            DataTransaction(0, "", 0, 0, "", 0).toString()
+        )
+    }
+
+    @Test
+    fun `Test ResponseValidateDataParams`() {
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=false, errorTags=null)",
+            ResponseValidateDataParams(false, null).toString()
+        )
+    }
+
+    @Test
+    fun `Test Languages types`() {
+        Assert.assertEquals(
+            true,
+            Languages.values().map { it.toString() }.contains("PT")
+        )
+        Assert.assertEquals(
+            true,
+            Languages.values().map { it.toString() }.contains("EN")
+        )
+        Assert.assertEquals(
+            true,
+            Languages.values().map { it.toString() }.contains("ES")
+        )
+    }
+
+    @Test
+    fun `Test getResponseValidateDataParams`() {
+        Assert.assertEquals(
+            ResponseValidateDataParams(true, mutableListOf()),
+            getResponseValidateDataParams(true, null, null)
+        )
+
+        Assert.assertEquals(
+            ResponseValidateDataParams(false, null),
+            getResponseValidateDataParams(false, null, null)
+        )
+
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=false, errorTags=[1])",
+            getResponseValidateDataParams(false, "1", null).toString()
+        )
+    }
+
+    @Test
+    fun `Test validateLocaleLanguage`() {
+        Assert.assertEquals(
+            false,
+            validateLocaleLanguage("uk")
+        )
+    }
+
+    @Test
+    fun `Test validateGatewayToken`() {
+        Assert.assertEquals(
+            ResponseValidateDataParams(true, mutableListOf()),
+            validateGatewayToken("123456")
+        )
+
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=false, errorTags=[RP002])",
+            validateGatewayToken("").toString()
+        )
+
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=false, errorTags=[RP002])",
+            validateGatewayToken(null).toString()
+        )
+    }
+
+    @Test
+    fun `Test validateDocument with null or empty`() {
+        Assert.assertEquals(
+            false, validateDocument("")
+        )
+        Assert.assertEquals(
+            false, validateDocument(null)
+        )
+    }
+
+
+    @Test
+    fun `Test validateTypesNumber with Operation Withdraw`() {
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=true, errorTags=[])",
+            validateTypesNumber(TypesToSelect.PIX.code, Operation.WITHDRAW.code).toString()
+        )
+        Assert.assertEquals(
+            "ResponseValidateDataParams(isValid=true, errorTags=[])",
+            validateTypesNumber(TypesToSelect.WALLET.code, Operation.WITHDRAW.code).toString()
+        )
+    }
+
+    @Test
+    fun `Test validateDataPix with Operation Deposit`() {
+        Assert.assertEquals(
+            true,
+            validateDataPix(Operation.DEPOSIT.code)
+        )
+    }
+
+    @Test
+    fun `Test addDdiInPixKeyCellPhoneWithdraw`() {
+        var orderDataRequestMock = OrderDataRequest(
+            base_url = "",
+            merchant_id = 0,
+            merchant_transaction_id = "",
+            amount = "",
+            currency = "",
+            operation = Operation.WITHDRAW.code.toString(),
+            callback_url = "",
+            type = "",
+            selected_type = "",
+            account_id = "",
+            email = "",
+            document_number = "",
+            login_email = "",
+            api_token = "",
+            pix_key_type = TypePixKey.PHONE.code.toString(),
+            pix_key = "99999999999",
+            signature = "",
+            url = "",
+            auto_approve = "",
+            redirect_url = "",
+            logo_url = "",
+        )
+
+        Assert.assertEquals(
+            "+5599999999999",
+            addDdiInPixKeyCellPhoneWithdraw(orderDataRequestMock).pix_key
+        )
+    }
+
 
 }

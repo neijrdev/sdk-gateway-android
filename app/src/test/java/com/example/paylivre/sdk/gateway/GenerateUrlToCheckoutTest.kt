@@ -51,8 +51,6 @@ class GenerateUrlToCheckoutTest {
         val mockStringPassArgon2iHash =
             "${dataGenerateUrl.gateway_token}$urlToSignature"
 
-        println("mockStringPassArgon2iHash: $mockStringPassArgon2iHash")
-
         coEvery {
             argon2iHash.generateArgon2iHash(
                 mockStringPassArgon2iHash,

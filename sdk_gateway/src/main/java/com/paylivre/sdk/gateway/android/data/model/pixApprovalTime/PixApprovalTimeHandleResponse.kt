@@ -9,8 +9,6 @@ import retrofit2.Response
 import java.lang.Exception
 import java.lang.RuntimeException
 
-
-
 fun checkInternStatusOk(status: String): Boolean {
     return status == "success"
 }

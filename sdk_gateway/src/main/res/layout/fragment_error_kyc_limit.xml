@@ -29,43 +29,34 @@
                 android:maxWidth="160dp"
                 android:maxHeight="160dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-            <TextView
-                android:id="@+id/TextIconError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:text=":("
-                android:layout_marginTop="50dp"
-                android:textAlignment="textStart"
-                android:textSize="70sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/logoMerchant"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
                 android:id="@+id/TextViewError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/avenir_next_lt_pro_bold"
-                android:text="@string/error_title"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                android:text="@string/title_how_much_you_used_limit"
                 android:textAlignment="textStart"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:lineHeight="25sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextIconError" />
+                app:layout_constraintTop_toBottomOf="@+id/logoMerchant" />
 
 
             <TextView
-                android:id="@+id/TextViewMsgSubtitleError"
+                android:id="@+id/textViewLimits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:text="@string/error_kyc_limit_title"
+                android:lineHeight="25dp"
+                android:text=""
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -73,56 +64,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/TextViewError" />
 
 
-            <TextView
-                android:id="@+id/textViewMsgSubtitle2Error"
+            <Button
+                android:id="@+id/btnIncreaseLimit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="15dp"
+                android:backgroundTint="@drawable/color_button_start_payment"
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:lineHeight="25dp"
-                android:text="@string/error_kyc_limit_subtitle"
-                android:textAlignment="textStart"
+                android:minHeight="60dp"
+                android:text="@string/label_button_increase_limit"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color_paylivre_sdk"
                 android:textSize="16sp"
+                android:letterSpacing="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextViewMsgSubtitleError" />
-
-
-            <TextView
-                android:id="@+id/linkAppPlayStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingVertical="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/link_app_play_store"
-                android:textAlignment="textStart"
-                android:textColor="@color/primary"
-                android:textSize="16sp"
-                android:visibility="visible"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewMsgSubtitle2Error" />
-
-            <TextView
-                android:id="@+id/linkWebPaylivre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingVertical="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/link_web_paylivre"
-                android:textAlignment="textStart"
-                android:textColor="@color/primary"
-                android:textSize="16sp"
-                android:visibility="visible"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linkAppPlayStore" />
-
+                app:layout_constraintTop_toBottomOf="@id/textViewLimits"
+                app:rippleColor="@color/primary_dark_color_paylivre_sdk" />
 
             <TextView
                 android:id="@+id/textViewMsgSubtitle3Error"
@@ -131,15 +90,15 @@
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
                 android:lineHeight="25dp"
-                android:text="@string/label_about_document_and_limits"
+                android:text="@string/label_for_more_information_access_support_site"
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linkWebPaylivre" />
+                app:layout_constraintTop_toBottomOf="@+id/btnIncreaseLimit" />
 
             <TextView
-                android:id="@+id/linkPageDocumentsLimits"
+                android:id="@+id/linkPageSupportHelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -147,9 +106,9 @@
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:paddingVertical="5dp"
                 android:paddingRight="10dp"
-                android:text="@string/link_documents_and_limits_paylivre"
+                android:text="@string/label_for_more_information_article"
                 android:textAlignment="textStart"
-                android:textColor="@color/primary"
+                android:textColor="@color/primary_color_paylivre_sdk"
                 android:textSize="16sp"
                 android:visibility="visible"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -168,10 +127,10 @@
                 android:paddingRight="10dp"
                 android:text="@string/close_underline"
                 android:textAlignment="textStart"
-                android:textColor="@color/primary"
+                android:textColor="@color/primary_color_paylivre_sdk"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linkPageDocumentsLimits" />
+                app:layout_constraintTop_toBottomOf="@+id/linkPageSupportHelp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

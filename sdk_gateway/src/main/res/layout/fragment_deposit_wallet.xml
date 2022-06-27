@@ -6,7 +6,7 @@
     android:id="@+id/containerFormScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_bg"
+    android:background="@color/light_bg_color_paylivre_sdk"
     android:clickable="true"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
@@ -35,7 +35,7 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
-            android:background="@color/grey4"
+            android:background="@color/grey4_color_paylivre_sdk"
             app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
         <androidx.cardview.widget.CardView
@@ -45,7 +45,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/white_color_paylivre_sdk"
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -67,7 +67,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/avenir_next_lt_pro_bold"
                     android:text="@string/title_deposit_wallet"
-                    android:textColor="@color/secondary"
+                    android:textColor="@color/secondary_color_paylivre_sdk"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -113,18 +113,48 @@
                     app:layout_constraintTop_toBottomOf="@id/containerLoadingStatusDeposit" />
 
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragmentBackMerchant"
-                    android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.BackMerchantFragment"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerBackMerchantAndInstructions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:label=""
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/containerFragmentTransactionData"
-                    tools:layout="@layout/fragment_back_merchant" />
+                    app:layout_constraintTop_toBottomOf="@id/containerFragmentTransactionData">
+
+                    <View
+                        android:id="@+id/dividerLineContainerTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/grey3_color_paylivre_sdk"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/containerAcceptTerms"
+                        android:name="com.paylivre.sdk.gateway.android.ui.form.AcceptTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dividerLineContainerTerms"
+                        tools:layout="@layout/fragment_accept_terms" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragmentBackMerchant"
+                        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.BackMerchantFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:label=""
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/containerAcceptTerms"
+                        tools:layout="@layout/fragment_back_merchant" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,21 +167,8 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="25dp"
-            android:background="@color/grey4"
+            android:background="@color/grey4_color_paylivre_sdk"
             app:layout_constraintTop_toBottomOf="@+id/CardView" />
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/containerAcceptTerms"
-            android:name="com.paylivre.sdk.gateway.android.ui.form.AcceptTerms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerLineCard"
-            tools:layout="@layout/fragment_accept_terms" />
 
         <include
             android:id="@+id/instructions_wallet"
@@ -161,7 +178,7 @@
             android:layout_marginTop="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/containerAcceptTerms" />
+            app:layout_constraintTop_toBottomOf="@id/dividerLineCard" />
 
         <include
             android:id="@+id/payment_by_paylivre"

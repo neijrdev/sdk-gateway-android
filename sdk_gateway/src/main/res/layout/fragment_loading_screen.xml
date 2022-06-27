@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:orientation="horizontal"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/white_color_paylivre_sdk"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:indeterminate="true"
-                app:indicatorColor="@color/primary"
+                app:indicatorColor="@color/primary_color_paylivre_sdk"
                 app:indicatorSize="50dp"
                 app:trackThickness="5dp" />
 
@@ -52,7 +52,7 @@
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="2dp"
                 android:text="@string/checking_data"
-                android:textColor="@color/secondary"
+                android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

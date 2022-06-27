@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.paylivre.sdk.gateway.databinding.ActivityInsertUrlBinding
+import com.example.paylivre.sdk.gateway.utils.setTextThemeStatusBar
 import com.google.android.material.textfield.TextInputEditText
 import com.paylivre.sdk.gateway.android.utils.TypesStartCheckout
 import java.lang.Exception
@@ -26,9 +27,10 @@ class InsertUrlActivity : AppCompatActivity() {
         binding = ActivityInsertUrlBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setTextThemeStatusBar(this, "Light")
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "SDK Gateway Paylivre - ${BuildConfig.VERSION_NAME}"
+            actionBar.title = "SDK Gateway Paylivre - v${BuildConfig.VERSION_NAME}"
         }
 
         fun View.hideKeyboard() {

@@ -16,6 +16,20 @@ enum class DepositStatus(val code: Int) {
     }
 }
 
+enum class DepositTypes(val code: Int) {
+    WIRE_TRANSFER(0),
+    BILLET(1),
+    CRYPTOCURRENCY(2),
+    DEBIT(3),
+    PIX(4),
+    WALLET (5);
+
+    companion object {
+        private val map = values().associateBy(DepositTypes::code)
+        fun fromInt(type: Int) = map[type]
+    }
+}
+
 enum class OriginTypeInsertProof(val code: Int) {
     GALLERY(0),
     CAMERA(1),

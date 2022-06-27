@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.order.OrderData
 import com.paylivre.sdk.gateway.android.data.model.order.ResponseCommonTransactionData
@@ -16,11 +15,12 @@ import com.paylivre.sdk.gateway.android.domain.model.Currency
 import com.paylivre.sdk.gateway.android.domain.model.CurrencyPrefix
 import com.paylivre.sdk.gateway.android.domain.model.Types
 import com.paylivre.sdk.gateway.android.utils.toCurrencyBRL
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class TransactionCompletionScreen : Fragment() {
 
     private var _binding: FragmentTransactionCompletionScreenBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
 
     private val binding get() = _binding!!
 

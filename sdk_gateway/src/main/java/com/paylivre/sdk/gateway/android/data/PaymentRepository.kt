@@ -1,11 +1,8 @@
 package com.paylivre.sdk.gateway.android.data
 
-import com.paylivre.sdk.gateway.android.App
 import com.paylivre.sdk.gateway.android.data.api.RemoteDataSource
 import com.paylivre.sdk.gateway.android.data.model.deposit.CheckStatusDepositResponse
-import com.paylivre.sdk.gateway.android.data.model.order.ErrorTransaction
-import com.paylivre.sdk.gateway.android.data.model.order.OrderDataRequest
-import com.paylivre.sdk.gateway.android.data.model.order.ResponseCommonTransactionData
+import com.paylivre.sdk.gateway.android.data.model.order.*
 import com.paylivre.sdk.gateway.android.data.model.pixApprovalTime.PixApprovalTimeResponse
 import com.paylivre.sdk.gateway.android.data.model.servicesStatus.ServiceStatusResponseAdapter
 import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferProofDataRequest
@@ -13,15 +10,11 @@ import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferP
 import com.paylivre.sdk.gateway.android.data.model.transaction.CheckStatusTransactionResponse
 import java.lang.Exception
 
-class PaymentRepository {
-    private val remoteDataSource: RemoteDataSource by lazy {
-        RemoteDataSource(App.apiService)
-    }
-
+class PaymentRepository(private val remoteDataSource: RemoteDataSource) {
 
     fun getPixApprovalTime(
         getApprovalTimeSuccess: (response: PixApprovalTimeResponse) -> Unit,
-        getApprovalTimeFailure: (error: Throwable) -> Unit
+        getApprovalTimeFailure: (error: Throwable) -> Unit,
     ) {
         try {
             remoteDataSource.getPixApprovalTime { response, error ->
@@ -39,7 +32,7 @@ class PaymentRepository {
 
     fun getServiceStatus(
         getServiceStatusSuccess: (response: ServiceStatusResponseAdapter) -> Unit,
-        getServiceStatusFailure: (error: Throwable) -> Unit
+        getServiceStatusFailure: (error: Throwable) -> Unit,
     ) {
         try {
             remoteDataSource.getServicesStatus { response, error ->
@@ -59,7 +52,7 @@ class PaymentRepository {
     fun newTransaction(
         orderDataRequest: OrderDataRequest,
         requestSuccess: (response: ResponseCommonTransactionData) -> Unit,
-        requestFailure: (error: ErrorTransaction) -> Unit
+        requestFailure: (error: ErrorTransaction) -> Unit,
     ) {
 
         try {
@@ -81,7 +74,7 @@ class PaymentRepository {
     fun checkStatusDeposit(
         depositId: Int,
         checkStatusDepositSuccess: (response: CheckStatusDepositResponse) -> Unit,
-        checkStatusDepositFailure: (error: ErrorTransaction) -> Unit
+        checkStatusDepositFailure: (error: ErrorTransaction) -> Unit,
     ) {
         try {
             remoteDataSource.checkStatusDeposit(depositId) { response, error ->
@@ -100,7 +93,7 @@ class PaymentRepository {
     fun checkStatusTransaction(
         transactionId: Int,
         checkStatusTransactionSuccess: (response: CheckStatusTransactionResponse) -> Unit,
-        checkStatusTransactionFailure: (error: ErrorTransaction) -> Unit
+        checkStatusTransactionFailure: (error: ErrorTransaction) -> Unit,
     ) {
         try {
             remoteDataSource.checkStatusTransaction(transactionId) { response, error ->
@@ -120,7 +113,7 @@ class PaymentRepository {
     fun transferProof(
         transferProofDataRequest: InsertTransferProofDataRequest,
         requestSuccess: (response: InsertTransferProofDataResponse) -> Unit,
-        requestFailure: (error: Throwable) -> Unit
+        requestFailure: (error: Throwable) -> Unit,
     ) {
 
         try {
@@ -135,6 +128,26 @@ class PaymentRepository {
             }
         } catch (error: Exception) {
             requestFailure(RuntimeException(error.message))
+        }
+    }
+
+    fun checkStatusOrder(
+        dataRequest: CheckStatusOrderDataRequest,
+        requestSuccess: (response: CheckStatusOrderDataResponse) -> Unit,
+        requestFailure: (error: ErrorTransaction) -> Unit,
+    ) {
+        try {
+            remoteDataSource.checkStatusOrder(
+                dataRequest
+            ) { response, error ->
+                if (response !== null) {
+                    requestSuccess(response)
+                } else if (error !== null) {
+                    requestFailure(error)
+                }
+            }
+        } catch (error: Exception) {
+            ErrorTransaction("error_request_generic", null, null)
         }
     }
 

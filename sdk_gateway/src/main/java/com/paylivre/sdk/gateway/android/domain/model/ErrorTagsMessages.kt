@@ -20,7 +20,7 @@ enum class ErrorTags {
     RX015, //Parameter pix_key_type not valid
     RX016, //Parameter pix_key not valid
 
-    //Error parameters SDK StartCheckout
+    //Error parameters SDK StartCheckoutByParams
     RP001, //Parameter base_url do not exist or are not valid
     RP002, //Parameter gateway_token do not exist or are not valid
 
@@ -66,11 +66,12 @@ fun getErrorTagResponseError(errorMessage: String): String {
 
 data class KeysResponseError(
     val keyMessage: String?,
-    val keyMessageDetails: String?
+    val keyMessageDetails: String?,
 )
 
 fun getStringKeyResponseError(error: String): KeysResponseError {
     val genericError = "invalid_data_error"
+
     if (error.contains(
             "The given document number does not match the document number associated with user with email",
             true
@@ -89,6 +90,13 @@ fun getStringKeyResponseError(error: String): KeysResponseError {
     ) {
         return KeysResponseError(
             keyMessage = genericError, keyMessageDetails = "validation_service_error"
+        )
+    }
+
+    if (error.contains("User not found with document number", true)
+    ) {
+        return KeysResponseError(
+            keyMessage = genericError, keyMessageDetails = "user_not_found_with_document_number"
         )
     }
 
@@ -128,11 +136,6 @@ fun getStringKeyResponseError(error: String): KeysResponseError {
                 keyMessage = genericError, keyMessageDetails = "error_deposit_min_amount"
             )
         }
-        "Our document validation service could not approve your document validation." -> {
-            KeysResponseError(
-                keyMessage = genericError, keyMessageDetails = "validation_service_error"
-            )
-        }
         "Could not complete your transfer due to insufficient funds." -> {
             KeysResponseError(
                 keyMessage = genericError, keyMessageDetails = "error_insufficient_wallet_funds"
@@ -144,7 +147,21 @@ fun getStringKeyResponseError(error: String): KeysResponseError {
                 keyMessageDetails = "exceeded_withdrawal_limit_value"
             )
         }
-
+        "The informed PIX key CPF must be the same as the CPF from user acccount." -> {
+            KeysResponseError(
+                keyMessage = genericError, keyMessageDetails = "error_pix_key_cpf_divergent"
+            )
+        }
+        "The informed PIX key CNPJ must be the same as the CNPJ from user acccount." -> {
+            KeysResponseError(
+                keyMessage = genericError, keyMessageDetails = "error_pix_key_cnpj_divergent"
+            )
+        }
+        "The version of the paylivre gateway sdk used is outdated" -> {
+            KeysResponseError(
+                keyMessage = "paylivre_gateway_sdk_is_outdated", keyMessageDetails = ""
+            )
+        }
         else -> KeysResponseError(
             keyMessage = genericError, keyMessageDetails = ""
         )

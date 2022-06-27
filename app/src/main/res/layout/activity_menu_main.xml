@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="MenuMain-screen"
     android:padding="20dp"
     tools:context=".MenuMainActivity">
 
@@ -12,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/secondary"
+        android:contentDescription="button-FORM_GENERATE_DATA"
         android:minHeight="70dp"
         android:text="Generate Data to Start Checkout\n(Params or Url)"
         android:textAllCaps="false"
-        android:textSize="15sp"
         android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,11 +29,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/secondary"
+        android:contentDescription="button-INSERT_URL"
         android:minHeight="70dp"
         android:text="Insert URL to Start Checkout"
         android:textAllCaps="false"
-        android:textSize="15sp"
         android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonGoFormGenerateData" />

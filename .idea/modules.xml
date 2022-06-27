@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sdk-gateway-android.iml" filepath="$PROJECT_DIR$/.idea/sdk-gateway-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/example.iml" filepath="$PROJECT_DIR$/.idea/modules/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/example.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/example.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/example.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/example.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/example.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/example.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/example.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/example.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk_gateway/example.sdk_gateway.unitTest.iml" />
     </modules>
   </component>
 </project>

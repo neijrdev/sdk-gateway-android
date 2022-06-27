@@ -45,7 +45,7 @@
     <string name="invalid_document">Documento inválido</string>
     <string name="invalid_data_error">Error al verificar los datos ingresados</string>
     <string name="withdraw">Retiro</string>
-    <string name="type_wallet">Saldo de Paylivre</string>
+    <string name="type_wallet">Billetera Paylivre</string>
     <string name="type_pix">Pix</string>
     <string name="type_billet">Billete</string>
     <string name="type_wiretransfer">Transferencia\nbancaria</string>
@@ -83,7 +83,7 @@
     <string name="copy_key_pix">Copiar Foto Clave</string>
     <string name="action_finalize">Finalizar</string>
     <string name="message_pix_code_copied">Se copió el código PIX</string>
-    <string name="label_transaction_id">ID de transacción:</string>
+    <string name="label_transaction_id">Identificador:</string>
     <string name="label_origin_amount">Valor original:</string>
     <string name="label_converted_amount">Valor convertido:</string>
     <string name="label_tax">Taxa:</string>
@@ -217,9 +217,9 @@
     <string name="please_contact_support">Póngase en contacto con el soporte.</string>
     <string name="exceeded_withdrawal_limit_title">El retiro solicitado excede la cantidad máxima.</string>
     <string name="exceeded_withdrawal_limit_valueBRL">Solo se puede realizar un retiro por día con
-        un monto máximo de R$ 2000,00.</string>
+        un monto máximo de R$ 5.000,00.</string>
     <string name="exceeded_withdrawal_limit_valueUSD">Solo se puede realizar un retiro por día con
-        un monto máximo de US$ 400,00.</string>
+        un monto máximo de US$ 1.000,00.</string>
     <string name="alert_limit_withdraw">Solo se puede realizar un retiro por día. El retiro debe
         tener un valor máximo de %1$s.</string>
     <string name="warning">Advertencia</string>
@@ -230,4 +230,39 @@
     <string name="label_safety">seguridad</string>
     <string name="label_profile">perfil</string>
     <string name="label_generate_api_token">\"generar token Api\"</string>
+    <string name="warning_label">Darse cuenta</string>
+    <string name="label_for_more_information_go_to">Para más información acceda a:</string>
+    <string name="error_pix_key_cpf_divergent">El CPF de la clave PIX ingresada debe ser el mismo que el CPF de la cuenta del usuario.</string>
+    <string name="error_pix_key_cnpj_divergent">O CNPJ da chave PIX informado deve ser igual ao CNPJ da conta do usuário.</string>
+    <string name="label_for_more_information_access_support_site">Para saber más sobre los límites, te recomendamos el artículo:</string>
+    <string name="warning_limit_exceeded_subtitle">Esta transacción no se puede llevar a cabo. El valor supera el límite disponible.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_above_1">Hacer una nueva
+        transacción
+          con un valor máximo de %1$s o espere a que se renueve su límite mensual.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_1">Hacer una nueva
+        transacción
+          con un valor máximo de %1$s o regístrese en Paylivre a través de nuestra aplicación:
+         App Paylivre o a través de nuestro sitio web: web.paylivre.com, para obtener un límite mensual.</string>
+    <string name="label_limit_kyc_total">Límite total: %1$s</string>
+    <string name="label_limit_kyc_used">Límite utilizado: %1$s</string>
+    <string name="label_limit_kyc_available">Límite disponible: %1$s</string>
+    <string name="error_screen_limit_emailsend_kyc1">Consultar su email. Te enviamos instrucciones para que te registres en Paylivre.</string>
+    <string name="processing_withdrawal_loading">Procesando retiro...</string>
+    <string name="check_your_email_for_more_details">Revisa tu correo electrónico para más detalles.</string>
+    <string name="status_incomplete">Incompleto</string>
+    <string name="status_awaiting_payment">En espera de pago</string>
+    <string name="status_refunded">Reintegrado</string>
+    <string name="status_error">Erro</string>
+    <string name="label_message_merchant_approval_pending">El retiro se procesará una vez que se apruebe el retiro del monto de su cuenta. Recibirá un correo electrónico notificándole la aprobación.</string>
+    <string name="label_title_withdraw_wallet">Instrucciones para el saldo Paylivre</string>
+    <string name="info_withdraw_wallet_body">¡Para esta transacción, se utilizó el saldo de la billetera Paylivre!</string>
+    <string name="user_not_found_with_document_number">No hay cuenta registrada con este
+         documento en Paylivre.\n\nNo se puede procesar el Retiro.\n\nPara más información, regístrese
+         en web.paylivre.com.</string>
+    <string name="title_how_much_you_used_limit">Vea cuánto ha usado de su límite mensual.</string>
+    <string name="label_for_more_information_article">¿Cuáles son los límites?</string>
+    <string name="label_button_increase_limit">Quiero aumentar mi límite en Paylivre</string>
+    <string name="paylivre_gateway_sdk_is_outdated">Característica no disponible para esta versión de Paylivre Gateway SDK.</string>
+    <string name="label_favored">Favorecido</string>
+    <string name="message_copied_value">%1$s copiado correctamente</string>
 </resources>

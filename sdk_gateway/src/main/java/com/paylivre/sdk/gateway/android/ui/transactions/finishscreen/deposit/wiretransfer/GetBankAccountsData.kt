@@ -7,7 +7,7 @@ import com.paylivre.sdk.gateway.android.data.model.order.BankAccounts
 
 
 fun getEnabledBanksAccounts(bankAccounts: BankAccounts): List<BankAccount>? {
-    return bankAccounts.bank_accounts?.filter { it.hidden != 1 }
+    return bankAccounts.bank_accounts?.filter { it.hidden != 1 && it.bank?.display != 0 }
 }
 
 fun getNameBanksAccountsList(bankAccounts: List<BankAccount>): List<String> {
@@ -38,14 +38,9 @@ fun getBankAccountNumber(accountNumber: String?, accountDigit: String?): String 
     }
 }
 
-fun getBankAccountInfo(context: Context, bankAccount: BankAccount): String {
-    val office = getBankOffice(bankAccount.office_number, bankAccount.office_digit)
-    val account = getBankAccountNumber(bankAccount.account_number, bankAccount.account_digit)
-    val bankLabel = context.resources.getString(R.string.label_bank)
-    val agencyLabel = context.resources.getString(R.string.label_bank_office)
-    val accountLabel = context.resources.getString(R.string.label_account)
-
-    val bankAccountInfo =  "$bankLabel: ${bankAccount.account_name}\n$agencyLabel: $office\n$accountLabel: $account\n"
-    val accountOwnerInfo = "${bankAccount.account_holder_full_name}\n${bankAccount.account_holder_document}"
-    return "$bankAccountInfo$accountOwnerInfo"
+fun getDocumentAccountNumber(documentAccountNumber:String?): String {
+    if(documentAccountNumber!= null){
+        return documentAccountNumber.replace("CNPJ: ", "")
+    }
+    return ""
 }

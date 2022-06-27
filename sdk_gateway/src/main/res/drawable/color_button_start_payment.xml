@@ -1,5 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/grey4" android:state_enabled="false"/>
-    <item android:color="@color/primary" android:state_enabled="true"/>
-    <item android:color="@color/primary" android:state_pressed="false" />
+    <item android:color="@color/grey4_color_paylivre_sdk" android:state_enabled="false"/>
+    <item android:color="@color/primary_color_paylivre_sdk" android:state_enabled="true"/>
+    <item android:color="@color/primary_color_paylivre_sdk" android:state_pressed="false" />
 </selector>

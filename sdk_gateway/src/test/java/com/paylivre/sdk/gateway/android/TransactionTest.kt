@@ -2,9 +2,7 @@ package com.paylivre.sdk.gateway.android
 
 import com.paylivre.sdk.gateway.android.data.model.order.DataGenerateSignature
 import com.paylivre.sdk.gateway.android.data.model.order.getDataWithOnlySelectedType
-import com.paylivre.sdk.gateway.android.domain.model.Operation
-import com.paylivre.sdk.gateway.android.domain.model.Types
-import com.paylivre.sdk.gateway.android.domain.model.TypesToSelect
+import com.paylivre.sdk.gateway.android.domain.model.*
 import org.junit.Assert
 import org.junit.Test
 
@@ -95,5 +93,19 @@ class TransactionTest {
             mockDataWithSelectedType,
             getDataWithOnlySelectedType(mockDataWithoutSelectedType)
         )
+    }
+
+    @Test
+    fun `test TransactionStatus enum class`() {
+        Assert.assertEquals(0, TransactionStatus.NEW.code)
+        Assert.assertEquals(1, TransactionStatus.PENDING.code)
+        Assert.assertEquals(2, TransactionStatus.COMPLETED.code)
+        Assert.assertEquals(3, TransactionStatus.CANCELLED.code)
+        Assert.assertEquals(4, TransactionStatus.EXPIRED.code)
+        Assert.assertEquals(5, TransactionStatus.REVIEWED.code)
+        Assert.assertEquals(6, TransactionStatus.REFUND_PENDING.code)
+        Assert.assertEquals(7, TransactionStatus.REFUND_COMPLETE.code)
+
+        Assert.assertEquals(TransactionStatus.NEW, TransactionStatus.fromInt(0))
     }
 }

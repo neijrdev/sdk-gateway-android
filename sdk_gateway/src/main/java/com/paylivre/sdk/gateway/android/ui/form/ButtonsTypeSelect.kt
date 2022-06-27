@@ -8,18 +8,17 @@ import androidx.fragment.app.Fragment
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FragmentButtonsTypeSelectBinding
 import android.widget.RelativeLayout
-import androidx.fragment.app.activityViewModels
 import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Type
-import com.paylivre.sdk.gateway.android.domain.model.TypePixKey
 import com.paylivre.sdk.gateway.android.domain.model.checkTypeEnable
 import com.paylivre.sdk.gateway.android.ui.buttons.ButtonTypeFragment
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class ButtonsTypeSelectFragment : Fragment() {
     private var _binding: FragmentButtonsTypeSelectBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
 
     private var type: Int = 0
     private var operation: Int = -1
@@ -57,8 +56,7 @@ class ButtonsTypeSelectFragment : Fragment() {
         val root: View = binding.root
 
         //Set Title select option Type
-        mainViewModel.operation.observe(viewLifecycleOwner, {
-
+        mainViewModel.operation.observe(viewLifecycleOwner) {
             operation = it
             val typeDescription =
                 if (operation == Operation.DEPOSIT.code) getString(R.string.deposit) else getString(
@@ -68,11 +66,11 @@ class ButtonsTypeSelectFragment : Fragment() {
             binding.textViewTitleTypes.text =
                 "${getString(R.string.title_types_operation)} $typeDescription"
 
-        })
+        }
 
 
         //Set Options Button select option Type
-        mainViewModel.type.observe(viewLifecycleOwner, {
+        mainViewModel.type.observe(viewLifecycleOwner) {
             var listTypesEnabled: MutableList<Int> = mutableListOf()
 
             if (checkTypeEnable(it, Type.PIX.code)) {
@@ -122,9 +120,7 @@ class ButtonsTypeSelectFragment : Fragment() {
             if (listTypesEnabled.size == 1) {
                 mainViewModel.setButtonTypeSelected(listTypesEnabled[0])
             }
-
-
-        })
+        }
 
         return root
     }

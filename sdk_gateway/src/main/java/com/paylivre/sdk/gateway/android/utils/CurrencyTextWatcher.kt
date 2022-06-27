@@ -23,9 +23,7 @@ class CurrencyTextWatcher(
                 val doubleValue = stringValue.fromCurrency()
                 val formatted = getFormattedValue(doubleValue)
                 updateValue(formatted)
-            } catch (err: Exception) {
-                updating = false
-            }
+            } catch (err: Exception) { updating = false }
 
         }
     }

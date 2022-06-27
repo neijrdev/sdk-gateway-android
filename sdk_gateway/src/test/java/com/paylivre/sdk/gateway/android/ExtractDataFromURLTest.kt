@@ -2,15 +2,31 @@ package com.paylivre.sdk.gateway.android
 
 import android.os.Build
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.viewmodel.MockMainViewModel
+import org.junit.After
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.stopKoin
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers="pt-port")
 class ExtractDataFromURLTest {
+
+    @Before
+    fun setup() {
+        loadKoinModules(MockMainViewModel().mockedAppModule)
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
+    }
+
 
     private val mockUrlEncodedValidDeposit =
         "https%3A%2F%2Fdev.gateway.paylivre.com%3Fmerchant_transaction_id%3D7e68641841%26merchant_id%3D302%26operation%3D0%26email%3Duser_gateway_test%40tutanota.com%26document_number%3D61317581075%26amount%3D500%26currency%3DBRL%26type%3D1%26account_id%3D123654asd%26callback_url%3Dhttps%3A%2F%2Fwww.google.com%26redirect_url%3Dhttps%3A%2F%2Fwww.merchant_to_you.com%26auto_approve%3D1%26signature%3DJGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkTlRFNVpqVXdOakV4T0RBek5HVSRBMWZnNTJPak5qSm5IQU1JSXAvRXBB%26logo_url%3Dhttps%3A%2F%2Fgithub.com%2Fpaylivre%2Fgateway-example-react-js%2Fblob%2Fmaster%2Fassets%2Flogo_jackpot_new.png%3Fraw%3Dtrue"
@@ -290,8 +306,4 @@ class ExtractDataFromURLTest {
             )
         )
     }
-
-
-
-
 }

@@ -5,7 +5,7 @@ import com.paylivre.sdk.gateway.android.data.model.servicesStatus.ServicesStatus
 import com.paylivre.sdk.gateway.android.domain.model.Types
 import com.paylivre.sdk.gateway.android.domain.model.checkTypeEnable
 
-enum class BitwiseTypes(decimal: Int) {
+enum class BitwiseTypes(val decimal: Int) {
     WIRETRANSFER(4),
     BILLET(2),
     PIX(1),

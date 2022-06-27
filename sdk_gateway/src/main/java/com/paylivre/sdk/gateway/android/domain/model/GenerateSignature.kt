@@ -19,13 +19,13 @@ fun getURL(requiredDataGenerateSignature: DataGenerateSignature): String {
     val currency = "&currency=${requiredDataGenerateSignature.currency}"
     val operation = "&operation=${requiredDataGenerateSignature.operation}"
     val callback_url = "&callback_url=${requiredDataGenerateSignature.callback_url}"
-    val mock_type = "&type=${requiredDataGenerateSignature.type}"
+    val type = "&type=${requiredDataGenerateSignature.type}"
     val auto_approve = "&auto_approve=${requiredDataGenerateSignature.auto_approve}"
     val email = if (requiredDataGenerateSignature.email.isNullOrEmpty()) "" else "&email=${requiredDataGenerateSignature.email}"
     val document_number = if (requiredDataGenerateSignature.document_number.isNullOrEmpty()) ""
     else "&document_number=${requiredDataGenerateSignature.document_number}"
 
-    return base_url + merchant_transaction_id + merchant_id + operation + email + document_number + amount + currency + mock_type + account_id + callback_url + auto_approve
+    return base_url + merchant_transaction_id + merchant_id + operation + email + document_number + amount + currency + type + account_id + callback_url + auto_approve
 }
 
 

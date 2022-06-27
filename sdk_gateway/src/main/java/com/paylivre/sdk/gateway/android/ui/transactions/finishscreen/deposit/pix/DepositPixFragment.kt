@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.deposit.CheckStatusDepositResponse
@@ -23,7 +22,12 @@ import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import java.util.concurrent.TimeUnit
 import com.paylivre.sdk.gateway.android.utils.START_TIME_IN_MILLIS
 import androidx.core.text.HtmlCompat
+import com.paylivre.sdk.gateway.android.domain.model.Operation
+import com.paylivre.sdk.gateway.android.domain.model.Types
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,7 +37,8 @@ val START_TIME_IN_MINUTES = TimeUnit.MILLISECONDS.toMinutes(START_TIME_IN_MILLIS
 
 class DepositPixFragment : Fragment() {
     private var _binding: FragmentDepositPixBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
+    private val logEventsService : LogEventsService by inject()
     private val binding get() = _binding!!
     private var minutesToExpirePix: Long = -1
     private var depositId: Int? = 0
@@ -70,6 +75,14 @@ class DepositPixFragment : Fragment() {
                 statusCodeDepositPix == DepositStatus.CANCELLED.code
             ) {
                 finishCheckStartStatus()
+
+                //Set Log Analytics
+                logEventsService.setLogEventAnalyticsWithParams(
+                    "TransactionStatus",
+                    Pair("type_status", "deposit_status_id"),
+                    Pair("status_id", statusCodeDepositPix.toString()),
+                )
+
             }
         }
     }
@@ -163,11 +176,15 @@ class DepositPixFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Set Log Analytics
+        logEventsService.setLogFinishScreen(Operation.DEPOSIT, Types.PIX)
+
         var codePix = ""
 
         mainViewModel.language.observe(viewLifecycleOwner, { language = it })
 
-        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner, {
+        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner) {
             if (it == true) {
                 binding.textLastStatusDepositPix.visibility = View.GONE
                 binding.containerCheckingStatus.visibility = View.VISIBLE
@@ -175,26 +192,29 @@ class DepositPixFragment : Fragment() {
                 binding.textLastStatusDepositPix.visibility = View.VISIBLE
                 binding.containerCheckingStatus.visibility = View.GONE
             }
-        })
+        }
 
-        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner, {
+        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
             statusDepositId = it?.data?.deposit_status_id
             checkStatusDepositPix(it)
             setLastStatusDepositPix(it)
-        })
+        }
 
         binding.textCodePix.setOnClickListener {
+            //Set Log Analytics
+            logEventsService.setLogEventAnalytics("Click_Text_CopyCodePix")
+
             copyToClipboard(codePix)
         }
 
-        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner, {
+        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner) {
             codePix = it.data?.receivable_url.toString()
             binding.textCodePix.text = codePix
 
             //StartTime to checkStatusPix and Expire Time Pix
             startTimer()
 
-            binding.fragmentBackMerchant.visibility = View.VISIBLE
+            binding.containerBackMerchantAndInstructions.visibility = View.VISIBLE
 
             val limitsKycString = Gson().toJson(it.data?.kyc_limits)
             depositId = it.data?.deposit_id
@@ -216,9 +236,12 @@ class DepositPixFragment : Fragment() {
                 limitsKycString,
                 language
             )
-        })
+        }
 
         binding.btnCopyCodePix.setOnClickListener {
+            //Set Log Analytics
+            logEventsService.setLogEventAnalytics("Btn_CopyCodePix")
+
             copyToClipboard(codePix)
         }
     }

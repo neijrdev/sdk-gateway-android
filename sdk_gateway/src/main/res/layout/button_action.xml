@@ -15,8 +15,8 @@
         android:id="@+id/nav_to_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/secondary"
+        android:backgroundTint="@color/secondary_color_paylivre_sdk"
         android:minHeight="60dp"
         android:text="@string/next"
-        android:textColor="@color/white" />
+        android:textColor="@color/white_color_paylivre_sdk" />
 </LinearLayout>

@@ -22,7 +22,7 @@ class WithdrawlPixKeyTest {
             email = "",
             document_number = "",
             login_email = "",
-            password = "",
+            api_token = "",
             pix_key = "+5573999229417",
             signature = "",
             pix_key_type = TypePixKey.PHONE.code.toString()
@@ -45,7 +45,7 @@ class WithdrawlPixKeyTest {
                 email = "",
                 document_number = "",
                 login_email = "",
-                password = "",
+                api_token = "",
                 pix_key = "73999229417",
                 signature = "",
                 pix_key_type = TypePixKey.PHONE.code.toString()

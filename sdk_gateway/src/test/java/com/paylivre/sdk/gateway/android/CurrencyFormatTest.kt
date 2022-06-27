@@ -245,5 +245,15 @@ class CurrencyFormatTest {
         )
     }
 
+    @Test
+    fun `Double toCurrencyUSD`() {
+        Assert.assertEquals(
+            "US$ 10.00",
+            10.0.toCurrencyUSD("en")
+        )
+    }
+
+
+
 
 }

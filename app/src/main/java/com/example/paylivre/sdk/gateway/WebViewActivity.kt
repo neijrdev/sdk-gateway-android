@@ -6,6 +6,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.paylivre.sdk.gateway.android.BuildConfig
 import com.example.paylivre.sdk.gateway.databinding.ActivityWebViewBinding
+import com.example.paylivre.sdk.gateway.utils.setTextThemeStatusBar
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWebViewBinding
@@ -15,12 +16,10 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Set Theme do SDK Gateway Paylivre
-        setTheme(R.style.Theme_SDKGatewayAndroid)
-
+        setTextThemeStatusBar(this, "Light")
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "SDK Gateway (Webview) - ${BuildConfig.VERSION_NAME}"
+            actionBar.title = "SDK Gateway (Webview) - v${BuildConfig.VERSION_NAME}"
         }
 
         val myWebView: WebView = binding.webview

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FormStartPaymentBinding
@@ -21,16 +20,22 @@ import android.view.inputmethod.InputMethodManager
 import com.paylivre.sdk.gateway.android.IOnBackPressed
 import com.paylivre.sdk.gateway.android.data.model.order.DataGenerateSignature
 import com.paylivre.sdk.gateway.android.data.model.order.OrderDataRequest
+import com.paylivre.sdk.gateway.android.data.model.order.checkIsErrorApiToken
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.ui.howToGenerateApiToken.HowToGenerateApiToken
 import com.paylivre.sdk.gateway.android.utils.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class FormStartPaymentFragment : Fragment(), IOnBackPressed {
 
     private var _binding: FormStartPaymentBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
+    private val logEventsService : LogEventsService by inject()
     private val binding get() = _binding!!
+    var enableOnchangeValidateFields = false
 
 
     override fun onCreateView(
@@ -40,7 +45,9 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
     ): View {
 
         _binding = FormStartPaymentBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
+
 
         var pixKeyTypeSelected: Int = -1
         val editDocument: EditText = binding.editDocument
@@ -48,27 +55,27 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
         val editEmailWallet: EditText = binding.editEmailWallet
         val editApiToken: EditText = binding.editApiToken
 
-        mainViewModel.buttonPixKeyTypeSelected.observe(viewLifecycleOwner, {
+        mainViewModel.buttonPixKeyTypeSelected.observe(viewLifecycleOwner) {
             pixKeyTypeSelected = it
-        })
+        }
 
-        mainViewModel.editDocument.observe(viewLifecycleOwner, {
+        mainViewModel.editDocument.observe(viewLifecycleOwner) {
             editDocument.setText(it)
-        })
+        }
 
-        mainViewModel.editEmail.observe(viewLifecycleOwner, {
+        mainViewModel.editEmail.observe(viewLifecycleOwner) {
             editEmail.setText(it)
-        })
+        }
 
-        mainViewModel.editEmailWallet.observe(viewLifecycleOwner, {
+        mainViewModel.editEmailWallet.observe(viewLifecycleOwner) {
             editEmailWallet.setText(it)
-        })
+        }
 
-        mainViewModel.editApiToken.observe(viewLifecycleOwner, {
+        mainViewModel.editApiToken.observe(viewLifecycleOwner) {
             editApiToken.setText(it)
-        })
+        }
 
-        mainViewModel.editPixKeyValue.observe(viewLifecycleOwner, {
+        mainViewModel.editPixKeyValue.observe(viewLifecycleOwner) {
             if (pixKeyTypeSelected == TypePixKey.EMAIL.code) {
                 binding.editPixKeyEmail.setText(it)
             }
@@ -76,26 +83,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             if (pixKeyTypeSelected == TypePixKey.PHONE.code) {
                 binding.editPixKeyCellPhone.setText(it)
             }
-        })
-
-
-        //Mostra ou Esconde campo api token caso o type selecionado seja o WALLET
-        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner, {
-            if (it == Type.WALLET.code) {
-                binding.editApiTokenLayout.visibility = View.VISIBLE
-                binding.editEmailWalletLayout.visibility = View.VISIBLE
-                binding.instructionsDepositWallet.visibility = View.VISIBLE
-                editEmailWallet.text = editEmail.text
-
-                binding.textViewRememberPassword.visibility = View.VISIBLE
-            } else {
-                binding.editApiTokenLayout.visibility = View.GONE
-                binding.editEmailWalletLayout.visibility = View.GONE
-                binding.instructionsDepositWallet.visibility = View.GONE
-                binding.textViewRememberPassword.visibility = View.GONE
-                editEmailWallet.setText("")
-            }
-        })
+        }
 
         return root
     }
@@ -109,6 +97,10 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Set Log Analytics
+        logEventsService.setLogEventAnalytics("Screen_FormStartPayment")
+
+        var documentPassedByParam = false
         val editDocument: EditText = binding.editDocument
         val editEmail: EditText = binding.editEmail
         val editEmailWallet: EditText = binding.editEmailWallet
@@ -116,14 +108,20 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
         var operationName = ""
         var operation: Int = -1
         var pixKeyType: Int = -1
+        val errorEmail = binding.textViewErrorEmail
+        val errorDocument = binding.textViewErrorDocument
+        val errorEmailWallet = binding.textViewErrorEmailWallet
+        val errorApiToken = binding.textViewErrorApiToken
+        val errorTypeSelect = binding.textViewErrorTypeForm
+        val errorTypePixKeyValue = binding.textViewErrorPixKeyValue
+        var typeSelected = -1
+        var type = -1
+        var typeString = ""
 
-        //Set Mask in EditText Document (CPF/CNPJ)
-        editDocument.addTextChangedListener(MaskDocumentUtil.insert(editDocument, null))
-
-        //Set Mask in EditText CellPhone
-        binding.editPixKeyCellPhone.addTextChangedListener(
-            MaskPhoneUtil.insert(binding.editPixKeyCellPhone)
-        )
+        mainViewModel.type.observe(viewLifecycleOwner) {
+            typeString = it.toString()
+            type = it
+        }
 
         fun setPixKeyValueDefault(typePixKey: Int) {
             when (typePixKey) {
@@ -142,13 +140,9 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             R.anim.slide_down_form
         )
 
-
-        mainViewModel.operation.observe(viewLifecycleOwner, {
+        mainViewModel.operation.observe(viewLifecycleOwner) {
             operation = it
             if (it == Operation.WITHDRAW.code) {
-                binding.containerButtonsSelectType.visibility = View.GONE
-                binding.containerButtonsPixKeyTypeSelect.visibility = View.VISIBLE
-
                 //Timer to show Alert about Withdraw Limit
                 Handler().postDelayed({
                     binding.alertLimitWithdraw.visibility = View.VISIBLE
@@ -156,11 +150,20 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
                     binding.alertLimitWithdraw.startAnimation(slideDownAnimationAlert)
                 }, 250)
 
-                //Set default pix key type - CPF/CNPJ
-                mainViewModel.setButtonPixKeyTypeSelected(TypePixKey.DOCUMENT.code)
-                pixKeyType = TypePixKey.DOCUMENT.code
+                if (type == TypesToSelect.PIX.code) {
+
+                    binding.containerButtonsPixKeyTypeSelect.visibility = View.VISIBLE
+
+                    //Set default pix key type - CPF/CNPJ
+                    mainViewModel.setButtonPixKeyTypeSelected(TypePixKey.DOCUMENT.code)
+                    pixKeyType = TypePixKey.DOCUMENT.code
+                } else {
+                    binding.editPixKeyEmailLayout.visibility = View.GONE
+                    binding.editPixKeyCellPhoneLayout.visibility = View.GONE
+                    binding.containerButtonsPixKeyTypeSelect.visibility = View.GONE
+                }
             } else {
-                binding.containerButtonsSelectType.visibility = View.VISIBLE
+
                 binding.editPixKeyEmailLayout.visibility = View.GONE
                 binding.editPixKeyCellPhoneLayout.visibility = View.GONE
                 binding.containerButtonsPixKeyTypeSelect.visibility = View.GONE
@@ -169,26 +172,57 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
 
             operationName =
                 if (it == Operation.DEPOSIT.code) getString(R.string.deposit) else getString(R.string.withdraw)
-        })
+        }
 
-        mainViewModel.enableEditEmail.observe(viewLifecycleOwner, {
+
+        //Mostra ou Esconde campo api token caso seja depostio do tipo WALLET
+        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner) {
+            if (it == Type.WALLET.code && operation == Operation.DEPOSIT.code) {
+                binding.editApiTokenLayout.visibility = View.VISIBLE
+                binding.editEmailWalletLayout.visibility = View.VISIBLE
+                binding.instructionsDepositWallet.visibility = View.VISIBLE
+                editEmailWallet.text = editEmail.text
+                binding.textViewHotGenerateApiToken.visibility = View.VISIBLE
+            } else {
+                binding.editApiTokenLayout.visibility = View.GONE
+                binding.editEmailWalletLayout.visibility = View.GONE
+                binding.instructionsDepositWallet.visibility = View.GONE
+                binding.textViewHotGenerateApiToken.visibility = View.GONE
+                editEmailWallet.setText("")
+            }
+        }
+
+
+        //Set Mask in EditText Document (CPF/CNPJ)
+        editDocument.addTextChangedListener(MaskDocumentUtil.insert(editDocument, null))
+
+        //Set Mask in EditText CellPhone
+        binding.editPixKeyCellPhone.addTextChangedListener(
+            MaskPhoneUtil.insert(binding.editPixKeyCellPhone)
+        )
+
+        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner) {
+            typeSelected = it
+            if (validateTypesNumber(it, operation).isValid) {
+                errorTypeSelect.visibility = View.GONE
+            }
+
+            if (it != Type.WALLET.code) {
+                errorEmailWallet.visibility = View.GONE
+                errorApiToken.visibility = View.GONE
+            }
+        }
+
+
+
+        mainViewModel.enableEditEmail.observe(viewLifecycleOwner) {
             editEmail.isEnabled = it
-        })
+        }
 
-        mainViewModel.enableEditDocument.observe(viewLifecycleOwner, {
+        mainViewModel.enableEditDocument.observe(viewLifecycleOwner) {
             editDocument.isEnabled = it
-        })
-
-        var enableOnchangeValidateFields = false
-
-
-        val errorEmail = binding.textViewErrorEmail
-        val errorDocument = binding.textViewErrorDocument
-        val errorEmailWallet = binding.textViewErrorEmailWallet
-        val errorApiToken = binding.textViewErrorApiToken
-        val errorTypeSelect = binding.textViewErrorType
-        val errorTypePixKeySelect = binding.textViewErrorPixKeyValue
-        var typeSelected = -1
+            documentPassedByParam = !it
+        }
 
         fun errorMessageFormatted(fieldErrorStatus: FieldErrorStatus): String {
             return try {
@@ -205,31 +239,39 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
 
         fun handleValidatePixKeyValue(editedPixKey: String) {
             val isPixKeyValue = getFieldStatusPixKeyValue(pixKeyType, editedPixKey)
-            if (!isPixKeyValue.isValidated &&
-                operation == Operation.WITHDRAW.code &&
+            if (operation == Operation.WITHDRAW.code &&
+                typeSelected == Type.PIX.code &&
+                !isPixKeyValue.isValidated &&
                 pixKeyType != TypePixKey.DOCUMENT.code
             ) {
-                errorTypePixKeySelect.text = errorMessageFormatted(isPixKeyValue)
-                errorTypePixKeySelect.visibility = View.VISIBLE
+                errorTypePixKeyValue.text = errorMessageFormatted(isPixKeyValue)
+                errorTypePixKeyValue.visibility = View.VISIBLE
             } else {
-                errorTypePixKeySelect.visibility = View.GONE
+                errorTypePixKeyValue.visibility = View.GONE
             }
         }
 
-        mainViewModel.buttonPixKeyTypeSelected.observe(viewLifecycleOwner, {
+        mainViewModel.buttonPixKeyTypeSelected.observe(viewLifecycleOwner) {
             setPixKeyValueDefault(it)
             pixKeyType = it
+            //Reset error pixKeyType
+            binding.textViewErrorPixKeyValue.visibility = View.GONE
             binding.textViewErrorPixKeyType.visibility = View.GONE
 
             if (enableOnchangeValidateFields) {
-                if (pixKeyType == TypePixKey.EMAIL.code) {
+                if (it == TypePixKey.EMAIL.code) {
                     handleValidatePixKeyValue(binding.editPixKeyEmail.text.toString())
                 }
-                if (pixKeyType == TypePixKey.PHONE.code) {
+                if (it == TypePixKey.PHONE.code) {
                     handleValidatePixKeyValue(binding.editPixKeyCellPhone.text.toString())
+                }
+                if (it == TypePixKey.DOCUMENT.code) {
+                    binding.textViewErrorPixKeyValue.visibility = View.GONE
                 }
             }
 
+
+            //Enable input by PixKeyType
             if (operation == Operation.WITHDRAW.code) {
                 when (it) {
                     TypePixKey.DOCUMENT.code -> {
@@ -248,19 +290,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
                 }
 
             }
-        })
-
-        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner, {
-            typeSelected = it
-            if (validateTypesNumber(it, operation).isValid) {
-                errorTypeSelect.visibility = View.GONE
-            }
-
-            if (it != Type.WALLET.code) {
-                errorEmailWallet.visibility = View.GONE
-                errorApiToken.visibility = View.GONE
-            }
-        })
+        }
 
 
 
@@ -296,16 +326,6 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             }
         }
 
-        fun handleValidateInputEmailWallet(editedEmail: String) {
-            val isEmailWalletValidated = getFieldStatusEmail(editedEmail)
-            if (!isEmailWalletValidated.isValidated && typeSelected == Type.WALLET.code) {
-                errorEmailWallet.text = errorMessageFormatted(isEmailWalletValidated)
-                errorEmailWallet.visibility = View.VISIBLE
-            } else {
-                errorEmailWallet.visibility = View.GONE
-            }
-        }
-
         fun handleValidateInputDocument(editedDocument: String) {
             val isDocumentValidated = getFieldStatusDocument(editedDocument)
             if (!isDocumentValidated.isValidated) {
@@ -316,34 +336,49 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             }
         }
 
-        fun handleValidateInputPassword(editedPassword: String) {
-            val isPasswordValid = getFieldStatusPassword(editedPassword)
-            if (!isPasswordValid.isValidated && typeSelected == Type.WALLET.code) {
-                errorApiToken.text = errorMessageFormatted(isPasswordValid)
+        fun handleValidateInputApiToken(editedPassword: String) {
+            val isApiTokenValid = getFieldStatusApiToken(editedPassword)
+            if (!isApiTokenValid.isValidated &&
+                typeSelected == Type.WALLET.code &&
+                operation == Operation.DEPOSIT.code
+            ) {
+                errorApiToken.text = errorMessageFormatted(isApiTokenValid)
                 errorApiToken.visibility = View.VISIBLE
             } else {
                 errorApiToken.visibility = View.GONE
             }
         }
 
+        fun handleValidateInputEmailWallet(editedEmail: String) {
+            val isEmailWalletValidated = getFieldStatusEmail(editedEmail)
+            if (!isEmailWalletValidated.isValidated &&
+                typeSelected == Type.WALLET.code &&
+                operation == Operation.DEPOSIT.code
+            ) {
+                errorEmailWallet.text = errorMessageFormatted(isEmailWalletValidated)
+                errorEmailWallet.visibility = View.VISIBLE
+            } else {
+                errorEmailWallet.visibility = View.GONE
+            }
+        }
 
         editEmail.afterTextChanged { handleValidateInputEmail(it) }
         editDocument.afterTextChanged { handleValidateInputDocument(it) }
         editEmailWallet.afterTextChanged { handleValidateInputEmailWallet(it) }
-        editApiToken.afterTextChanged { handleValidateInputPassword(it) }
+        editApiToken.afterTextChanged { handleValidateInputApiToken(it) }
         binding.editPixKeyEmail.afterTextChanged { handleValidatePixKeyValue(it) }
         binding.editPixKeyCellPhone.afterTextChanged { handleValidatePixKeyValue(it) }
 
-        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner, {
+        mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner) {
             if (it.isSuccess == false) {
-                if (it.isErrorWalletInvalidApiToken == true) {
+                if (checkIsErrorApiToken(it?.error)) {
                     enableOnchangeValidateFields = true
                     errorApiToken.text = getString(R.string.error_invalid_api_token)
                     errorApiToken.visibility = View.VISIBLE
-                    binding.textViewRememberPassword.visibility = View.VISIBLE
+                    binding.textViewHotGenerateApiToken.visibility = View.VISIBLE
                 }
             }
-        })
+        }
 
         var base_url = ""
         var merchant_id = 0
@@ -352,40 +387,43 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
         var amount = ""
         var currency = ""
         var callback_url = ""
-        var type = ""
+
         var selected_type = ""
         var account_id = ""
         var auto_approve = 0
         var dataStartCheckout: DataStartCheckout? = null
         var typeStartCheckout = -1
+        var documentStartCheckout = ""
 
         mainViewModel.base_url.observe(viewLifecycleOwner, { base_url = it })
         mainViewModel.merchant_id.observe(viewLifecycleOwner, { merchant_id = it })
         mainViewModel.editGatewayToken.observe(viewLifecycleOwner, { gateway_token = it })
         mainViewModel.merchant_transaction_id.observe(
-            viewLifecycleOwner,
-            { merchant_transaction_id = it })
+            viewLifecycleOwner
+        ) { merchant_transaction_id = it }
         mainViewModel.amount.observe(viewLifecycleOwner, { amount = it.toString() })
         mainViewModel.currency.observe(viewLifecycleOwner, { currency = it })
         mainViewModel.operation.observe(viewLifecycleOwner, { operation = it })
         mainViewModel.callback_url.observe(viewLifecycleOwner, { callback_url = it })
         mainViewModel.account_id.observe(viewLifecycleOwner, { account_id = it })
-        mainViewModel.type.observe(viewLifecycleOwner, { type = it.toString() })
-        mainViewModel.auto_approve.observe(viewLifecycleOwner, { auto_approve = it })
+        mainViewModel.autoApprove.observe(viewLifecycleOwner, { auto_approve = it })
         mainViewModel.buttonTypeSelected.observe(
-            viewLifecycleOwner,
-            { selected_type = it.toString() })
-        mainViewModel.dataStartCheckout.observe(viewLifecycleOwner, {
+            viewLifecycleOwner
+        ) { selected_type = it.toString() }
+
+        mainViewModel.dataStartCheckout.observe(viewLifecycleOwner) {
             dataStartCheckout = it
-        })
-        mainViewModel.type_start_checkout.observe(viewLifecycleOwner, {
+            documentStartCheckout = it.document ?: ""
+        }
+
+        mainViewModel.type_start_checkout.observe(viewLifecycleOwner) {
             typeStartCheckout = it
-        })
+        }
 
         fun getPixKeyValue(): String {
             return if (operation == Operation.WITHDRAW.code) {
                 when (pixKeyType) {
-                    TypePixKey.DOCUMENT.code -> editDocument.text.toString()
+                    TypePixKey.DOCUMENT.code -> unmask(editDocument.text.toString())
                     TypePixKey.EMAIL.code -> binding.editPixKeyEmail.text.toString()
                     TypePixKey.PHONE.code -> binding.editPixKeyCellPhone.text.toString()
                     else -> ""
@@ -414,7 +452,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
                 currency,
                 operation.toString(),
                 callback_url,
-                type,
+                typeString,
                 selected_type,
                 account_id,
                 binding.editEmail.text.toString(),
@@ -431,6 +469,11 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             mainViewModel.startPayment(data)
         }
 
+        fun getDocument(): String {
+            return if (documentPassedByParam) documentStartCheckout
+            else binding.editDocument.text.toString()
+        }
+
         fun handleStartPaymentByUrl() {
             val orderDataRequest = OrderDataRequest(
                 base_url = base_url,
@@ -440,11 +483,11 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
                 currency = currency,
                 operation = operation.toString(),
                 callback_url = callback_url,
-                type = type,
+                type = typeString,
                 selected_type = selected_type,
                 account_id = account_id,
                 email = binding.editEmail.text.toString(),
-                document_number = binding.editDocument.text.toString(),
+                document_number = getDocument(),
                 login_email = binding.editEmailWallet.text.toString(),
                 api_token = binding.editApiToken.text.toString(),
                 pix_key_type = pixKeyType.toString(),
@@ -481,7 +524,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             val isFormValidated = formValidatedData.statusFormDataValidated
 
             if (typeSelected == -1) {
-                binding.textViewErrorType.text =
+                binding.textViewErrorTypeForm.text =
                     getString(R.string.type_required_error, operationName)
                 errorTypeSelect.visibility = View.VISIBLE
             } else {
@@ -501,7 +544,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             handleValidateInputEmail(editEmail.text.toString())
             handleValidateInputDocument(editDocument.text.toString())
             handleValidateInputEmailWallet(editEmailWallet.text.toString())
-            handleValidateInputPassword(editApiToken.text.toString())
+            handleValidateInputApiToken(editApiToken.text.toString())
 
             if (isFormValidated) {
                 enableOnchangeValidateFields = false
@@ -510,9 +553,20 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
                 } else {
                     handleStartPaymentByUrl()
                 }
+                //Set Log Analytics
+                logEventsService.setLogEventAnalyticsWithParams(
+                    "Validation_FormStartPayment",
+                    Pair("validation_status", "Ok"),
+                )
 
             } else {
                 enableOnchangeValidateFields = true
+
+                //Set Log Analytics
+                logEventsService.setLogEventAnalyticsWithParams(
+                    "Validation_FormStartPayment",
+                    Pair("validation_status", "Error"),
+                )
             }
         }
 
@@ -526,12 +580,12 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
         }
 
 
-        mainViewModel.isCloseKeyboard.observe(viewLifecycleOwner, {
+        mainViewModel.isCloseKeyboard.observe(viewLifecycleOwner) {
             if (it) {
                 onBlurAllInputs()
                 binding.containerFormScrollView.hideKeyboard()
             }
-        })
+        }
 
         binding.headerTitle.setOnClickListener {
             onBlurAllInputs()
@@ -550,12 +604,15 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             }
         }
 
-        binding.textViewRememberPassword.setOnClickListener {
+        binding.textViewHotGenerateApiToken.setOnClickListener {
             isShowLanguageDialog(true)
             mainViewModel.setEditEmailWallet(editEmailWallet.text.toString())
         }
 
         binding.btnStartPayment.setOnClickListener {
+            //Set Log Analytics
+            logEventsService.setLogEventAnalytics("Btn_FormStartPayment")
+
             handleValidateForm()
             onBlurAllInputs()
             it.hideKeyboard()

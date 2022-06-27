@@ -26,24 +26,24 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtTitleModal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir_next_lt_pro_bold"
                 android:text="@string/label_about_generate_api_token"
-                android:textColor="@color/secondary"
+                android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/txtSubTitle"
+                android:id="@+id/txtSubTitleModal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
                 android:lineHeight="25sp"
                 android:text="@string/instructions_how_to_generate_api_token"
-                android:textColor="@color/secondary"
+                android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
@@ -65,13 +65,13 @@
         android:minHeight="60dp"
         android:text="@string/close"
         android:textAllCaps="false"
-        android:textColor="@color/primary"
+        android:textColor="@color/primary_color_paylivre_sdk"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerModal"
-        app:strokeColor="@color/primary"
+        app:strokeColor="@color/primary_color_paylivre_sdk"
         app:strokeWidth="2dp" />
 
 

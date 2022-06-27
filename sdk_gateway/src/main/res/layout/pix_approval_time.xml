@@ -27,7 +27,7 @@
             android:paddingHorizontal="5dp"
             android:layout_marginEnd="7dp"
             android:background="@android:color/transparent"
-            android:textColor="@color/white"
+            android:textColor="@color/white_color_paylivre_sdk"
             android:textSize="13sp" />
 
         <TextView
@@ -45,7 +45,7 @@
 <!--        android:layout_height="20dp"-->
 <!--        android:indeterminate="true"-->
 <!--        android:visibility="gone"-->
-<!--        app:indicatorColor="@color/primary"-->
+<!--        app:indicatorColor="@color/primary_color_paylivre_sdk"-->
 <!--        app:indicatorSize="20dp"-->
 <!--        app:layout_constraintLeft_toLeftOf="parent"-->
 <!--        app:layout_constraintRight_toRightOf="parent"-->

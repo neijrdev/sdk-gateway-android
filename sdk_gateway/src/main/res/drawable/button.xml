@@ -3,10 +3,10 @@
     <item android:state_pressed="false" >
         <shape>
             <solid
-                android:color="@color/secondary" />
+                android:color="@color/secondary_color_paylivre_sdk" />
             <stroke
                 android:width="2px"
-                android:color="@color/secondary" />
+                android:color="@color/secondary_color_paylivre_sdk" />
             <corners android:radius="5dp" />
         </shape>
     </item>

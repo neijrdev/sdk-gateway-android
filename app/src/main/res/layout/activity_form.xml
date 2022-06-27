@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="Form-screen"
     tools:context=".FormActivity">
 
     <ScrollView
@@ -53,6 +54,53 @@
                 app:strokeWidth="2dp" />
 
             <TextView
+                android:id="@+id/textTypeEnvironment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Select Environment"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonNewMerchantTransactionId" />
+
+            <RadioGroup
+                android:id="@+id/checkGroupEnvironment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-5dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textTypeEnvironment">
+
+                <RadioButton
+                    android:id="@+id/checkPlayground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:contentDescription="button-CHECK_ENV_PLAYGROUND"
+                    android:text="Playground"
+                    android:theme="@style/MyRadioButton" />
+
+                <!--                <RadioButton-->
+                <!--                    android:id="@+id/checkProduction"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginRight="20dp"-->
+                <!--                    android:text="Production"-->
+                <!--                    android:theme="@style/MyRadioButton" />-->
+
+                <RadioButton
+                    android:id="@+id/checkDev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="button-CHECK_ENV_DEV"
+                    android:text="Dev"
+                    android:theme="@style/MyRadioButton" />
+
+            </RadioGroup>
+
+            <TextView
                 android:id="@+id/merchantTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +109,7 @@
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonReloadDataDefault" />
+                app:layout_constraintTop_toBottomOf="@id/checkGroupEnvironment" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -100,7 +148,8 @@
                     android:id="@+id/editMerchantTransactionId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textVisiblePassword"
+                    android:contentDescription="edit-MERCHANT_TRANSACTION_ID"
+                    android:inputType="text"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -120,7 +169,7 @@
                     android:id="@+id/editGatewayToken"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textVisiblePassword"
+                    android:inputType="text"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -370,14 +419,24 @@
                     android:layout_marginEnd="10dp"
                     android:text="Pix"
                     android:theme="@style/MyRadioButton"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
+
+                <CheckBox
+                    android:id="@+id/checkWallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@id/checkPix"
+                    android:text="Wallet"
+                    android:theme="@style/MyRadioButton"
+                    android:visibility="visible" />
 
                 <CheckBox
                     android:id="@+id/checkBillet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:layout_toEndOf="@id/checkPix"
+                    android:layout_toEndOf="@id/checkWallet"
                     android:text="Billet"
                     android:theme="@style/MyRadioButton"
                     android:visibility="gone" />
@@ -392,16 +451,46 @@
                     android:theme="@style/MyRadioButton"
                     android:visibility="gone" />
 
-                <CheckBox
-                    android:id="@+id/checkWallet"
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/containerCheckBoxTypeWithdraw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-3dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/typesOperationContainer"
+                app:layout_constraintWidth_percent="0.80">
+
+                <RadioGroup
+                    android:id="@+id/checkTypesWithdraw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toEndOf="@id/checkWireTransfer"
-                    android:text="Wallet"
-                    android:theme="@style/MyRadioButton"
-                    android:visibility="gone" />
-            </RelativeLayout>
+                    android:layout_marginLeft="-5dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCurrencyCheck">
+
+                    <RadioButton
+                        android:id="@+id/checkTypeWithdrawPix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="Pix"
+                        android:theme="@style/MyRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/checkTypeWithdrawWallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="Wallet"
+                        android:theme="@style/MyRadioButton" />
+
+                </RadioGroup>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/containerCheckAutoWithdraw"
@@ -411,7 +500,7 @@
                 android:orientation="horizontal"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/typesOperationContainer">
+                app:layout_constraintTop_toBottomOf="@id/containerCheckBoxTypeWithdraw">
 
                 <TextView
                     android:id="@+id/textCheckBoxPixKeyType"
@@ -424,22 +513,22 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/editAmountLayout" />
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonClearPixData"-->
-<!--                    style="?attr/materialButtonOutlinedStyle"-->
-<!--                    android:layout_width="140dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:height="30dp"-->
-<!--                    android:paddingVertical="7dp"-->
-<!--                    android:text="Clear Data Pix"-->
-<!--                    android:textAllCaps="false"-->
-<!--                    android:textColor="@color/secondary"-->
-<!--                    android:textSize="14sp"-->
-<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintWidth_percent="0.49"-->
-<!--                    app:strokeColor="@color/secondary"-->
-<!--                    app:strokeWidth="2dp" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonClearPixData"-->
+                <!--                    style="?attr/materialButtonOutlinedStyle"-->
+                <!--                    android:layout_width="140dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:height="30dp"-->
+                <!--                    android:paddingVertical="7dp"-->
+                <!--                    android:text="Clear Data Pix"-->
+                <!--                    android:textAllCaps="false"-->
+                <!--                    android:textColor="@color/secondary"-->
+                <!--                    android:textSize="14sp"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    app:layout_constraintWidth_percent="0.49"-->
+                <!--                    app:strokeColor="@color/secondary"-->
+                <!--                    app:strokeWidth="2dp" />-->
 
             </LinearLayout>
 
@@ -450,9 +539,9 @@
                 android:layout_marginTop="-3dp"
                 android:orientation="vertical"
                 android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/containerCheckAutoWithdraw"
-                app:layout_constraintWidth_percent="0.80"
-                app:layout_constraintLeft_toLeftOf="parent">
+                app:layout_constraintWidth_percent="0.80">
 
                 <RadioGroup
                     android:id="@+id/checksPixKeyType"
@@ -508,9 +597,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Pix Key Value"
                 android:visibility="gone"
-                app:layout_constraintWidth_percent="0.80"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/containerCheckBoxPixKeyType">
+                app:layout_constraintTop_toBottomOf="@id/containerCheckBoxPixKeyType"
+                app:layout_constraintWidth_percent="0.80">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPixKeyValue"
@@ -588,50 +677,6 @@
 
             </RadioGroup>
 
-            <TextView
-                android:id="@+id/textTypeEnvironment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Select Environment"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkGroupAutoApprove" />
-
-            <RadioGroup
-                android:id="@+id/checkGroupEnvironment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-5dp"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textTypeEnvironment">
-
-                <RadioButton
-                    android:id="@+id/checkPlayground"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Playground"
-                    android:theme="@style/MyRadioButton" />
-
-                <!--                <RadioButton-->
-                <!--                    android:id="@+id/checkProduction"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginRight="20dp"-->
-                <!--                    android:text="Production"-->
-                <!--                    android:theme="@style/MyRadioButton" />-->
-
-                <RadioButton
-                    android:id="@+id/checkDev"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dev"
-                    android:theme="@style/MyRadioButton" />
-
-            </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editBaseUrlLayout"
@@ -641,7 +686,7 @@
                 android:hint="Base URL"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkGroupEnvironment">
+                app:layout_constraintTop_toBottomOf="@id/checkGroupAutoApprove">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editBaseUrl"
@@ -683,7 +728,6 @@
                 app:layout_constraintWidth_percent="0.20" />
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editLogoUrlLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -693,8 +737,7 @@
                 android:hint="Logo URL"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editRedirectUrlLayout"
-                app:layout_constraintWidth_percent="0.80"
-                >
+                app:layout_constraintWidth_percent="0.80">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editLogoUrl"
@@ -805,6 +848,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                android:contentDescription="button-GENERATE_CHECKOUT_BY_PARAMS"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/checkGroupLanguage" />
@@ -815,6 +859,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/secondary"
+                android:contentDescription="button-GENERATE_CHECKOUT_BY_URL"
                 android:minHeight="60dp"
                 android:text="Generate Checkout By URL"
                 android:textAllCaps="false"

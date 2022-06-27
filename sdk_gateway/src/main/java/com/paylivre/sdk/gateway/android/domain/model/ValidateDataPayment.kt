@@ -152,7 +152,7 @@ fun validateAutoApprove(autoApprove: Int): ResponseValidateDataParams {
 
 fun validateTypesNumber(type: Int, operation: Int): ResponseValidateDataParams {
     val isValid = if (operation == Operation.WITHDRAW.code) {
-        type == 1
+        type == TypesToSelect.PIX.code || type == TypesToSelect.WALLET.code
     } else type in 1..15
     return getResponseValidateDataParams(isValid, ErrorTags.RX011.toString())
 }

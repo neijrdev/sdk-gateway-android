@@ -12,29 +12,26 @@ import androidx.fragment.app.Fragment
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FragmentButtonTypeBinding
 import android.graphics.drawable.GradientDrawable
-import androidx.fragment.app.activityViewModels
-import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Type
-import com.paylivre.sdk.gateway.android.domain.model.TypePixKey
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.utils.dpToPx
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import kotlin.math.roundToInt
 
 
 class ButtonTypeFragment : Fragment() {
 
     private var _binding: FragmentButtonTypeBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
 
     private var type: Int = 0
-    private var operation: Int = -1
 
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentButtonTypeBinding.inflate(inflater, container, false)
@@ -43,7 +40,6 @@ class ButtonTypeFragment : Fragment() {
         val buttonType = binding.buttonType
         val textViewOperation: TextView = binding.textViewType
         val logoImageView: ImageView = binding.logoButton
-        var operation: Int? = null
 
         buttonType.isClickable = true
 
@@ -105,50 +101,9 @@ class ButtonTypeFragment : Fragment() {
             }
         }
 
-        fun getLayoutParamsPixKeyType(type: Int): ResponseGetLayoutParams {
-            return when (type) {
-                TypePixKey.DOCUMENT.code -> {
-                    ResponseGetLayoutParams(
-                        dpToPxLocalInt(28F),
-                        dpToPxLocalInt(22.4f),
-                        R.drawable.ic_pix_key_doc,
-                        getString(R.string.pix_key_type_document)
-                    )
-                }
-                TypePixKey.EMAIL.code -> {
-                    ResponseGetLayoutParams(
-                        dpToPxLocalInt(33f),
-                        dpToPxLocalInt(22f),
-                        R.drawable.ic_pix_key_mail,
-                        getString(R.string.pix_key_type_email)
-                    )
-                }
-                TypePixKey.PHONE.code -> {
-                    ResponseGetLayoutParams(
-                        dpToPxLocalInt(22F),
-                        dpToPxLocalInt(22f),
-                        R.drawable.ic_pix_key_phone,
-                        getString(R.string.pix_key_type_phone)
-                    )
-                }
-                else -> {
-                    ResponseGetLayoutParams(
-                        dpToPxLocalInt(28F),
-                        dpToPxLocalInt(22.4f),
-                        R.drawable.ic_pix_key_doc,
-                        getString(R.string.pix_key_type_document)
-                    )
-                }
-            }
-        }
 
-        fun setLayoutParams(type: Int, operation: Int) {
-            val customLayoutParams =
-                if (operation == Operation.DEPOSIT.code) {
-                    getLayoutParamsType(type)
-                } else {
-                    getLayoutParamsPixKeyType(type)
-                }
+        fun setLayoutParams(type: Int) {
+            val customLayoutParams = getLayoutParamsType(type)
             val params = logoImageView.layoutParams as ViewGroup.MarginLayoutParams
             params.width = customLayoutParams.widthImg
             params.height = customLayoutParams.heightImg
@@ -180,12 +135,12 @@ class ButtonTypeFragment : Fragment() {
 
         fun setActivateButton(isActive: Boolean) {
             if (isActive) {
-                val colorActive = ContextCompat.getColor(requireContext(), R.color.primary)
+                val colorActive = ContextCompat.getColor(requireContext(), R.color.primary_color_paylivre_sdk)
                 logoImageView.setColorFilter(colorActive)
                 textViewOperation.setTextColor(colorActive)
                 setActivateBorderButton(colorActive)
             } else {
-                val colorNotActive = ContextCompat.getColor(requireContext(), R.color.grey)
+                val colorNotActive = ContextCompat.getColor(requireContext(), R.color.grey_color_paylivre_sdk)
                 logoImageView.setColorFilter(colorNotActive)
                 textViewOperation.setTextColor(colorNotActive)
                 setActivateBorderButton(colorNotActive)
@@ -200,40 +155,16 @@ class ButtonTypeFragment : Fragment() {
         val bundle = this.arguments
         if (bundle != null) {
             type = bundle.getInt("type", Type.PIX.code)
-            operation = bundle.getInt("operation", -1)
-            setLayoutParams(type, operation)
+            setLayoutParams(type)
+        }
+
+        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner) { buttonTypeSelected ->
+            setActivateButton(buttonTypeSelected == type)
         }
 
 
-
-        mainViewModel.operation.observe(viewLifecycleOwner, {
-            operation = it
-        })
-
-        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner, { buttonTypeSelected ->
-            if (operation == Operation.DEPOSIT.code) {
-                setActivateButton(buttonTypeSelected == type)
-            }
-        })
-
-        mainViewModel.buttonPixKeyTypeSelected.observe(
-            viewLifecycleOwner,
-            { buttonPixKeyTypeSelected ->
-                if (operation == Operation.WITHDRAW.code) {
-                    setActivateButton(buttonPixKeyTypeSelected == type)
-                }
-            })
-
         binding.buttonType.setOnClickListener {
-
-            if (operation == Operation.DEPOSIT.code) {
-                mainViewModel.setButtonTypeSelected(type)
-            }
-
-            if (operation == Operation.WITHDRAW.code) {
-                mainViewModel.setButtonPixKeyTypeSelected(type)
-            }
-
+            mainViewModel.setButtonTypeSelected(type)
             mainViewModel.setIsCloseKeyboard(true)
         }
 

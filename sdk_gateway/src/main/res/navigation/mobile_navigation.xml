@@ -48,6 +48,12 @@
         tools:layout="@layout/fragment_error_kyc_limit" />
 
     <fragment
+        android:id="@+id/navigation_error_kyc_user_blocked"
+        android:name="com.paylivre.sdk.gateway.android.ui.error.ErrorKycUserBlocked"
+        android:label="Fatal Error"
+        tools:layout="@layout/fragment_error_kyc_user_blocked" />
+
+    <fragment
         android:id="@+id/navigation_finish_screen_deposit_pix"
         android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.deposit.pix.DepositPixFragment"
         android:label="@string/verify_user"
@@ -64,6 +70,12 @@
         android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.WithdrawFragment"
         android:label="@string/verify_user"
         tools:layout="@layout/fragment_withdraw" />
+
+    <fragment
+        android:id="@+id/navigation_loading_withdraw"
+        android:name="com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.WithdrawLoadingFragment"
+        android:label="@string/verify_user"
+        tools:layout="@layout/fragment_loading_withdraw" />
 
     <fragment
         android:id="@+id/navigation_finish_screen_deposit_billet"

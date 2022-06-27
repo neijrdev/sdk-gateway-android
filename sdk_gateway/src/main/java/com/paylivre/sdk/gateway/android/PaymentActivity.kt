@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,18 +16,22 @@ import com.paylivre.sdk.gateway.android.data.model.order.*
 import com.paylivre.sdk.gateway.android.databinding.StartCheckoutBinding
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
+import com.paylivre.sdk.gateway.android.utils.setTextThemeStatusBar
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 interface IOnBackPressed {
     fun onBackPressed(): Boolean
 }
 
-
 class PaymentActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
-    private lateinit var binding: StartCheckoutBinding
-    private var insertRegisterResultData = InsertRegisterResultData(this)
+    val mainViewModel: MainViewModel by viewModel()
+    lateinit var binding: StartCheckoutBinding
+    var insertRegisterResultData = InsertRegisterResultData(this)
+    private val logEventsService: LogEventsService by inject()
 
     /**
      * Does not allow returning to previous navigation within SDK screens
@@ -41,6 +45,8 @@ class PaymentActivity : AppCompatActivity() {
             insertRegisterResultData.getIntentWithResultData(intent)
 
             setResult(Activity.RESULT_OK, intent)
+            //Set Log Analytics
+            logEventsService.setLogEventAnalytics("onBackPressed")
             finish()
             // super.onBackPressed()
         }
@@ -56,62 +62,77 @@ class PaymentActivity : AppCompatActivity() {
         //Set Theme do SDK Gateway Paylivre
         setTheme(R.style.Theme_SDKGatewayAndroid)
 
-        //Set StatusBar
-        window.statusBarColor = ContextCompat.getColor(this, R.color.light_bg)
+        //Set StatusBarColor
+        window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar_color_paylivre_sdk)
+        //Set TextColor StatusBar
+        val textThemeStatusBar = getString(R.string.theme_status_bar_sdk_paylivre)
+        setTextThemeStatusBar(this, textThemeStatusBar)
 
         binding = StartCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mainViewModel =
-            ViewModelProvider(this).get(MainViewModel::class.java)
-
-        mainViewModel.order_data.observe(this, {
+        mainViewModel.order_data.observe(this) {
             insertRegisterResultData.typeSelect = it?.selected_type?.toInt()
-        })
+        }
 
-        mainViewModel.currency.observe(this, {
+        mainViewModel.currency.observe(this) {
             insertRegisterResultData.currency = it?.toString()
-        })
+        }
 
-        mainViewModel.checkStatusDepositResponse.observe(this, {
+        mainViewModel.operation.observe(this) {
+            insertRegisterResultData.operation = it?.toString()
+        }
+
+        mainViewModel.checkStatusDepositResponse.observe(this) {
             if (it.status == "success") {
                 insertRegisterResultData.transactionStatusId = it.data?.transaction_status_id
                 insertRegisterResultData.depositStatusId = it.data?.deposit_status_id
             }
-        })
+        }
 
-        mainViewModel.statusResponseTransaction.observe(this, {
+        mainViewModel.checkStatusTransactionResponse.observe(this) {
+            if (it.status == "success") {
+                insertRegisterResultData.transactionStatusId = it.data?.transaction_status_id
+            }
+        }
+
+        mainViewModel.statusResponseTransaction.observe(this) {
             insertRegisterResultData.setIntentWithTransactionResponse(it)
-        })
+        }
 
+        mainViewModel.checkStatusOrderDataResponse.observe(this) {
+            insertRegisterResultData.setIntentWithStatusOrderDataResponse(it)
+        }
 
         /**
          * Insert in register result data the status check services errors
          */
-        mainViewModel.statusResponseCheckServices.observe(this, {
+        mainViewModel.statusResponseCheckServices.observe(this) {
             insertRegisterResultData.isErrorTransaction = 1
             insertRegisterResultData.isErrorTransactionTranslatedMessage = true
             insertRegisterResultData.errorTransactionMessage = it?.messageError
             insertRegisterResultData.errorTransactionMessageDetails = it?.messageErrorDetails
             insertRegisterResultData.errorTransactionCode = it?.errorTagsMessage
-        })
+        }
 
-        mainViewModel.transfer_proof_response.observe(this, {
+        mainViewModel.transfer_proof_response.observe(this) {
             insertRegisterResultData.setIntentWithTransferInsertProofResponse(it)
-        })
+        }
 
 
-        mainViewModel.isCloseSDK.observe(this, {
+
+        mainViewModel.isCloseSDK.observe(this) {
             if (it) {
-                println("mainViewModel.closeCheckout()-> " + it)
                 // Put the String to pass back into an Intent and close this activity
                 val intent = Intent()
                 insertRegisterResultData.getIntentWithResultData(intent)
                 setResult(Activity.RESULT_OK, intent)
+                //Set Log Analytics
+                logEventsService.setLogEventAnalytics("CloseSDK")
                 finish()
             }
 
-        })
+        }
 
         //getData PaymentData
         val typeStartCheckout: Int = intent.getIntExtra("type_start_checkout", -1)
@@ -229,7 +250,6 @@ class PaymentActivity : AppCompatActivity() {
                     autoApprove
                 )
             )
-
         } else {
             //Error Params
             dataToStartPaymentIsValid.messageMainError?.let {
@@ -267,12 +287,13 @@ class PaymentActivity : AppCompatActivity() {
                 R.id.navigation_finish_screen_withdraw_pix,
                 R.id.navigation_finish_screen_deposit_wallet,
                 R.id.navigation_error_kyc_limit,
+                R.id.navigation_error_kyc_user_blocked,
                 R.id.navigation_finish_screen_deposit_billet,
-                R.id.navigation_finish_screen_deposit_wiretransfer
+                R.id.navigation_finish_screen_deposit_wiretransfer,
+                R.id.navigation_loading_withdraw
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-
     }
 
     companion object {

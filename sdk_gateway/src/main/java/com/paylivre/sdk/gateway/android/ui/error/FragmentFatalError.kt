@@ -5,24 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.databinding.FragmentFatalErrorBinding
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.utils.*
 import com.squareup.picasso.Picasso
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import kotlin.math.roundToInt
 
 class FragmentFatalError : Fragment() {
 
     private var _binding: FragmentFatalErrorBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
-
+    val mainViewModel: MainViewModel by sharedViewModel()
+    private val logEventsService : LogEventsService by inject()
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
         _binding = FragmentFatalErrorBinding.inflate(inflater, container, false)
@@ -31,30 +33,31 @@ class FragmentFatalError : Fragment() {
         val textViewMsgError = binding.TextViewMsgSubtitleError
 
         var logoUrl: String? = null
-        var isErrorWithdrawLimit: Boolean? = null
         var currency: String? = null
+        var msgError1: String? = null
+        var msgError2: String? = null
+        var msgError3: String? = null
 
-        fun getMessageDetails(keyMessage: String?): String {
-            return if (isErrorWithdrawLimit == true) {
-                getStringByKey(context, keyMessage + currency)
-            } else {
-                getStringByKey(context, keyMessage.toString())
-            }
-        }
+
+        //Set Log Analytics
+        logEventsService.setLogEventAnalytics("Screen_GenericError")
 
         binding.btnClose.setOnClickListener {
+            //Set Log Analytics
+            logEventsService.setLogEventAnalytics("Btn_Close_ScreenError")
+
             mainViewModel.setIsCloseSDK(true)
         }
 
-        mainViewModel.currency.observe(viewLifecycleOwner, {
+        mainViewModel.currency.observe(viewLifecycleOwner) {
             currency = it
-        })
+        }
 
-        mainViewModel.logoUrl.observe(viewLifecycleOwner, {
+        mainViewModel.logoUrl.observe(viewLifecycleOwner) {
             logoUrl = it
-        })
+        }
 
-        mainViewModel.logoResId.observe(viewLifecycleOwner, {
+        mainViewModel.logoResId.observe(viewLifecycleOwner) {
             if (checkValidDrawableId(requireContext(), it)) {
                 binding.logoMerchant.setImageResource(it)
                 binding.logoMerchant.visibility = View.VISIBLE
@@ -71,35 +74,43 @@ class FragmentFatalError : Fragment() {
                     println(e)
                 }
             }
-        })
+        }
 
 
-        mainViewModel.keyMsgFatalError.observe(viewLifecycleOwner, {
-            val titleMsgError = getStringByKey(context, it.toString())
-            if (!titleMsgError.isNullOrEmpty()) {
-                textViewMsgError.text = titleMsgError
-                textViewMsgError.visibility = View.VISIBLE
-            }
-        })
+        mainViewModel.keyMsgFatalError.observe(viewLifecycleOwner) {
+            setErrorMessage(
+                context = context,
+                keyError = it,
+                textView = textViewMsgError,
+                currency = currency
+            )
+        }
 
-        mainViewModel.msgDetailsError.observe(viewLifecycleOwner, {
-            isErrorWithdrawLimit = it == "exceeded_withdrawal_limit_value"
-            val msgDetailsError = getMessageDetails(it.toString())
-            if (!msgDetailsError.isNullOrEmpty()) {
-                binding.textViewMsgSubtitle3Error.text = msgDetailsError
-                binding.textViewMsgSubtitle3Error.visibility = View.VISIBLE
-            }
-        })
+        mainViewModel.msgDetailsError.observe(viewLifecycleOwner) {
+            setErrorMessage(
+                context = context,
+                keyError = it,
+                textView = binding.textViewMsgSubtitle3Error,
+                currency = currency
+            )
+        }
 
-        mainViewModel.errorTags.observe(viewLifecycleOwner, {
-            println("errorTags-> $it")
+        mainViewModel.errorTags.observe(viewLifecycleOwner) {
             val errorCodes = it
             if (!errorCodes.isNullOrEmpty()) {
+                msgError3 = errorCodes
                 binding.textViewMsgSubtitle2Error.text = errorCodes
                 binding.textViewMsgSubtitle2Error.visibility = View.VISIBLE
             }
-        })
 
+            //Set Log Analytics
+            logEventsService.setLogEventAnalyticsWithParams(
+                "Screen_Error",
+                Pair("message_error_1", msgError1 ?: ""),
+                Pair("message_error_2", msgError2 ?: ""),
+                Pair("message_error_3", msgError3 ?: ""),
+            )
+        }
 
 
         return root

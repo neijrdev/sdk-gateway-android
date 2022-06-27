@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
 import com.paylivre.sdk.gateway.android.data.model.pixApprovalTime.getDataAveragePixApprovalTime
 import com.paylivre.sdk.gateway.android.databinding.PixApprovalTimeBinding
 import com.paylivre.sdk.gateway.android.domain.model.Operation
@@ -16,13 +15,14 @@ import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.utils.dpToPx
 import com.paylivre.sdk.gateway.android.utils.getStringByKey
 import com.paylivre.sdk.gateway.android.utils.getStringIdByKey
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
 
 class PixApprovalTimeFragment : Fragment() {
     private var _binding: PixApprovalTimeBinding? = null
     private val binding get() = _binding!!
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,9 +39,9 @@ class PixApprovalTimeFragment : Fragment() {
         val textAveragePixApprovalTime = binding.textPixApprovalTime
         val statusPixApprovalTime = binding.statusPixApprovalTime
 
-        mainViewModel.operation.observe(viewLifecycleOwner, {
+        mainViewModel.operation.observe(viewLifecycleOwner) {
             operation = it
-        })
+        }
 
 //        mainViewModel.pixApprovalTimeIsLoading.observe(viewLifecycleOwner, {
 //            pixApprovalTimeIsLoading = it
@@ -53,7 +53,7 @@ class PixApprovalTimeFragment : Fragment() {
 //        })
 
 
-        mainViewModel.pixApprovalTime.observe(viewLifecycleOwner, {
+        mainViewModel.pixApprovalTime.observe(viewLifecycleOwner) {
             val isSuccess = it.status == "success" && it.data != null
 
             pixApprovalTimeIsSuccess = isSuccess
@@ -86,9 +86,9 @@ class PixApprovalTimeFragment : Fragment() {
 
                 textAveragePixApprovalTime.text = textAverageTime
             }
-        })
+        }
 
-        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner, {
+        mainViewModel.buttonTypeSelected.observe(viewLifecycleOwner) {
             if (it == Type.PIX.code) {
                 pixTypeIsSelected = true
                 if (pixApprovalTimeIsSuccess && operation == Operation.DEPOSIT.code) {
@@ -101,7 +101,7 @@ class PixApprovalTimeFragment : Fragment() {
                 pixTypeIsSelected = false
                 binding.containerPixApprovalTime.visibility = View.GONE
             }
-        })
+        }
 
 
 

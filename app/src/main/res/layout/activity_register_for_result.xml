@@ -123,71 +123,71 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/transactionStatusValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
+            android:id="@+id/orderIdValue"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/isGeneratedTransaction"
-            android:textStyle="normal" />
+            app:layout_constraintTop_toBottomOf="@id/isGeneratedTransaction" />
 
         <TextView
-            android:id="@+id/depositStatusValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
+            android:id="@+id/orderTypeIdValue"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/transactionStatusValue"
-            android:textStyle="normal" />
+            app:layout_constraintTop_toBottomOf="@id/orderIdValue" />
 
         <TextView
-            android:id="@+id/depositIdValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
+            android:id="@+id/orderStatusIdValue"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/depositStatusValue"
-            android:textStyle="normal" />
-
+            app:layout_constraintTop_toBottomOf="@id/orderTypeIdValue" />
 
         <TextView
             android:id="@+id/transactionIdValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/depositIdValue"
-            android:textStyle="normal" />
+            app:layout_constraintTop_toBottomOf="@id/orderStatusIdValue" />
 
         <TextView
-            android:id="@+id/orderIdValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
+            android:id="@+id/transactionStatusIdValue"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/transactionIdValue"
-            android:textStyle="normal" />
+            app:layout_constraintTop_toBottomOf="@id/transactionIdValue" />
 
+        <TextView
+            android:id="@+id/depositIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transactionStatusIdValue" />
+
+        <TextView
+            android:id="@+id/depositTypeIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/depositIdValue" />
+
+        <TextView
+            android:id="@+id/depositStatusIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/depositTypeIdValue" />
+
+        <TextView
+            android:id="@+id/withdrawalIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/depositStatusIdValue" />
+
+        <TextView
+            android:id="@+id/withdrawalTypeIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/withdrawalIdValue" />
+
+
+        <TextView
+            android:id="@+id/withdrawalStatusIdValue"
+            style="@style/ActivityResultRegularValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/withdrawalTypeIdValue" />
 
 
         <LinearLayout
@@ -197,7 +197,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/orderIdValue">
+            app:layout_constraintTop_toBottomOf="@id/withdrawalStatusIdValue">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -223,27 +223,13 @@
 
         <TextView
             android:id="@+id/errorTransactionCodeValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/isErrorTransaction" />
 
         <TextView
             android:id="@+id/errorTransactionMessageValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/errorTransactionCodeValue" />
 
@@ -281,40 +267,19 @@
 
         <TextView
             android:id="@+id/actionNotCompletedCodeValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/isUserCompletedTransaction" />
 
         <TextView
             android:id="@+id/actionNotCompletedMessageValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionNotCompletedCodeValue" />
 
         <TextView
             android:id="@+id/errorNotCompletedMessageValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="null"
-            android:textAlignment="textStart"
-            android:textColor="@color/grey_dark"
-            android:textSize="14sp"
-            android:textStyle="normal"
+            style="@style/ActivityResultRegularValue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionNotCompletedMessageValue" />
 

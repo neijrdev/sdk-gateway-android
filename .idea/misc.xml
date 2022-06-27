@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Nei/sdk-gateway-android/app/src/main/res/layout/activity_form.xml" value="0.1431159420289855" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/checked.xml" value="0.16111111111111112" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/square_checkbox.xml" value="0.16111111111111112" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/unchecked.xml" value="0.16111111111111112" />
@@ -21,16 +22,18 @@
         <entry key="..\:/paylivre/example/testLibrary/src/main/res/layout/activity_main.xml" value="0.15989583333333332" />
         <entry key="..\:/paylivre/example/testLibrary/src/main/res/layout/activity_two.xml" value="0.13020833333333334" />
         <entry key="..\:/paylivre/example/tictactoe/src/main/res/layout/activity_main.xml" value="0.13958333333333334" />
+        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/checked.xml" value="0.1" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/ic_launcher.xml" value="0.2189873417721519" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2189873417721519" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2189873417721519" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/ic_logo_example_fbs.xml" value="0.2189873417721519" />
+        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/drawable/square_checkbox.xml" value="0.1" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_form.xml" value="0.2732290708371665" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_insert_url.xml" value="0.2006340579710145" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_menu_main.xml" value="0.2006340579710145" />
-        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_preview_data.xml" value="0.4" />
-        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_register_for_result.xml" value="0.264" />
+        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_preview_data.xml" value="0.2968980797636632" />
+        <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_register_for_result.xml" value="0.3448275862068966" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/activity_web_view.xml" value="0.20516304347826086" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/fragment_modal_start_checkout.xml" value="0.17527173913043478" />
         <entry key="..\:/paylivre/sdk-gateway-android/app/src/main/res/layout/fragment_start_checkout.xml" value="0.20697463768115942" />
@@ -58,6 +61,7 @@
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_billet.xml" value="0.2189873417721519" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_clock_fast.xml" value="0.23066666666666666" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_completed.xml" value="0.23066666666666666" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_copy.xml" value="0.142" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.23066666666666666" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_expired.xml" value="0.23066666666666666" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_help_outline.xml" value="0.12264957264957264" />
@@ -74,48 +78,62 @@
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_pix_key_mail.xml" value="0.1962962962962963" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_pix_key_phone.xml" value="0.1962962962962963" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_returned_complete.xml" value="0.23066666666666666" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/ic_rotate_cw.xml" value="0.2075" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/drawable/pix_approval_time.xml" value="0.14145299145299145" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/activity_main.xml" value="0.14786324786324787" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/activity_main_bkp.xml" value="0.20854700854700856" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/activity_test.xml" value="0.19157608695652173" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/activity_web_view.xml" value="0.13802083333333334" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/button_action.xml" value="0.20854700854700856" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/button_type.xml" value="0.8" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/dialog_language.xml" value="0.11538461538461539" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fatal_error.xml" value="0.12051282051282051" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fatal_error_fragment.xml" value="0.12051282051282051" />
-        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/form_start_payment.xml" value="0.2" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/form_start_payment.xml" value="0.4743150684931507" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_accept_terms.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_alert_limit_withdraw.xml" value="0.3765112262521589" />
-        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_back_merchant.xml" value="0.40632054176072235" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_back_merchant.xml" value="0.3835616438356164" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_billet_bar_code.xml" value="0.16171171171171173" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_button_bank_info_row.xml" value="0.4" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_button_pix_type.xml" value="0.1933876811594203" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_button_type.xml" value="0.4" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_buttons_type_pix_key_select.xml" value="0.20854700854700856" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_buttons_type_select.xml" value="0.20854700854700856" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_check_services_status.xml" value="0.20854700854700856" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_checking_withdraw_loading.xml" value="0.165625" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_dashboard.xml" value="0.20854700854700856" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_deposit_billet.xml" value="0.18659420289855072" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_deposit_pix.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_deposit_wallet.xml" value="0.264" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_deposit_wire_transfer.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_error_kyc_limit.xml" value="0.264" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_error_kyc_user_blocked.xml" value="0.2" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_fatal_error.xml" value="0.4" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_header_close_sdk.xml" value="0.1576923076923077" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_header_title.xml" value="0.20854700854700856" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_home.xml" value="0.12051282051282051" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_how_to_generate_api_token.xml" value="0.1382882882882883" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_insert_proof_wire_transfer.xml" value="0.4" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_legal_notice.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_loading_screen.xml" value="0.16282051282051282" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_loading_transaction.xml" value="0.10778985507246377" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_loading_withdraw.xml" value="0.19882246376811594" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_main_navigation.xml" value="0.197008547008547" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_notifications.xml" value="0.16041666666666668" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_remember_password.xml" value="0.264" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_select_bank_account.xml" value="0.31141868512110726" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_select_origin_import_proof.xml" value="0.10729991204925242" />
-        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_status_transaction.xml" value="0.6" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_status_transaction.xml" value="0.28438948995363217" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_status_withdraw.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_transaction_completion_screen.xml" value="0.3153846153846154" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_transaction_data.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_verify_user.xml" value="0.33410404624277457" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_wallet_completion_screen.xml" value="0.4" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_withdraw.xml" value="0.264" />
-        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/header_title.xml" value="0.2" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_withdraw_pix.xml" value="0.165625" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/header_title.xml" value="0.6185567010309279" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/info_withdraw_pix.xml" value="0.35362997658079626" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/info_withdraw_wallet.xml" value="0.171875" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/instructions_deposit_billet_finish_screen.xml" value="0.17612612612612613" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/instructions_deposit_pix.xml" value="0.38536060279870826" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/instructions_deposit_wallet.xml" value="0.264" />

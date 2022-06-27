@@ -2,17 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.SDKGatewayAndroid" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/primary_color_paylivre_sdk</item>
+        <item name="colorPrimaryVariant">@color/primary_color_paylivre_sdk</item>
+        <item name="colorOnPrimary">@color/primary_color_paylivre_sdk</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary</item>
-        <item name="colorOnSecondary">@color/secondary</item>
+        <item name="colorSecondary">@color/secondary_color_paylivre_sdk</item>
+        <item name="colorSecondaryVariant">@color/secondary_color_paylivre_sdk</item>
+        <item name="colorOnSecondary">@color/secondary_color_paylivre_sdk</item>
         <!-- Status bar color. -->
-        <!--        <item name="colorAccent">@color/black</item>-->
-        <item name="colorControlHighlight">@color/light_bg</item>
+        <!--        <item name="colorAccent">@color/black_color_paylivre_sdk</item>-->
+        <item name="colorControlHighlight">@color/light_bg_color_paylivre_sdk</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorControlHighlight</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
@@ -20,10 +20,10 @@
     </style>
 
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/dark</item>
+        <item name="colorPrimary">@color/primary_color_paylivre_sdk</item>
+        <item name="colorSecondary">@color/secondary_color_paylivre_sdk</item>
+        <item name="colorSurface">@color/white_color_paylivre_sdk</item>
+        <item name="colorOnSurface">@color/dark_color_paylivre_sdk</item>
         <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
         <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
     </style>

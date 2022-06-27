@@ -25,6 +25,7 @@ fun gson(): Gson = GsonBuilder().create()
 
 const val stringPrefixUrl = "https://"
 
+
 fun retrofit(): Retrofit = Retrofit.Builder()
     .baseUrl(stringPrefixUrl + API_HOST_ENVIRONMENT_DEV)
     .client(client())

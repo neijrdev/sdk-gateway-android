@@ -20,9 +20,9 @@ data class ResponseGetTime(
 
 fun getFlagColorId(level: String): Int {
     return when (level) {
-        "normal" -> R.color.success
-        "slow" -> R.color.warning2
-        else -> R.color.danger
+        "normal" -> R.color.success_color_paylivre_sdk
+        "slow" -> R.color.warning2_color_paylivre_sdk
+        else -> R.color.danger_color_paylivre_sdk
     }
 }
 

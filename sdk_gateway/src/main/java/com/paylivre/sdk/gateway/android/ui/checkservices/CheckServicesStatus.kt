@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.order.DataGenerateSignature
@@ -14,15 +13,19 @@ import com.paylivre.sdk.gateway.android.data.model.order.getDataWithOnlySelected
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.databinding.FragmentCheckServicesStatusBinding
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.utils.TypesStartCheckout
 import com.paylivre.sdk.gateway.android.utils.getNameByTypesKeys
 import com.paylivre.sdk.gateway.android.utils.getTypesKeyNameInNumberTypes
 import io.sentry.Sentry
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CheckServicesStatus : Fragment() {
 
     private var _binding: FragmentCheckServicesStatusBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
+    private val logEventsService : LogEventsService by inject()
 
     private val binding get() = _binding!!
 
@@ -51,6 +54,9 @@ class CheckServicesStatus : Fragment() {
         )
         var dataStartPayment = emptyDataGenerateSignature
 
+        //Set Log Analytics
+        logEventsService.setLogEventAnalytics("Screen_CheckServicesStatus")
+
         fun checkIsAutoStart() {
             if (checkDataToAutoStartTransaction(dataStartPayment)) {
                 if (typeStartCheckout == TypesStartCheckout.BY_PARAMS.code) {
@@ -73,19 +79,19 @@ class CheckServicesStatus : Fragment() {
             }
         }
 
-        mainViewModel.type.observe(viewLifecycleOwner, {
+        mainViewModel.type.observe(viewLifecycleOwner) {
             type = it
-        })
+        }
 
-        mainViewModel.type_start_checkout.observe(viewLifecycleOwner, {
+        mainViewModel.type_start_checkout.observe(viewLifecycleOwner) {
             typeStartCheckout = it
 
             Sentry.setExtra("type_start_checkout", TypesStartCheckout.fromInt(it).toString())
-        })
+        }
 
-        mainViewModel.dataStartCheckout.observe(viewLifecycleOwner, {
+        mainViewModel.dataStartCheckout.observe(viewLifecycleOwner) {
             dataStartCheckout = it
-        })
+        }
 
         fun dispatchGetPixApprovalTime(TypeEnabled: Int) {
             val isTypePixContain = checkTypeEnable(TypeEnabled, Type.PIX.code)
@@ -96,34 +102,35 @@ class CheckServicesStatus : Fragment() {
             }
         }
 
-        mainViewModel.type.observe(viewLifecycleOwner, {
+        mainViewModel.type.observe(viewLifecycleOwner) {
             type = it
-        })
+        }
 
-        mainViewModel.isFatalError.observe(viewLifecycleOwner, {
+
+        mainViewModel.isFatalError.observe(viewLifecycleOwner) {
             if (it) {
                 Navigation.findNavController(view).navigate(R.id.navigation_fatal_error)
             }
-        })
+        }
 
-        mainViewModel.data_start_payment.observe(viewLifecycleOwner, {
+        mainViewModel.data_start_payment.observe(viewLifecycleOwner) {
             dataStartPayment = if (dataStartPayment != null) {
                 it!!
             } else {
                 emptyDataGenerateSignature
             }
-        })
+        }
 
-        mainViewModel.operation.observe(viewLifecycleOwner, {
+        mainViewModel.operation.observe(viewLifecycleOwner) {
             operation = it
             if (it == Operation.DEPOSIT.code) {
                 mainViewModel.getServicesStatus()
             } else {
                 checkIsAutoStart()
             }
-        })
+        }
 
-        mainViewModel.getServicesStatusSuccess.observe(viewLifecycleOwner, {
+        mainViewModel.getServicesStatusSuccess.observe(viewLifecycleOwner) {
             if (operation == Operation.DEPOSIT.code) {
                 if (it.isSuccess == true) {
                     var typeNumberBitwiseAnd = type and it.typeStatusServices
@@ -151,7 +158,6 @@ class CheckServicesStatus : Fragment() {
                         mainViewModel.setType(typeNumberBitwiseAnd)
                         checkIsAutoStart()
                     }
-
                 }
 
                 if (it.isSuccess == false) {
@@ -162,7 +168,7 @@ class CheckServicesStatus : Fragment() {
             } else {
                 checkIsAutoStart()
             }
-        })
+        }
     }
 
     override fun onDestroyView() {

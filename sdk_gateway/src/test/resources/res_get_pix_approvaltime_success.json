@@ -1,0 +1,12 @@
+{
+  "status":"success",
+  "status_code":200,
+  "message":"OK",
+  "data":{
+    "deposit_age_minutes":30,
+    "deposit_status_id":2,
+    "average_age":"00:00:00",
+    "level":"normal",
+    "level_id":1
+  }
+}

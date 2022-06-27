@@ -49,10 +49,7 @@ object MaskDocumentUtil {
                     return
                 }
 
-                if (value.length > 11 && value == oldValue) {
-                    return
-                }
-
+                if (value.length > 11 && value == oldValue) return
 
                 var i = 0
                 for (m in mask.toCharArray()) {
@@ -64,10 +61,7 @@ object MaskDocumentUtil {
                     }
                     maskAux += try {
                         value[i]
-                    } catch (e: Exception) {
-                        println(e)
-                        break
-                    }
+                    } catch (e: Exception) { break }
                     i++
                 }
                 isUpdating = true

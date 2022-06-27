@@ -33,7 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:text="@string/portuguese"
-                android:textColor="@color/dark" />
+                android:textColor="@color/dark_color_paylivre_sdk" />
 
             <ImageView
                 android:id="@+id/img_option_pt"
@@ -43,7 +43,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@id/lang_option_pt"
                 android:adjustViewBounds="true"
-                android:background="@color/white"
+                android:background="@color/white_color_paylivre_sdk"
                 android:contentDescription="@string/english"
                 android:scaleType="centerCrop"
                 android:src="@drawable/brasil"
@@ -81,7 +81,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:text="@string/english"
-                android:textColor="@color/dark" />
+                android:textColor="@color/dark_color_paylivre_sdk" />
 
             <ImageView
                 android:id="@+id/img_option_en"
@@ -91,7 +91,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@id/lang_option_en"
                 android:adjustViewBounds="true"
-                android:background="@color/white"
+                android:background="@color/white_color_paylivre_sdk"
                 android:contentDescription="@string/english"
                 android:scaleType="centerCrop"
                 android:src="@drawable/eua"
@@ -128,7 +128,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:text="@string/spanish"
-                android:textColor="@color/dark" />
+                android:textColor="@color/dark_color_paylivre_sdk" />
 
             <ImageView
                 android:id="@+id/img_option_es"
@@ -138,7 +138,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@id/lang_option_es"
                 android:adjustViewBounds="true"
-                android:background="@color/white"
+                android:background="@color/white_color_paylivre_sdk"
                 android:contentDescription="@string/english"
                 android:scaleType="centerCrop"
                 android:src="@drawable/espanha"

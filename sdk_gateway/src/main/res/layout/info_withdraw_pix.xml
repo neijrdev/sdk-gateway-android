@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/container"
+    android:visibility="visible"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +14,7 @@
         android:layout_margin="20dp"
         android:layout_marginVertical="40dp"
         android:orientation="horizontal"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/white_color_paylivre_sdk"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,11 +43,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/avenir_next_lt_pro_bold"
+                    android:fontFamily="@font/avenir_next_lt_pro_regular"
+                    android:textStyle="bold"
                     android:lineHeight="20sp"
                     android:text="@string/label_title_withdraw_pix"
                     android:textAlignment="center"
-                    android:textColor="@color/grey_dark"
+                    android:textColor="@color/grey_dark_color_paylivre_sdk"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -54,7 +57,7 @@
                     android:layout_height="18dp"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/instructions_make_pix_text_1"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_pix"
@@ -79,7 +82,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="9dp"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="icon"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_clock_fast"
@@ -100,7 +103,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/label_fast"
                         android:textAlignment="textStart"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/primary_color_paylivre_sdk"
                         android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -114,7 +117,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/info_withdraw_pix_fast"
                         android:textAlignment="textStart"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/grey_color_paylivre_sdk"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -138,7 +141,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="none"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_arrow_fast"
@@ -159,7 +162,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/label_simple"
                         android:textAlignment="textStart"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/primary_color_paylivre_sdk"
                         android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -173,7 +176,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/info_withdraw_pix_simple"
                         android:textAlignment="textStart"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/grey_color_paylivre_sdk"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -194,7 +197,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:adjustViewBounds="true"
-                    android:background="@color/white"
+                    android:background="@color/white_color_paylivre_sdk"
                     android:contentDescription="@string/instructions_make_pix_text_1"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_security"
@@ -215,7 +218,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/label_safe"
                         android:textAlignment="textStart"
-                        android:textColor="@color/primary"
+                        android:textColor="@color/primary_color_paylivre_sdk"
                         android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -229,7 +232,7 @@
                         android:lineHeight="18sp"
                         android:text="@string/info_withdraw_pix_safe"
                         android:textAlignment="textStart"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/grey_color_paylivre_sdk"
                         android:textSize="14sp" />
                 </LinearLayout>
 

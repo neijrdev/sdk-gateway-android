@@ -57,7 +57,7 @@ class GenerateUrlToCheckout(
         else "&pix_key_type=${dataToGenerateUrl.pix_key_type}"
         val pix_key = if (dataToGenerateUrl.pix_key == null) ""
         else "&pix_key=${dataToGenerateUrl.pix_key}"
-        val mock_type = "&type=${dataToGenerateUrl.type}"
+        val type = "&type=${dataToGenerateUrl.type}"
         val auto_approve =
             "&auto_approve=${dataToGenerateUrl.auto_approve}"
         val email =
@@ -75,7 +75,7 @@ class GenerateUrlToCheckout(
 
         return base_url + merchant_transaction_id + merchant_id +
                 operation + email + document_number + amount +
-                currency + mock_type + account_id + callback_url +
+                currency + type + account_id + callback_url +
                 pix_key_type + pix_key + auto_approve +
                 redirect_url + logo_url
     }

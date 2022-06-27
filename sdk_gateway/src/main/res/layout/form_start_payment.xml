@@ -6,7 +6,7 @@
     android:id="@+id/containerFormScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_bg"
+    android:background="@color/light_bg_color_paylivre_sdk"
     android:clickable="true"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
@@ -19,10 +19,10 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/alertLimitWithdraw"
-            android:layout_marginHorizontal="10dp"
             android:name="com.paylivre.sdk.gateway.android.ui.form.AlertLimitWithdraw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_alert_limit_withdraw" />
@@ -52,7 +52,7 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/grey4"
+                android:background="@color/grey4_color_paylivre_sdk"
                 app:layout_constraintTop_toBottomOf="@+id/headerTitle" />
 
             <androidx.cardview.widget.CardView
@@ -62,7 +62,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/white_color_paylivre_sdk"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -72,397 +72,407 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="20dp"
-                    android:paddingBottom="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent">
 
-                    <TextView
-                        android:id="@+id/textViewTitleForm"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/containerCardInputs"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="@string/title_form_start_payment"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/secondary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:layout_height="match_parent"
+                        android:padding="20dp"
+                        android:paddingBottom="10dp"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintRight_toRightOf="parent">
 
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editEmailLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/email_label"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewTitleForm">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="textEmailAddress"
-                            android:singleLine="true"
-                            android:textColor="@drawable/color_text_input_edit"
-                            android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <TextView
-                        android:id="@+id/textViewErrorEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editEmailLayout" />
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editDocumentLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/document_label"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorEmail">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editDocument"
+                        <TextView
+                            android:id="@+id/textViewTitleForm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:maxLength="18"
-                            android:textColor="@drawable/color_text_input_edit"
-                            android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:text="@string/title_form_start_payment"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/secondary_color_paylivre_sdk"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:id="@+id/textViewErrorDocument"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editDocumentLayout" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editEmailWalletLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/email_account_paylivre"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorDocument">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editEmailWallet"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editEmailLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="textEmailAddress"
-                            android:singleLine="true"
-                            android:textColor="@drawable/color_text_input_edit"
-                            android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/email_label"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewTitleForm">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="textEmailAddress"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                    <TextView
-                        android:id="@+id/textViewErrorEmailWallet"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editEmailWalletLayout" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editApiTokenLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/api_token_label"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorEmailWallet">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editApiToken"
+                        <TextView
+                            android:id="@+id/textViewErrorEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="2dp"
                             android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:textColor="@drawable/color_text_input_edit"
+                            android:text="@string/required_field"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
                             android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/textViewErrorApiToken"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editApiTokenLayout" />
-
-                    <TextView
-                        android:id="@+id/textViewRememberPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="18dp"
-                        android:layout_marginLeft="3dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:paddingVertical="3dp"
-                        android:text="@string/label_about_generate_api_token"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorApiToken" />
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editEmailLayout" />
 
 
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/containerFragmentPixApprovalTime"
-                        android:name="com.paylivre.sdk.gateway.android.ui.form.PixApprovalTimeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:label="@string/verify_user"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewRememberPassword"
-                        tools:layout="@layout/pix_approval_time" />
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/containerButtonsSelectType"
-                        android:name="com.paylivre.sdk.gateway.android.ui.form.ButtonsTypeSelectFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/containerFragmentPixApprovalTime"
-                        tools:layout="@layout/fragment_buttons_type_select" />
-
-                    <TextView
-                        android:id="@+id/textViewErrorType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/containerButtonsSelectType" />
-
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/containerButtonsPixKeyTypeSelect"
-                        android:name="com.paylivre.sdk.gateway.android.ui.form.ButtonsTypePixKeySelect"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorType"
-                        tools:layout="@layout/fragment_buttons_type_pix_key_select" />
-
-                    <TextView
-                        android:id="@+id/textViewErrorPixKeyType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/containerButtonsPixKeyTypeSelect" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editPixKeyEmailLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/pix_key_type_email"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyType">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editPixKeyEmail"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editDocumentLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="textEmailAddress"
-                            android:singleLine="true"
-                            android:textColor="@drawable/color_text_input_edit"
-                            android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/document_label"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorEmail">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editDocument"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="number"
+                                android:maxLength="18"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editPixKeyCellPhoneLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:hint="@string/pix_key_type_phone"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editPixKeyEmailLayout">
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editPixKeyCellPhone"
+                        <TextView
+                            android:id="@+id/textViewErrorDocument"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="2dp"
                             android:fontFamily="@font/avenir_next_lt_pro_regular"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:maxLength="15"
-                            android:textColor="@drawable/color_text_input_edit"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
                             android:textSize="14sp"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editDocumentLayout" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editEmailWalletLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/email_account_paylivre"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorDocument">
 
-                    <TextView
-                        android:id="@+id/textViewErrorPixKeyValue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/avenir_next_lt_pro_regular"
-                        android:text="Campo obrigatório."
-                        android:textAlignment="textStart"
-                        android:textColor="@color/danger"
-                        android:textSize="14sp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/editPixKeyCellPhoneLayout" />
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editEmailWallet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="textEmailAddress"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                    <LinearLayout
-                        android:id="@+id/instructionsDepositWallet"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:visibility="gone"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyValue">
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <include
-                            layout="@layout/instructions_deposit_wallet"
+                        <TextView
+                            android:id="@+id/textViewErrorEmailWallet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editEmailWalletLayout" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editApiTokenLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/api_token_label"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorEmailWallet">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editApiToken"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/textViewErrorApiToken"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editApiTokenLayout" />
+
+                        <TextView
+                            android:id="@+id/textViewHotGenerateApiToken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="18dp"
+                            android:layout_marginLeft="3dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:paddingVertical="3dp"
+                            android:text="@string/label_about_generate_api_token"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/primary_color_paylivre_sdk"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorApiToken" />
+
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/containerFragmentPixApprovalTime"
+                            android:name="com.paylivre.sdk.gateway.android.ui.form.PixApprovalTimeFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:label="@string/verify_user"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHotGenerateApiToken"
+                            tools:layout="@layout/pix_approval_time" />
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/containerButtonsSelectType"
+                            android:name="com.paylivre.sdk.gateway.android.ui.form.ButtonsTypeSelectFragment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyValue" />
+                            app:layout_constraintTop_toBottomOf="@id/containerFragmentPixApprovalTime"
+                            tools:layout="@layout/fragment_buttons_type_select" />
 
-                    </LinearLayout>
+                        <TextView
+                            android:id="@+id/textViewErrorTypeForm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/containerButtonsSelectType" />
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/containerButtonsPixKeyTypeSelect"
+                            android:name="com.paylivre.sdk.gateway.android.ui.form.ButtonsTypePixKeySelect"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorTypeForm"
+                            tools:layout="@layout/fragment_buttons_type_pix_key_select" />
+
+                        <TextView
+                            android:id="@+id/textViewErrorPixKeyType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/containerButtonsPixKeyTypeSelect" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editPixKeyEmailLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/pix_key_type_email"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyType">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editPixKeyEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="textEmailAddress"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editPixKeyCellPhoneLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:hint="@string/pix_key_type_phone"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editPixKeyEmailLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editPixKeyCellPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/avenir_next_lt_pro_regular"
+                                android:inputType="number"
+                                android:maxLength="15"
+                                android:singleLine="true"
+                                android:textColor="@drawable/color_text_input_edit"
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/textViewErrorPixKeyValue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:text="Campo obrigatório."
+                            android:textAlignment="textStart"
+                            android:textColor="@color/danger_color_paylivre_sdk"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/editPixKeyCellPhoneLayout" />
+
+                        <LinearLayout
+                            android:id="@+id/instructionsDepositWallet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyValue">
+
+                            <include
+                                layout="@layout/instructions_deposit_wallet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textViewErrorPixKeyValue" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:layout_marginTop="25dp"
+                        android:paddingTop="20dp"
+                        android:background="@color/light_bg_color_paylivre_sdk"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/containerCardInputs"
+                        >
+
+                        <Button
+                            android:id="@+id/btnStartPayment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:backgroundTint="@drawable/color_button_start_payment"
+                            android:fontFamily="@font/avenir_next_lt_pro_regular"
+                            android:minHeight="60dp"
+                            android:text="@string/action_continue"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white_color_paylivre_sdk"
+                            android:textSize="18sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:rippleColor="@color/primary_dark_color_paylivre_sdk" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/containerAcceptTerms"
-                android:name="com.paylivre.sdk.gateway.android.ui.form.AcceptTerms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/CardViewForm"
-                tools:layout="@layout/fragment_accept_terms" />
-
-            <Button
-                android:id="@+id/btnStartPayment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="@drawable/color_button_start_payment"
-                android:fontFamily="@font/avenir_next_lt_pro_regular"
-                android:minHeight="60dp"
-                android:text="@string/action_continue"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/containerAcceptTerms"
-                app:rippleColor="@color/primary_2" />
 
             <include
                 android:id="@+id/payment_by_paylivre"
@@ -472,7 +482,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnStartPayment" />
+                app:layout_constraintTop_toBottomOf="@id/CardViewForm" />
 
             <include
                 android:id="@+id/need_helper"
@@ -497,9 +507,6 @@
                 app:layout_constraintTop_toBottomOf="@id/need_helper" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

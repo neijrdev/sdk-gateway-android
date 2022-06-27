@@ -34,7 +34,7 @@ fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
                     link.second.onClick(view)
                 }
 
-                val colorPrimary = getColor(context, R.color.primary)
+                val colorPrimary = getColor(context, R.color.primary_color_paylivre_sdk)
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
                     ds.color = colorPrimary
@@ -50,9 +50,7 @@ fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
         this.movementMethod =
             LinkMovementMethod.getInstance() // without LinkMovementMethod, link can not click
         this.setText(spannableString, TextView.BufferType.SPANNABLE)
-    } catch (error: Exception) {
-        println("error: $error")
-    }
+    } catch (error: Exception) { }
 
 }
 
@@ -65,14 +63,13 @@ fun setTextWithSpan(textView: TextView, text: String, spanText: String, style: S
 }
 
 
-
 fun setTextBackground(
     context: Context,
     view: TextView,
     fulltext: String,
     subtext: String,
     backgroundColor: Int,
-    textColor: Int = R.color.white,
+    textColor: Int = R.color.white_color_paylivre_sdk,
 ) {
     view.setText(fulltext, TextView.BufferType.SPANNABLE)
     val str = view.text as Spannable

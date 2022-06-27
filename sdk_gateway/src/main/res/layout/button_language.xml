@@ -11,7 +11,7 @@
         android:layout_width="48dp"
         android:layout_height="30dp"
         android:adjustViewBounds="true"
-        android:background="@color/white"
+        android:background="@color/white_color_paylivre_sdk"
         android:scaleType="centerCrop"
         android:layout_gravity="end"
         android:src="@drawable/brasil"

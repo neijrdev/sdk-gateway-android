@@ -14,12 +14,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.paylivre.sdk.gateway.data.DataStartCheckoutByParams
 import com.example.paylivre.sdk.gateway.databinding.ActivityPreviewDataBinding
-import com.example.paylivre.sdk.gateway.utils.DataMakeBold
-import com.example.paylivre.sdk.gateway.utils.getSdkGatewayExtraData
-import com.example.paylivre.sdk.gateway.utils.makeBold
-import com.example.paylivre.sdk.gateway.utils.setValueTextViewWithLabelBold
+import com.example.paylivre.sdk.gateway.utils.*
 import com.google.gson.Gson
-import com.paylivre.sdk.gateway.android.StartCheckout
+import com.paylivre.sdk.gateway.android.StartCheckoutByParams
 import com.paylivre.sdk.gateway.android.StartCheckoutByURL
 import com.paylivre.sdk.gateway.android.domain.model.extractDataFromUrl
 import com.paylivre.sdk.gateway.android.utils.TypesStartCheckout
@@ -40,10 +37,11 @@ class PreviewDataActivity : AppCompatActivity() {
         binding = ActivityPreviewDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Set Theme do SDK Gateway Paylivre
-        setTheme(R.style.Theme_SDKGatewayAndroid)
-
+        setTextThemeStatusBar(this, "Light")
         val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.title = "SDK Gateway Paylivre - v${BuildConfig.VERSION_NAME}"
+        }
 
         val typeStartCheckout: Int = intent.getIntExtra("type_start_checkout", -1)
 
@@ -144,7 +142,7 @@ class PreviewDataActivity : AppCompatActivity() {
         when (typeStartCheckout) {
             TypesStartCheckout.BY_PARAMS.code -> {
                 binding.buttonStartCheckout.text = getString(R.string.start_checkout_by_params)
-                actionBar?.title = "Preview Checkout Params - ${BuildConfig.VERSION_NAME}"
+                actionBar?.title = "Preview Checkout Params - v${BuildConfig.VERSION_NAME}"
 
                 setValueTextViewWithLabelBold(
                     binding.txtGatewayToken,
@@ -268,7 +266,7 @@ class PreviewDataActivity : AppCompatActivity() {
 
             TypesStartCheckout.BY_URL.code -> {
                 binding.buttonStartCheckout.text = getString(R.string.start_checkout_by_url)
-                actionBar?.title = "Preview Checkout By Url - ${BuildConfig.VERSION_NAME}"
+                actionBar?.title = "Preview Checkout By Url - v${BuildConfig.VERSION_NAME}"
 
                 val urlFormatted = url.replace("?", "?\n")
                     .replace("&", "&\n")
@@ -400,7 +398,7 @@ class PreviewDataActivity : AppCompatActivity() {
 
 
         fun startCheckoutByParams() {
-            val checkout = StartCheckout.Builder(
+            val checkout = StartCheckoutByParams.Builder(
 //                request_code = SDK_GATEWAY_PAYLIVRE_ACTIVITY_REQUEST_CODE,
                 merchant_id = dataStartCheckoutByParams.merchant_id,
                 gateway_token = dataStartCheckoutByParams.gateway_token,

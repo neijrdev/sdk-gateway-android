@@ -20,9 +20,9 @@ data class InsertTransferProofDataResponse(
     val wallet_id: Int?,
     val user_id: Int?,
     val deposit_status_id: Int?,
-    val loading: Boolean? = null,
+    var loading: Boolean? = null,
     val error: String? = null,
-    val isSuccess: Boolean? = null,
+    var isSuccess: Boolean? = null,
 )
 
 data class Proof(

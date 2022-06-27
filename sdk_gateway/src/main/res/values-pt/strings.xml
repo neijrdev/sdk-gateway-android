@@ -45,7 +45,7 @@
     <string name="invalid_document">Documento inválido</string>
     <string name="invalid_data_error">Erro na verificação dos dados informados.</string>
     <string name="withdraw">Saque</string>
-    <string name="type_wallet">Saldo Paylivre</string>
+    <string name="type_wallet">Carteira Paylivre</string>
     <string name="type_pix">Pix</string>
     <string name="type_billet">Boleto</string>
     <string name="type_wiretransfer">Transferência\nBancária</string>
@@ -68,7 +68,7 @@
     <string name="legal_notice_part1">A Paylivre é uma empresa facilitadora de serviços de pagamento eletrônico que permite a você fazer depósitos e retiradas de valores em sites internacionais.</string>
     <string name="legal_notice_part2">A atuação da PAYLIVRE BRASIL atende os protocolos instituídos pelo BACEN e pela Lei 12.865/2013. A PAYLIVRE BRASIL não atua no Mercado de Capitais Brasileiro.</string>
     <string name="legal_notice_part3">O conteúdo aqui publicado não configura recomendação de investimento, aporte ou aposta. A PAYLIVRE BRASIL não capta recursos e não realiza investimento, aporte financeiro ou apostas.</string>
-    <string name="required_field">Campo Obrigatório.</string>
+    <string name="required_field">Campo obrigatório.</string>
     <string name="error_key_invalid">inválido.</string>
     <string name="error_short_password">Mínimo 6 caracteres</string>
     <string name="type_required_error">Método de %1$s é obrigatório.</string>
@@ -83,7 +83,7 @@
     <string name="copy_key_pix">Copiar Chave Pix</string>
     <string name="action_finalize">Finalizar</string>
     <string name="message_pix_code_copied">Código PIX copiado.</string>
-    <string name="label_transaction_id">ID de transação:</string>
+    <string name="label_transaction_id">Identificador:</string>
     <string name="label_origin_amount">Valor original:</string>
     <string name="label_converted_amount">Valor convertido:</string>
     <string name="label_tax">Taxa:</string>
@@ -221,9 +221,9 @@
     <string name="please_contact_support">Entre em contato com o suporte.</string>
     <string name="exceeded_withdrawal_limit_title">A retirada solicitada excede o valor máximo.</string>
     <string name="exceeded_withdrawal_limit_valueBRL">Apenas uma retirada pode ser realizada por
-        dia com valor máximo de R$ 2000,00.</string>
+        dia com valor máximo de R$ 5.000,00.</string>
     <string name="exceeded_withdrawal_limit_valueUSD">Apenas uma retirada pode ser realizada por
-        dia com valor máximo de US$ 400,00.</string>
+        dia com valor máximo de US$ 1.000,00.</string>
     <string name="alert_limit_withdraw">Apenas uma retirada pode ser realizada por dia. A
         retirada deverá ter valor máximo de %1$s.</string>
     <string name="warning">Alerta</string>
@@ -234,5 +234,36 @@
     <string name="label_safety">segurança</string>
     <string name="label_profile">perfil</string>
     <string name="label_generate_api_token">\"gerar Api token\"</string>
-
+    <string name="warning_label">Aviso</string>
+    <string name="label_for_more_information_go_to">Para mais informações acesse:</string>
+    <string name="error_pix_key_cpf_divergent">O CPF da chave PIX informado deve ser igual ao CPF da conta do usuário.</string>
+    <string name="error_pix_key_cnpj_divergent">O CNPJ da chave PIX informado deve ser igual ao CNPJ da conta do usuário.</string>
+    <string name="label_for_more_information_access_support_site">Para saber mais sobre limites, indicamos o artigo:</string>
+    <string name="warning_limit_exceeded_subtitle">Essa transação não pode ser efetuada. O valor excede o limite disponível.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_above_1">Faça uma nova transação
+         com um valor máximo de %1$s ou aguarde a renovação do seu limite mensal.</string>
+    <string name="error_limit_kyc_make_a_new_transaction_kyc_level_1">Faça uma nova transação com
+        um valor máximo de %1$s ou cadastre-se na Paylivre através do nosso app:
+       App Paylivre ou através do nosso site: web.paylivre.com, para obter um limite mensal.</string>
+    <string name="label_limit_kyc_total">Limite total: %1$s</string>
+    <string name="label_limit_kyc_used">Limite utilizado: %1$s</string>
+    <string name="label_limit_kyc_available">Limite disponível: %1$s</string>
+    <string name="error_screen_limit_emailsend_kyc1">Verfique seu email. Enviamos instruções para você efetuar seu cadastro na Paylivre.</string>
+    <string name="processing_withdrawal_loading">Processando saque...</string>
+    <string name="check_your_email_for_more_details">Confira seu email para maiores detalhes.</string>
+    <string name="status_incomplete">Incompleto</string>
+    <string name="status_awaiting_payment">Aguardando pagamento</string>
+    <string name="status_refunded">Devolvido</string>
+    <string name="status_error">Erro</string>
+    <string name="label_message_merchant_approval_pending">O saque será processado assim que a retirada do valor de sua conta for aprovada. Você receberá um email notificando a aprovação.</string>
+    <string name="label_title_withdraw_wallet">Instruções de Saldo Paylivre</string>
+    <string name="info_withdraw_wallet_body">Para essa transação foi ultilizado o saldo da carteira Paylivre!</string>
+    <string name="user_not_found_with_document_number">Não existe uma conta cadastrada com esse
+        documento na Paylivre.\n\nO Saque não pode ser processado.\n\nPara maiores informações cadastre-se em web.paylivre.com.</string>
+    <string name="title_how_much_you_used_limit">Veja o quanto você já usou do seu limite mensal.</string>
+    <string name="label_for_more_information_article">Quais são os limites?</string>
+    <string name="label_button_increase_limit">Quero aumentar meu limite na Paylivre</string>
+    <string name="paylivre_gateway_sdk_is_outdated">Recurso não disponível para esta versão do SDK do Gateway da Paylivre.</string>
+    <string name="label_favored">Favorecido</string>
+    <string name="message_copied_value">%1$s copiado(a) com sucesso</string>
 </resources>

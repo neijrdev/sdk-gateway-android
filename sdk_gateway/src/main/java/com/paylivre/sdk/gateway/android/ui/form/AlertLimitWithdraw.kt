@@ -5,18 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FragmentAlertLimitWithdrawBinding
 import com.paylivre.sdk.gateway.android.domain.model.Currency
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyBRL
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyUSD
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+
+const val LIMIT_VALUE_WITHDRAW_USD = "100000"
+const val LIMIT_VALUE_WITHDRAW_BRL = "500000"
 
 class AlertLimitWithdraw : Fragment() {
     private var _binding: FragmentAlertLimitWithdrawBinding? = null
-    private val mainViewModel: MainViewModel by activityViewModels()
+    val mainViewModel: MainViewModel by sharedViewModel()
     private val binding get() = _binding!!
     private var language: String? = ""
 
@@ -30,20 +33,20 @@ class AlertLimitWithdraw : Fragment() {
         _binding = FragmentAlertLimitWithdrawBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        mainViewModel.language.observe(viewLifecycleOwner, {
+        mainViewModel.language.observe(viewLifecycleOwner) {
             language = it
-        })
+        }
 
 
-        mainViewModel.currency.observe(viewLifecycleOwner, {
+        mainViewModel.currency.observe(viewLifecycleOwner) {
             if (it == Currency.BRL.toString()) {
-                val limit = formatToCurrencyBRL("200000", 100, language.toString())
+                val limit = formatToCurrencyBRL(LIMIT_VALUE_WITHDRAW_BRL, 100, language.toString())
                 binding.textViewAlert.text = getString(R.string.alert_limit_withdraw, limit)
             } else if (it == Currency.USD.toString()) {
-                val limit = formatToCurrencyUSD("40000", 100, language.toString())
+                val limit = formatToCurrencyUSD(LIMIT_VALUE_WITHDRAW_USD, 100, language.toString())
                 binding.textViewAlert.text = getString(R.string.alert_limit_withdraw, limit)
             }
-        })
+        }
 
         binding.containerAlert.setOnClickListener {
             binding.containerAlert.visibility = View.GONE

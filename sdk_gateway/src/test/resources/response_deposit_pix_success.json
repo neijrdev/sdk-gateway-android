@@ -1,0 +1,28 @@
+{
+  "full_name": "User Gateway Test",
+  "document_number": "61317581075",
+  "kyc_limits": {
+    "available_amount": 9998499,
+    "limit": 9999999,
+    "used_limit": 1500,
+    "kyc_level": "3",
+    "kyc_level_name": "Gold"
+  },
+  "final_amount": 500,
+  "origin_amount": 500,
+  "original_currency": "BRL",
+  "currency": "BRL",
+  "converted_amount": 500,
+  "taxes": null,
+  "order": {
+    "status": "New",
+    "merchant_approval_status_id": 2,
+    "merchant_approval_status_name": "Completed"
+  },
+  "withdrawal": {
+    "id": 407,
+    "status_id": 0,
+    "status_name": "New"
+  },
+  "redirect_url": "https:\/\/www.merchant_to_you.com"
+}

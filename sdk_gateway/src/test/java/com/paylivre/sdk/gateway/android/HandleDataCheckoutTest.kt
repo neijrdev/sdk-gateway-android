@@ -1,12 +1,26 @@
 package com.paylivre.sdk.gateway.android
 
-import com.paylivre.sdk.gateway.android.domain.model.Type
-import com.paylivre.sdk.gateway.android.domain.model.checkTypeEnable
-import com.paylivre.sdk.gateway.android.domain.model.getBinaryStringByDecimalNumber
+import com.paylivre.sdk.gateway.android.domain.model.*
 import org.junit.Assert
 import org.junit.Test
 
 class HandleDataCheckoutTest {
+
+    @Test
+    fun `Valid transactions types valid`() {
+        Assert.assertEquals(4, Types.PIX.code)
+        Assert.assertEquals(1, Types.BILLET.code)
+        Assert.assertEquals(0, Types.WIRETRANSFER.code)
+        Assert.assertEquals(5, Types.WALLET.code)
+    }
+
+    @Test
+    fun `Valid Environments list`() {
+        Assert.assertEquals("PLAYGROUND", Environments.PLAYGROUND.toString())
+        Assert.assertEquals("PRODUCTION", Environments.PRODUCTION.toString())
+        Assert.assertEquals("DEVELOPMENT", Environments.DEVELOPMENT.toString())
+    }
+
     @Test
     fun `Valid function get string binary by number int`() {
         Assert.assertEquals("0000", getBinaryStringByDecimalNumber(0))
@@ -38,6 +52,7 @@ class HandleDataCheckoutTest {
         Assert.assertEquals(false, checkTypeEnable(12, Type.PIX.code))
         Assert.assertEquals(false, checkTypeEnable(6, Type.PIX.code))
         Assert.assertEquals(false, checkTypeEnable(6, Type.WALLET.code))
+        Assert.assertEquals(false, checkTypeEnable(-1, -1))
     }
 
     @Test

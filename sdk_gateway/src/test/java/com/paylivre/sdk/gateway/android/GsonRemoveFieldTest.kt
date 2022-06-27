@@ -21,8 +21,8 @@ class GsonRemoveFieldTest {
 
     @Test
     fun removeElementFromJsonObjectTest(){
-        Assert.assertEquals("", removeElementFromJsonObject(
-            MockOrderDataRequest("João", "12345678912", "123456")
+        Assert.assertEquals("{\"name\":\"Joao\",\"document\":\"12345678912\"}", removeElementFromJsonObject(
+            MockOrderDataRequest("Joao", "12345678912", "123456")
         ))
     }
 

@@ -7,14 +7,14 @@
     tools:context=".ui.transactions.finishscreen.deposit.wiretransfer.InsertProofWireTransferFragment">
 
     <TextView
-        android:id="@+id/textTitle"
+        android:id="@+id/textTitleDepositProof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/avenir_next_lt_pro_bold"
         android:lineHeight="18sp"
         android:text="@string/title_proof_deposit"
         android:textAlignment="textStart"
-        android:textColor="@color/grey_dark"
+        android:textColor="@color/grey_dark_color_paylivre_sdk"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,18 +28,18 @@
         android:lineHeight="18sp"
         android:text="@string/no_file_selected"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="@color/black_color_paylivre_sdk"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textTitleDepositProof" />
 
     <ImageView
         android:id="@+id/imgPreviewProof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/grey"
+        android:background="@color/white_color_paylivre_sdk"
+        android:backgroundTint="@color/grey_color_paylivre_sdk"
         android:contentDescription="@string/title_proof_deposit"
         android:maxHeight="150dp"
         android:padding="0dp"
@@ -80,7 +80,7 @@
                 android:clickable="false"
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
                 android:text="@string/choose_file"
-                android:textColor="@color/primary"
+                android:textColor="@color/primary_color_paylivre_sdk"
                 android:textSize="16dp" />
 
             <ImageView
@@ -88,7 +88,7 @@
                 android:layout_width="20dp"
                 android:layout_height="15.7dp"
                 android:clickable="false"
-                android:outlineSpotShadowColor="@color/primary"
+                android:outlineSpotShadowColor="@color/primary_color_paylivre_sdk"
                 android:src="@drawable/ic_upload_file" />
 
         </LinearLayout>
@@ -105,7 +105,7 @@
         android:lineHeight="18sp"
         android:text="@string/label_instructions_insert_proof_file"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="@color/black_color_paylivre_sdk"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChooseFile" />
@@ -123,12 +123,12 @@
         android:minHeight="60dp"
         android:text="@string/submit"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/white_color_paylivre_sdk"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInstructionFile"
-        app:rippleColor="@color/primary_2" />
+        app:rippleColor="@color/primary_dark_color_paylivre_sdk" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

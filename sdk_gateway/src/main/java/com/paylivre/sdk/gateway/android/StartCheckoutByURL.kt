@@ -6,10 +6,10 @@ import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import com.paylivre.sdk.gateway.android.data.api.addSentryBreadcrumb
 import com.paylivre.sdk.gateway.android.domain.model.*
+import com.paylivre.sdk.gateway.android.services.log.LogEventsServiceImpl
 import com.paylivre.sdk.gateway.android.utils.FormDataExtra
 import com.paylivre.sdk.gateway.android.utils.TypesStartCheckout
 import com.paylivre.sdk.gateway.android.utils.setDataPaymentIntent
-import io.sentry.Sentry
 import java.util.*
 
 class StartCheckoutByURL private constructor(
@@ -33,12 +33,7 @@ class StartCheckoutByURL private constructor(
     }
 
     fun startPayment(context: Context) {
-        var dataCheckout = extractDataFromUrl(url)
-
-        addSentryBreadcrumb("url_start_checkout", url)
-        Sentry.setExtra("language_start_checkout", language.toString())
-        Sentry.setExtra("logo_res_id_start_checkout", logoResId.toString())
-        Sentry.setExtra("data_start_checkout", dataCheckout.toString())
+        val dataCheckout = extractDataFromUrl(url)
 
         startIntent(
             context,
@@ -48,6 +43,20 @@ class StartCheckoutByURL private constructor(
             requestCode,
             startForCheckoutResult
         )
+
+        //Set Log Analytics
+        LogEventsServiceImpl.setLogEventAnalyticsWithParams(
+            "StartCheckoutSDK",
+            Pair("type_start_checkout", "by_url"),
+            Pair("operation", dataCheckout.operation.toString()),
+            Pair("type", dataCheckout.type.toString()),
+            Pair("url_start_checkout", url),
+            Pair("language_start_checkout", language.toString()),
+            Pair("logo_res_id_start_checkout", logoResId.toString()),
+            Pair("data_start_checkout", dataCheckout.toString())
+        )
+
+        addSentryBreadcrumb("url_start_checkout", url)
     }
 
     private fun startIntent(
@@ -95,13 +104,16 @@ class StartCheckoutByURL private constructor(
         }
 
         when {
+            //Configured setRegisterForResult
             startForCheckoutResult != null -> {
                 startForCheckoutResult.launch(paymentIntentWithData)
             }
+            //Configured Activity For Result
             context is Activity && requestCode != null -> {
                 context.startActivityForResult(paymentIntentWithData, requestCode)
             }
             else -> {
+                //Not not configured Activity For Result
                 paymentIntentWithData?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(paymentIntentWithData)
             }

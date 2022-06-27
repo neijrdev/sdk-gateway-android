@@ -25,7 +25,6 @@ fun Double.toCurrencyBRL(language: String = languageDefaultFormatted): String =
 fun getLocale(localeString: String): Locale {
     return when (localeString.lowercase()) {
         "en" -> Locale.US
-        "pt" -> Locale("pt", "BR")
         else -> Locale("pt", "BR")
     }
 }

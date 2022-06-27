@@ -16,11 +16,7 @@ import com.paylivre.sdk.gateway.android.domain.model.*
 import com.paylivre.sdk.gateway.android.utils.getNumberByTypes
 import kotlinx.coroutines.*
 
-class MainViewModel() : ViewModel() {
-    private val paymentRepository: PaymentRepository by lazy {
-        PaymentRepository()
-    }
-
+class MainViewModel(private val paymentRepository: PaymentRepository) : ViewModel() {
     private val _clearAllFocus = MutableLiveData<Boolean>()
     val clearAllFocus: MutableLiveData<Boolean> get() = _clearAllFocus
 
@@ -39,19 +35,19 @@ class MainViewModel() : ViewModel() {
     private val _checkStatusDepositLoading = MutableLiveData<Boolean?>()
     val checkStatusDepositLoading: MutableLiveData<Boolean?> get() = _checkStatusDepositLoading
 
+
     private val _checkStatusTransactionLoading = MutableLiveData<Boolean?>()
     val checkStatusTransactionLoading: MutableLiveData<Boolean?> get() = _checkStatusTransactionLoading
 
 
     private val _checkStatusDepositResponse = MutableLiveData<CheckStatusDepositResponse>()
-    val checkStatusDepositResponse: MutableLiveData<CheckStatusDepositResponse> get() = _checkStatusDepositResponse
+    val checkStatusDepositResponse: LiveData<CheckStatusDepositResponse> get() = _checkStatusDepositResponse
 
+    private val _checkStatusOrderDataResponse = MutableLiveData<CheckStatusOrderResponse>()
+    val checkStatusOrderDataResponse: MutableLiveData<CheckStatusOrderResponse> get() = _checkStatusOrderDataResponse
 
     private val _checkStatusTransactionResponse = MutableLiveData<CheckStatusTransactionResponse>()
     val checkStatusTransactionResponse: MutableLiveData<CheckStatusTransactionResponse> get() = _checkStatusTransactionResponse
-
-    private val _loadingTransaction = MutableLiveData<Boolean>()
-    val loadingTransaction: LiveData<Boolean> get() = _loadingTransaction
 
     private val _statusResponseTransaction = MutableLiveData<StatusTransactionResponse>()
     val statusResponseTransaction: LiveData<StatusTransactionResponse> get() = _statusResponseTransaction
@@ -59,6 +55,8 @@ class MainViewModel() : ViewModel() {
     private val _statusResponseCheckServices = MutableLiveData<CheckEnablerServices?>()
     val statusResponseCheckServices: LiveData<CheckEnablerServices?> get() = _statusResponseCheckServices
 
+    private val _statusWithdrawOrder = MutableLiveData<StatusWithdrawOrder>()
+    val statusWithdrawOrder: LiveData<StatusWithdrawOrder> get() = _statusWithdrawOrder
 
     private val _base_url = MutableLiveData<String>()
     val base_url: LiveData<String> get() = _base_url
@@ -88,7 +86,10 @@ class MainViewModel() : ViewModel() {
     val amount: LiveData<Int> get() = _amount
 
     private val _auto_approve = MutableLiveData<Int>()
-    val auto_approve: LiveData<Int> get() = _auto_approve
+    val autoApprove: LiveData<Int> get() = _auto_approve
+
+    private val _transactionError = MutableLiveData<ErrorTransaction?>()
+    val transactionError: LiveData<ErrorTransaction?> get() = _transactionError
 
     private val _isFatalError = MutableLiveData<Boolean>()
     val isFatalError: LiveData<Boolean> get() = _isFatalError
@@ -132,7 +133,7 @@ class MainViewModel() : ViewModel() {
     private val _transfer_proof_response = MutableLiveData<InsertTransferProofDataResponse?>()
     val transfer_proof_response: LiveData<InsertTransferProofDataResponse?> get() = _transfer_proof_response
 
-    private val _proof_image_uri = MutableLiveData<Uri>()
+    private val _proof_image_uri = MutableLiveData<Uri?>()
     val proof_image_uri: LiveData<Uri?> get() = _proof_image_uri
 
     private val _merchant_id = MutableLiveData<Int>()
@@ -150,22 +151,16 @@ class MainViewModel() : ViewModel() {
     private val _pixApprovalTime = MutableLiveData<PixApprovalTimeResponse>()
     val pixApprovalTime: LiveData<PixApprovalTimeResponse> get() = _pixApprovalTime
 
-    private val _pixApprovalTimeIsSuccess = MutableLiveData<Boolean>()
-    val pixApprovalTimeIsSuccess: LiveData<Boolean> get() = _pixApprovalTimeIsSuccess
-
-    private val _pixApprovalTimeIsLoading = MutableLiveData<Boolean>()
-    val pixApprovalTimeIsLoading: LiveData<Boolean> get() = _pixApprovalTimeIsLoading
-
     private val _getServicesStatusLoading = MutableLiveData<Boolean>()
     val getServicesStatusLoading: LiveData<Boolean> get() = _getServicesStatusLoading
 
     private val _getServicesStatusSuccess = MutableLiveData<ServicesStatusSuccess>()
     val getServicesStatusSuccess: LiveData<ServicesStatusSuccess> get() = _getServicesStatusSuccess
 
-    private val _type = MutableLiveData(1)
+    private val _type = MutableLiveData<Int>()
     val type: LiveData<Int> get() = _type
 
-    private val _type_status_services = MutableLiveData(1)
+    private val _type_status_services = MutableLiveData<Int>()
     val type_status_services: LiveData<Int> get() = _type_status_services
 
     private val _editPixKeyValue = MutableLiveData("")
@@ -201,11 +196,6 @@ class MainViewModel() : ViewModel() {
         _type_status_services.value = typeValue
     }
 
-    private fun setPixApprovalTimeIsLoading(value: Boolean) {
-        _pixApprovalTimeIsLoading.value = value
-    }
-
-
     fun setGetServicesStatusSuccess(data: ServicesStatusSuccess?) {
         if (data == null) {
             _getServicesStatusSuccess.value = ServicesStatusSuccess()
@@ -219,7 +209,7 @@ class MainViewModel() : ViewModel() {
         _logoResId.value = value
     }
 
-    fun setLogoUrl(url:String){
+    fun setLogoUrl(url: String) {
         _logoUrl.value = url
     }
 
@@ -330,7 +320,7 @@ class MainViewModel() : ViewModel() {
         _language.value = value
     }
 
-    private fun setPixApprovalTime(pixApprovalTimeResponse: PixApprovalTimeResponse?) {
+    fun setPixApprovalTime(pixApprovalTimeResponse: PixApprovalTimeResponse?) {
         if (pixApprovalTimeResponse == null) {
             _pixApprovalTime.value = PixApprovalTimeResponse(
                 "", 0,
@@ -344,13 +334,9 @@ class MainViewModel() : ViewModel() {
 
     fun getPixApprovalTimeSuccess(response: PixApprovalTimeResponse?) {
         setPixApprovalTime(response)
-        setPixApprovalTimeIsLoading(false)
-        _pixApprovalTimeIsSuccess.value = true
     }
 
     private fun getPixApprovalTimeFailure(error: Throwable) {
-        setPixApprovalTimeIsLoading(false)
-        _pixApprovalTimeIsSuccess.value = false
         _pixApprovalTime.value = PixApprovalTimeResponse(
             "error", 0,
             "", null
@@ -358,7 +344,6 @@ class MainViewModel() : ViewModel() {
     }
 
     fun getPixApprovalTime() {
-        setPixApprovalTimeIsLoading(true)
         paymentRepository.getPixApprovalTime(
             ::getPixApprovalTimeSuccess,
             ::getPixApprovalTimeFailure
@@ -372,7 +357,7 @@ class MainViewModel() : ViewModel() {
 
     data class ServicesStatusSuccess(
         val isSuccess: Boolean? = null,
-        val typeStatusServices: Int = 0
+        val typeStatusServices: Int = 0,
     )
 
     private fun getServicesStatusSuccess(response: ServiceStatusResponseAdapter) {
@@ -398,11 +383,10 @@ class MainViewModel() : ViewModel() {
     fun setStatusTransactionResponse(data: StatusTransactionResponse?) {
         if (data == null) {
             _statusResponseTransaction.value =
-                StatusTransactionResponse(null, null, null, null, null)
+                StatusTransactionResponse(null, null, null, null)
         } else {
             _statusResponseTransaction.value = data!!
         }
-
     }
 
 
@@ -410,26 +394,22 @@ class MainViewModel() : ViewModel() {
         _statusResponseTransaction.value = StatusTransactionResponse(
             isLoading = false,
             isSuccess = true,
-            isErrorWalletInvalidApiToken = false,
             data = response,
             error = null
         )
     }
 
 
-    private fun transactionFailure(error: ErrorTransaction) {
-        println(error)
-        val isErrorApiToken = checkIsErrorApiToken(error)
-        val isErrorKycLimits = checkIsErrorKycLimits(error.original_message)
+    fun transactionFailure(error: ErrorTransaction) {
+        _transactionError.value = error
 
         _statusResponseTransaction.value = StatusTransactionResponse(
             isLoading = false,
             isSuccess = false,
-            isErrorWalletInvalidApiToken = isErrorApiToken,
-            isErrorKYCLimit = isErrorKycLimits,
             data = null,
             error = error
         )
+
         error.message?.let {
             val messageTitleError = it
             setIsFatalError(true, messageTitleError)
@@ -446,9 +426,9 @@ class MainViewModel() : ViewModel() {
         }
     }
 
-    private fun newOrderGateway(dataGenerateSignature: OrderDataRequest) {
+    fun newOrderGateway(data: OrderDataRequest) {
         paymentRepository.newTransaction(
-            dataGenerateSignature,
+            data,
             ::transactionSuccess,
             ::transactionFailure
         )
@@ -458,7 +438,7 @@ class MainViewModel() : ViewModel() {
         _origin_type_insert_proof.value = originTypeInsertProof
     }
 
-    fun setProofImageUri(uri: Uri) {
+    fun setProofImageUri(uri: Uri?) {
         _proof_image_uri.value = uri
     }
 
@@ -466,11 +446,11 @@ class MainViewModel() : ViewModel() {
         _selectedBankAccountWireTransfer.value = bankAccount
     }
 
-    private fun setCheckStatusDepositLoading(isLoading: Boolean) {
+    fun setCheckStatusDepositLoading(isLoading: Boolean) {
         _checkStatusDepositLoading.value = isLoading
     }
 
-    private fun checkStatusDepositSuccess(response: CheckStatusDepositResponse) {
+    fun checkStatusDepositSuccess(response: CheckStatusDepositResponse) {
         _checkStatusDepositResponse.value = response
         setCheckStatusDepositLoading(false)
 
@@ -496,8 +476,40 @@ class MainViewModel() : ViewModel() {
         )
     }
 
+    fun checkStatusOrder(checkStatusOrderDataRequest: CheckStatusOrderDataRequest) {
+        paymentRepository.checkStatusOrder(
+            checkStatusOrderDataRequest,
+            ::checkStatusOrderSuccess,
+            ::checkStatusOrderFailure
+        )
+    }
 
-    private fun setCheckStatusTransactionLoading(isLoading: Boolean) {
+    private fun checkStatusOrderSuccess(response: CheckStatusOrderDataResponse) {
+        _checkStatusOrderDataResponse.value =
+            CheckStatusOrderResponse(
+                isLoading = false,
+                isSuccess = true,
+                data = response,
+                error = null,
+            )
+
+    }
+
+
+    private fun checkStatusOrderFailure(error: ErrorTransaction) {
+        transactionFailure(error)
+
+        _checkStatusOrderDataResponse.value =
+            CheckStatusOrderResponse(
+                isLoading = false,
+                isSuccess = false,
+                data = null,
+                error = error,
+            )
+    }
+
+
+    fun setCheckStatusTransactionLoading(isLoading: Boolean) {
         _checkStatusTransactionLoading.value = isLoading
     }
 
@@ -528,17 +540,18 @@ class MainViewModel() : ViewModel() {
     }
 
 
-    fun startPayment(dataGenerateSignatureStartRequest: DataGenerateSignature) {
+    fun startPayment(
+        dataGenerateSignatureStartRequest: DataGenerateSignature,
+        generateSignatureService: GenerateSignature = GenerateSignature(),
+    ) {
         //Reset statusResponseTransaction
         _statusResponseTransaction.value = StatusTransactionResponse(
             isLoading = true,
             isSuccess = null,
-            isErrorWalletInvalidApiToken  = null,
             data = null,
             error = null,
         )
 
-        val generateSignatureService = GenerateSignature()
         CoroutineScope(Dispatchers.Main).launch {
             val generatedSignature = withContext(Dispatchers.Default) {
                 generateSignatureService.generateSignature(dataGenerateSignatureStartRequest)
@@ -570,9 +583,11 @@ class MainViewModel() : ViewModel() {
                 processedData.auto_approve.toString()
             )
 
-            setDataRequestOrder(orderData)
+            val orderDataRequest = addDdiInPixKeyCellPhoneWithdraw(orderData)
 
-            newOrderGateway(addDdiInPixKeyCellPhoneWithdraw(orderData))
+            setDataRequestOrder(orderDataRequest)
+
+            newOrderGateway(orderDataRequest)
         }
     }
 
@@ -581,22 +596,22 @@ class MainViewModel() : ViewModel() {
         _statusResponseTransaction.value = StatusTransactionResponse(
             isLoading = true,
             isSuccess = null,
-            isErrorWalletInvalidApiToken = null,
             data = null,
             error = null,
         )
 
-        setDataRequestOrder(dataStartPayment)
-        newOrderGateway(addDdiInPixKeyCellPhoneWithdraw(dataStartPayment))
+        val handledDataOrderRequest = getHandledDataOrderRequestUrl(dataStartPayment)
+        val orderDataRequest = addDdiInPixKeyCellPhoneWithdraw(handledDataOrderRequest)
+
+        setDataRequestOrder(orderDataRequest)
+        newOrderGateway(orderDataRequest)
     }
 
     fun setDataStartCheckout(data: DataStartCheckout) {
         _dataStartCheckout.value = data
     }
 
-    private fun insertTransferProofSuccess(responseData: InsertTransferProofDataResponse) {
-        println("insertTransferProofSuccess->")
-
+    fun insertTransferProofSuccess(responseData: InsertTransferProofDataResponse) {
         _transfer_proof_response.value = InsertTransferProofDataResponse(
             responseData.id,
             responseData.proof,
@@ -610,8 +625,6 @@ class MainViewModel() : ViewModel() {
     }
 
     fun insertTransferProofFailure(responseErrorData: Throwable) {
-
-        println("insertTransferProofFailure->")
         _transfer_proof_response.value = InsertTransferProofDataResponse(
             null,
             null,
@@ -624,19 +637,23 @@ class MainViewModel() : ViewModel() {
         )
     }
 
-    fun insertTransferProof(
-        insertTransferProofDataRequest: InsertTransferProofDataRequest
-    ) {
+    fun insertTransferProofLoading(isLoading: Boolean){
         _transfer_proof_response.value = InsertTransferProofDataResponse(
             null,
             null,
             null,
             null,
             null,
-            loading = true,
+            loading = isLoading,
             error = null,
         )
+    }
 
+    fun insertTransferProof(
+        insertTransferProofDataRequest: InsertTransferProofDataRequest,
+    ) {
+
+        insertTransferProofLoading(true)
         paymentRepository.transferProof(
             insertTransferProofDataRequest,
             ::insertTransferProofSuccess,
@@ -644,8 +661,12 @@ class MainViewModel() : ViewModel() {
         )
     }
 
-    fun setStatusResponseCheckServices(checkEnablerServices:CheckEnablerServices?){
+    fun setStatusResponseCheckServices(checkEnablerServices: CheckEnablerServices?) {
         _statusResponseCheckServices.value = checkEnablerServices
+    }
+
+    fun setStatusWithdrawOrder(statusWithdrawOrder: StatusWithdrawOrder) {
+        _statusWithdrawOrder.value = statusWithdrawOrder
     }
 
 }

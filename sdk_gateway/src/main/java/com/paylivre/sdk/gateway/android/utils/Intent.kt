@@ -4,7 +4,6 @@ import android.content.Intent
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.domain.model.DataStartCheckout
-import com.paylivre.sdk.gateway.android.domain.model.DepositStatus
 
 data class FormDataExtra(
     val btnNameTypeSelected: Int = -1,
@@ -33,11 +32,11 @@ fun setDataPaymentIntent(
     formDataExtra: FormDataExtra,
     logoResId: Int = R.drawable.ic_logo_paylivre_blue,
 ): Intent? {
-    //Data StartCheckout
+    //Data StartCheckoutByParams
     val dataStartCheckoutString = Gson().toJson(data)
     intent?.putExtra("dataStartCheckout", dataStartCheckoutString)
 
-    //Type StartCheckout
+    //Type StartCheckoutByParams
     intent?.putExtra("type_start_checkout", typeStartCheckout)
 
     //Base url

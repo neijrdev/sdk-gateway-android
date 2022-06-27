@@ -1,0 +1,23 @@
+{
+  "base_url":"https://dev.gateway.paylivre.com",
+  "merchant_id":19,
+  "merchant_transaction_id":"123456",
+  "amount":"500",
+  "currency":"BRL",
+  "operation":"0",
+  "callback_url":"https://www.google.com",
+  "type":"1",
+  "selected_type":"1",
+  "account_id":"1234567888",
+  "email":"test@test.com",
+  "document_number":"60712326006",
+  "login_email":"",
+  "api_token":"",
+  "pix_key_type":"",
+  "pix_key":"",
+  "signature":"JGFyZ29uMmkkdj0xOSRtPTE2LHQ9MixwPTEkTm5kb1NGZDRTbTlYUVdsbWFUVTBiUSRTcEE4ejlBbmZlblllQWdhK2pXYjRn",
+  "url":"https://dev.gateway.paylivre.com?merchant_transaction_id=123456&merchant_id=19&operation=0&email=test@test.com&document_number=60712326006&amount=500&currency=BRL&type=1&account_id=1234567888&callback_url=https://www.google.com&auto_approve=1",
+  "auto_approve":"1",
+  "redirect_url":"",
+  "logo_url":""
+}

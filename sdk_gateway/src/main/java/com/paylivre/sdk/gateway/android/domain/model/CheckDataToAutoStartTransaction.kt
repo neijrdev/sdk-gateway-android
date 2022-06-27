@@ -10,22 +10,27 @@ fun checkDataAutoStartDeposit(depositType: String?): Boolean {
     return isDepositPix || isDepositBillet || isDepositWiretransfer
 }
 
-fun checkDataAutoStartWithdraw(pixKeyType: String?, pixKey: String?): Boolean {
-    val isPixKeyTypeNotDefault = pixKeyType != "-1"
-    val isPixKeyValidNotDefault = pixKey != null
-    return isPixKeyTypeNotDefault && isPixKeyValidNotDefault
+fun checkDataAutoStartWithdraw(type: String?, pixKeyType: String?, pixKey: String?): Boolean {
+    return if(type == TypesToSelect.PIX.code.toString()){
+        val isPixKeyTypeNotDefault = pixKeyType != "-1"
+        val isPixKeyValidNotDefault = pixKey != null
+        isPixKeyTypeNotDefault && isPixKeyValidNotDefault
+    } else {
+        true
+    }
 }
+
 
 fun validateDataAutoStartByOperation(
     operation: String?,
-    depositType: String?,
+    type: String?,
     pixKeyType: String?,
     pixKey: String?,
 ): Boolean {
     return if(operation == Operation.DEPOSIT.code.toString()){
-        checkDataAutoStartDeposit(depositType)
+        checkDataAutoStartDeposit(type)
     } else {
-        checkDataAutoStartWithdraw(pixKeyType, pixKey)
+        checkDataAutoStartWithdraw(type, pixKeyType, pixKey)
     }
 }
 
