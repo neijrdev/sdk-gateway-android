@@ -162,6 +162,13 @@ fun getStringKeyResponseError(error: String): KeysResponseError {
                 keyMessage = "paylivre_gateway_sdk_is_outdated", keyMessageDetails = ""
             )
         }
+        "User exceeded the daily withdrawal limits." -> {
+            KeysResponseError(
+                keyMessage = "withdrawal_limits_error", keyMessageDetails = "withdrawal_limits_error_content"
+            )
+        }
+
+
         else -> KeysResponseError(
             keyMessage = genericError, keyMessageDetails = ""
         )

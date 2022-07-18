@@ -78,6 +78,12 @@ class FragmentFatalError : Fragment() {
 
 
         mainViewModel.keyMsgFatalError.observe(viewLifecycleOwner) {
+            setErrorTitleMessage(
+                context = context,
+                keyError = it,
+                textView = binding.TextViewError,
+            )
+
             setErrorMessage(
                 context = context,
                 keyError = it,
@@ -85,6 +91,7 @@ class FragmentFatalError : Fragment() {
                 currency = currency
             )
         }
+
 
         mainViewModel.msgDetailsError.observe(viewLifecycleOwner) {
             setErrorMessage(

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="Activity webview screen"
     tools:context=".WebViewActivity">
 
     <com.google.android.material.button.MaterialButton
@@ -18,6 +19,7 @@
         android:lineHeight="18dp"
         android:paddingVertical="5dp"
         android:text="Back"
+        android:contentDescription="Go back"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16dp"
@@ -28,6 +30,7 @@
 
     <WebView
         android:id="@+id/webview"
+        android:contentDescription="Webview"
         app:layout_constraintTop_toBottomOf="@+id/buttonBack"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"

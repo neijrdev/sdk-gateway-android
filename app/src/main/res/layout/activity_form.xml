@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="Form-screen"
+    android:contentDescription="Form screen"
     tools:context=".FormActivity">
 
     <ScrollView
@@ -28,6 +28,7 @@
                 android:height="60dp"
                 android:paddingVertical="7dp"
                 android:text="Reset Form Data to Default"
+                android:contentDescription="Reset form data to default"
                 android:textAllCaps="false"
                 android:textColor="@color/secondary"
                 android:textSize="14sp"
@@ -44,6 +45,7 @@
                 android:layout_height="60dp"
                 android:paddingVertical="7dp"
                 android:text="New Merchant Transaction Id"
+                android:contentDescription="New merchant transaction id"
                 android:textAllCaps="false"
                 android:textColor="@color/secondary"
                 android:textSize="14sp"
@@ -59,6 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Select Environment"
+                android:contentDescription="Select environment"
+                android:labelFor="@+id/checkGroupEnvironment"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -78,8 +82,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
-                    android:contentDescription="button-CHECK_ENV_PLAYGROUND"
                     android:text="Playground"
+                    android:contentDescription="Check env playground"
                     android:theme="@style/MyRadioButton" />
 
                 <!--                <RadioButton-->
@@ -88,14 +92,15 @@
                 <!--                    android:layout_height="wrap_content"-->
                 <!--                    android:layout_marginRight="20dp"-->
                 <!--                    android:text="Production"-->
+                <!--                    android:contentDescription="Check env production"-->
                 <!--                    android:theme="@style/MyRadioButton" />-->
 
                 <RadioButton
                     android:id="@+id/checkDev"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="button-CHECK_ENV_DEV"
                     android:text="Dev"
+                    android:contentDescription="Check env dev"
                     android:theme="@style/MyRadioButton" />
 
             </RadioGroup>
@@ -105,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Merchant Data"
+                android:contentDescription="Merchant data"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -118,6 +124,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Merchant ID"
+                android:labelFor="@+id/editMerchantId"
                 android:padding="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/merchantTitle"
@@ -127,6 +134,7 @@
                     android:id="@+id/editMerchantId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Merchant id"
                     android:inputType="number"
                     android:textSize="14sp" />
 
@@ -139,6 +147,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Merchant Transaction Id"
+                android:labelFor="@+id/editMerchantTransactionId"
                 android:minWidth="200dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/merchantTitle"
@@ -148,7 +157,7 @@
                     android:id="@+id/editMerchantTransactionId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="edit-MERCHANT_TRANSACTION_ID"
+                    android:contentDescription="Merchant transaction id"
                     android:inputType="text"
                     android:textSize="14sp" />
 
@@ -161,6 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="Gateway Token"
+                android:labelFor="@+id/editGatewayToken"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editMerchantTransactionIdLayout">
@@ -169,6 +179,7 @@
                     android:id="@+id/editGatewayToken"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Gateway token"
                     android:inputType="text"
                     android:textSize="14sp" />
 
@@ -180,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="User Data"
+                android:contentDescription="User data"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -193,6 +205,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Email (OPTIONAL)"
+                android:labelFor="@+id/editUserEmail"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textUserData"
                 app:layout_constraintWidth_percent="0.80">
@@ -201,6 +214,7 @@
                     android:id="@+id/editUserEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Email"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -211,6 +225,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="ignore"
+                android:contentDescription="Ignore email"
                 android:theme="@style/MyRadioButton"
                 android:visibility="visible"
                 app:layout_constraintRight_toRightOf="parent"
@@ -224,6 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="Document (OPTIONAL)"
+                android:labelFor="@+id/editUserDocument"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editUserEmailLayout"
                 app:layout_constraintWidth_percent="0.80">
@@ -232,6 +248,7 @@
                     android:id="@+id/editUserDocument"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Document"
                     android:inputType="number"
                     android:textSize="14sp" />
 
@@ -243,6 +260,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="ignore"
+                android:contentDescription="Ignore document"
                 android:theme="@style/MyRadioButton"
                 android:visibility="visible"
                 app:layout_constraintRight_toRightOf="parent"
@@ -256,6 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="User Account Id"
+                android:labelFor="@+id/editAccountId"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editUserDocumentLayout">
 
@@ -263,6 +282,7 @@
                     android:id="@+id/editAccountId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="User Account id"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -274,6 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Transaction Data"
+                android:contentDescription="Transaction data"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -295,6 +316,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:hint="Amount"
+                    android:labelFor="@+id/editAmount"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textOperationData">
@@ -303,6 +325,7 @@
                         android:id="@+id/editAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="Amount"
                         android:inputType="number"
                         android:textSize="14sp" />
 
@@ -319,6 +342,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Currency"
+                        android:contentDescription="Currency"
+                        android:labelFor="@+id/checkGroupCurrency"
                         android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -339,6 +364,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
                             android:text="BRL"
+                            android:contentDescription="Check brl currency"
                             android:theme="@style/MyRadioButton" />
 
                         <RadioButton
@@ -346,6 +372,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="USD"
+                            android:contentDescription="Check usd currency"
                             android:theme="@style/MyRadioButton" />
 
                     </RadioGroup>
@@ -360,6 +387,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Operation Type"
+                android:labelFor="@+id/checkGroupOperation"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -380,6 +408,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="Withdraw"
+                    android:contentDescription="Check withdraw"
                     android:theme="@style/MyRadioButton" />
 
                 <RadioButton
@@ -387,6 +416,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Deposit"
+                    android:contentDescription="Check deposit"
                     android:theme="@style/MyRadioButton" />
 
             </RadioGroup>
@@ -397,6 +427,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Type passed by merchant"
+                android:labelFor="@+id/typesOperationContainer"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -418,6 +449,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:text="Pix"
+                    android:contentDescription="Check pix"
                     android:theme="@style/MyRadioButton"
                     android:visibility="visible" />
 
@@ -428,6 +460,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/checkPix"
                     android:text="Wallet"
+                    android:contentDescription="Check wallet"
                     android:theme="@style/MyRadioButton"
                     android:visibility="visible" />
 
@@ -438,6 +471,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/checkWallet"
                     android:text="Billet"
+                    android:contentDescription="Check billet"
                     android:theme="@style/MyRadioButton"
                     android:visibility="gone" />
 
@@ -448,6 +482,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toEndOf="@id/checkBillet"
                     android:text="Wire Transfer"
+                    android:contentDescription="Check wire transfer"
                     android:theme="@style/MyRadioButton"
                     android:visibility="gone" />
 
@@ -479,6 +514,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text="Pix"
+                        android:contentDescription="Check pix withdraw"
                         android:theme="@style/MyRadioButton" />
 
                     <RadioButton
@@ -487,6 +523,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text="Wallet"
+                        android:contentDescription="Check wallet withdraw"
                         android:theme="@style/MyRadioButton" />
 
                 </RadioGroup>
@@ -508,6 +545,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:text="Pix Key Type (OPTIONAL)"
+                    android:labelFor="@+id/checksPixKeyType"
                     android:textSize="16sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -558,6 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text="CPF/CNPJ"
+                        android:contentDescription="Check CPF or CNPJ pix key"
                         android:theme="@style/MyRadioButton" />
 
                     <RadioButton
@@ -566,6 +605,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:text="Phone"
+                        android:contentDescription="Check phone pix key"
                         android:theme="@style/MyRadioButton" />
 
                     <RadioButton
@@ -573,6 +613,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
+                        android:contentDescription="Check email pix key"
                         android:theme="@style/MyRadioButton" />
 
                 </RadioGroup>
@@ -584,6 +625,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:text="ignore"
+                android:contentDescription="Ignore pix key type"
                 android:theme="@style/MyRadioButton"
                 android:visibility="gone"
                 app:layout_constraintRight_toRightOf="parent"
@@ -596,6 +638,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Pix Key Value"
+                android:labelFor="@+id/editPixKeyValue"
                 android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/containerCheckBoxPixKeyType"
@@ -605,6 +648,7 @@
                     android:id="@+id/editPixKeyValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Pix key value"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -615,6 +659,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="ignore"
+                android:contentDescription="Ignore pix key value"
                 android:theme="@style/MyRadioButton"
                 android:visibility="gone"
                 app:layout_constraintRight_toRightOf="parent"
@@ -628,6 +673,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Callback URL"
+                android:labelFor="@+id/editCallbackUrl"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutEditPixKeyValue">
@@ -636,6 +682,7 @@
                     android:id="@+id/editCallbackUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Callback url"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -646,6 +693,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Select Auto Approve"
+                android:labelFor="@+id/checkGroupAutoApprove"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -666,6 +714,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="auto_approve = 1"
+                    android:contentDescription="Check auto_approve = 1"
                     android:theme="@style/MyRadioButton" />
 
                 <RadioButton
@@ -673,6 +722,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="auto_approve = 0"
+                    android:contentDescription="Check auto_approve = 0"
                     android:theme="@style/MyRadioButton" />
 
             </RadioGroup>
@@ -684,6 +734,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Base URL"
+                android:labelFor="@+id/editBaseUrl"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/checkGroupAutoApprove">
@@ -692,6 +743,7 @@
                     android:id="@+id/editBaseUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Base url"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -703,6 +755,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="Redirect URL (OPTIONAL)"
+                android:labelFor="@+id/editRedirectUrl"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editBaseUrlLayout"
                 app:layout_constraintWidth_percent="0.80">
@@ -711,6 +764,7 @@
                     android:id="@+id/editRedirectUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Redirect url"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -721,6 +775,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="ignore"
+                android:contentDescription="Ignore redirect url"
                 android:theme="@style/MyRadioButton"
                 android:visibility="visible"
                 app:layout_constraintRight_toRightOf="parent"
@@ -735,6 +790,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:hint="Logo URL"
+                android:labelFor="@+id/editLogoUrl"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editRedirectUrlLayout"
                 app:layout_constraintWidth_percent="0.80">
@@ -743,6 +799,7 @@
                     android:id="@+id/editLogoUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Logo url"
                     android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -753,6 +810,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="ignore"
+                android:contentDescription="Ignore logo url"
                 android:theme="@style/MyRadioButton"
                 android:visibility="visible"
                 app:layout_constraintRight_toRightOf="parent"
@@ -765,6 +823,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Select Language (OPTIONAL)"
+                android:labelFor="@+id/checkGroupLanguage"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -784,6 +843,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="pt"
+                    android:contentDescription="Check pt language"
                     android:theme="@style/MyRadioButton" />
 
                 <RadioButton
@@ -792,6 +852,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="en"
+                    android:contentDescription="Check en language"
                     android:theme="@style/MyRadioButton" />
 
                 <RadioButton
@@ -800,6 +861,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:text="es"
+                    android:contentDescription="Check es language"
                     android:theme="@style/MyRadioButton" />
 
                 <RadioButton
@@ -807,6 +869,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ignore"
+                    android:contentDescription="Ignore language"
                     android:theme="@style/MyRadioButton" />
 
             </RadioGroup>
@@ -845,10 +908,10 @@
                 android:backgroundTint="@color/secondary"
                 android:minHeight="60dp"
                 android:text="Generate Checkout By Params"
+                android:contentDescription="Generate checkout by params"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:contentDescription="button-GENERATE_CHECKOUT_BY_PARAMS"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/checkGroupLanguage" />
@@ -859,9 +922,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/secondary"
-                android:contentDescription="button-GENERATE_CHECKOUT_BY_URL"
                 android:minHeight="60dp"
                 android:text="Generate Checkout By URL"
+                android:contentDescription="Generate checkout by url"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp"

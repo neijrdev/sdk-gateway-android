@@ -1,0 +1,24 @@
+{
+  "full_name":"User Gateway Test",
+  "document_number":"61317581075",
+  "kyc_limits":{
+    "available_amount":9999998911866,
+    "limit":9999999999999,
+    "used_limit":1088133,
+    "kyc_level":"3",
+    "kyc_level_name":"Gold"
+  },
+  "original_amount":500,
+  "original_currency":"BRL",
+  "final_amount":850,
+  "converted_amount":0,
+  "taxes":350,
+  "receivable_url":"https:\/\/api.sandbox.bankly.com.br\/bankslip\/a90d092a-f1f9-47c1-aace-aa3f1afed91f\/pdf",
+  "deposit_type_id":1,
+  "redirect_url":null,
+  "billet_digitable_line":"34191790010104351004791020150008887870026000",
+  "billet_due_date":"2022-07-14",
+  "deposit_id":14311,
+  "order_id":18182,
+  "transaction_id":null
+}

@@ -18,7 +18,6 @@ import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-
 class DepositWalletFragment : Fragment() {
     private var _binding: FragmentDepositWalletBinding? = null
     val mainViewModel: MainViewModel by sharedViewModel()
@@ -53,18 +52,9 @@ class DepositWalletFragment : Fragment() {
         //Set Log Analytics
         logEventsService.setLogFinishScreen(Operation.DEPOSIT, Types.WALLET)
 
-        mainViewModel.language.observe(viewLifecycleOwner, { language = it })
-
-        mainViewModel.checkStatusTransactionLoading.observe(viewLifecycleOwner) {
-            if (it == true) {
-                binding.containerLoadingStatusDeposit.visibility = View.VISIBLE
-                binding.fragmentDepositStatus.visibility = View.GONE
-            }
-        }
+        mainViewModel.language.observe(viewLifecycleOwner) { language = it }
 
         mainViewModel.checkStatusTransactionResponse.observe(viewLifecycleOwner) {
-
-
             val transactionStatusId = it.data?.transaction_status_id
             binding.containerBackMerchantAndInstructions.visibility = View.VISIBLE
 
@@ -87,7 +77,7 @@ class DepositWalletFragment : Fragment() {
             binding.containerLoadingStatusDeposit.visibility = View.GONE
 
             if (it.data?.transaction_id != null) {
-                mainViewModel.checkStatusTransaction(it.data?.transaction_id)
+                mainViewModel.checkStatusTransaction(it.data.transaction_id)
             }
 
             val currency = it.data?.original_currency
@@ -107,6 +97,13 @@ class DepositWalletFragment : Fragment() {
                 limitsKycString,
                 language
             )
+        }
+
+        mainViewModel.checkStatusTransactionLoading.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.containerLoadingStatusDeposit.visibility = View.VISIBLE
+                binding.fragmentDepositStatus.visibility = View.GONE
+            }
         }
 
     }

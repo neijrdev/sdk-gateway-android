@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="Register for result screen"
     tools:context=".RegisterForActivityResult">
 
     <com.google.android.material.button.MaterialButton
@@ -18,6 +19,7 @@
         android:lineHeight="18dp"
         android:paddingVertical="5dp"
         android:text="Back"
+        android:contentDescription="Go back"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16dp"
@@ -39,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RegisterForActivityResult"
+            android:contentDescription="Register for activity result, page title"
             android:textAlignment="textStart"
             android:textColor="@color/grey_dark"
             android:textSize="20sp"
@@ -60,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="registerForActivityResult:"
+                android:contentDescription="Register for activity result title"
                 android:textAlignment="textStart"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -71,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="null"
+                android:contentDescription="Register for activity result value"
                 android:textAlignment="center"
                 android:textColor="@color/grey_dark"
                 android:textSize="14sp"
@@ -84,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="null"
+            android:contentDescription="selected type of operation value"
             android:textAlignment="textStart"
             android:textColor="@color/grey_dark"
             android:textSize="16sp"
@@ -104,6 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="is_generated_transaction:"
+                android:contentDescription="Is generated transaction title"
                 android:textAlignment="textStart"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -115,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="null"
+                android:contentDescription="Is generated transaction value"
                 android:textAlignment="center"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -125,60 +133,70 @@
         <TextView
             android:id="@+id/orderIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Order id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/isGeneratedTransaction" />
 
         <TextView
             android:id="@+id/orderTypeIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Order type id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orderIdValue" />
 
         <TextView
             android:id="@+id/orderStatusIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Order status id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orderTypeIdValue" />
 
         <TextView
             android:id="@+id/transactionIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Transaction id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orderStatusIdValue" />
 
         <TextView
             android:id="@+id/transactionStatusIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Transaction status id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/transactionIdValue" />
 
         <TextView
             android:id="@+id/depositIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Deposit id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/transactionStatusIdValue" />
 
         <TextView
             android:id="@+id/depositTypeIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Deposit type id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/depositIdValue" />
 
         <TextView
             android:id="@+id/depositStatusIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Deposit status id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/depositTypeIdValue" />
 
         <TextView
             android:id="@+id/withdrawalIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Withdrawal id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/depositStatusIdValue" />
 
         <TextView
             android:id="@+id/withdrawalTypeIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Withdrawal type id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/withdrawalIdValue" />
 
@@ -186,6 +204,7 @@
         <TextView
             android:id="@+id/withdrawalStatusIdValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Withdrawal status id value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/withdrawalTypeIdValue" />
 
@@ -203,6 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="is_error_transaction:"
+                android:contentDescription="Is error transaction title"
                 android:textAlignment="textStart"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -214,6 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="null"
+                android:contentDescription="Is error transaction value"
                 android:textAlignment="center"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -224,12 +245,14 @@
         <TextView
             android:id="@+id/errorTransactionCodeValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Error transaction code value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/isErrorTransaction" />
 
         <TextView
             android:id="@+id/errorTransactionMessageValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Error transaction message value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/errorTransactionCodeValue" />
 
@@ -247,6 +270,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="is_user_completed_transaction:"
+                android:contentDescription="Is user completed transaction title"
                 android:textAlignment="textStart"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -258,6 +282,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="null"
+                android:contentDescription="Is user completed transaction value"
                 android:textAlignment="center"
                 android:textColor="@color/grey_dark"
                 android:textSize="16sp"
@@ -268,18 +293,21 @@
         <TextView
             android:id="@+id/actionNotCompletedCodeValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Action not completed code value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/isUserCompletedTransaction" />
 
         <TextView
             android:id="@+id/actionNotCompletedMessageValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Action not completed message value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionNotCompletedCodeValue" />
 
         <TextView
             android:id="@+id/errorNotCompletedMessageValue"
             style="@style/ActivityResultRegularValue"
+            android:contentDescription="Error completed transaction message value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/actionNotCompletedMessageValue" />
 

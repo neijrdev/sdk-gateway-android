@@ -100,6 +100,8 @@ class BilletBarCodeFragment : Fragment() {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(browserIntent)
         } catch (e: Exception) {
+            logEventsService.setLogEventAnalytics("Error_OpenBillet")
+
             var toast: Toast = Toast.makeText(
                 context,
                 getString(R.string.error_open_billet),

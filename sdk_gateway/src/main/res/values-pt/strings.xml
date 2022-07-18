@@ -144,7 +144,7 @@
     <string name="error_forgot_password_generic">Não foi possível processar sua solicitação, tente novamente mais tarde.</string>
     <string name="instruction_wallet_1">Certifique-se de que tem saldo suficiente na carteira Paylivre para efetuar este depósito.</string>
     <string name="instruction_wallet_2">Não deixe de colocar os mesmos dados que estão no cadastro da sua conta na Paylivre para que seja feito o debito corretamente.</string>
-    <string name="instructions_wallet_paylivre">Para essa transação foi ultilizado o saldo da carteira Paylivre!</string>
+    <string name="instructions_wallet_paylivre">Para essa transação foi utilizado o saldo da carteira Paylivre!</string>
     <string name="instructions_wallet_paylivre_title">Instruções de Saldo Paylivre</string>
     <string name="title_deposit_wallet">Carteira Paylivre</string>
     <string name="error_3_orders_with_equal_amount">Você excedeu o limite de 3 transações de mesmo valor nas últimas 24 horas.</string>
@@ -266,4 +266,6 @@
     <string name="paylivre_gateway_sdk_is_outdated">Recurso não disponível para esta versão do SDK do Gateway da Paylivre.</string>
     <string name="label_favored">Favorecido</string>
     <string name="message_copied_value">%1$s copiado(a) com sucesso</string>
+    <string name="withdrawal_limits_error">Você excedeu o limite diário de retiradas.</string>
+    <string name="withdrawal_limits_error_content">Apenas uma retirada pode ser realizada por dia com valor máximo de %1$s.</string>
 </resources>

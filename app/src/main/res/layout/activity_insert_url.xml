@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
+    android:contentDescription="Insert url screen"
     tools:context=".InsertUrlActivity">
 
     <com.google.android.material.button.MaterialButton
@@ -19,6 +20,7 @@
         android:lineHeight="18dp"
         android:paddingVertical="5dp"
         android:text="Back"
+        android:contentDescription="Go back"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16dp"
@@ -40,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter the gateway url below:"
+            android:contentDescription="Enter the gateway url below"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -53,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="URL Gateway Paylivre"
+            android:labelFor="@+id/editUrl"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtTitleUrl">
 
@@ -60,6 +64,7 @@
                 android:id="@+id/editUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="URL Gateway Paylivre"
                 android:minLines="8"
                 android:inputType="textMultiLine"
                 android:textSize="14sp" />
@@ -71,7 +76,8 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Paste clipboard URL"
+            android:text="Paste URL from clipboard"
+            android:contentDescription="Paste url from clipboard"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textColor="@color/secondary"
@@ -86,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Clear URL"
+            android:contentDescription="Clear url"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:textColor="@color/secondary"
@@ -100,6 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Select Language (OPTIONAL)"
+            android:contentDescription="Select language"
+            android:labelFor="@+id/checkGroupLanguage"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -119,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:text="pt"
+                android:contentDescription="Check pt language"
                 android:theme="@style/MyRadioButton" />
 
             <RadioButton
@@ -127,6 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:text="en"
+                android:contentDescription="Check en language"
                 android:theme="@style/MyRadioButton" />
 
             <RadioButton
@@ -135,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:text="es"
+                android:contentDescription="Check es language"
                 android:theme="@style/MyRadioButton" />
 
             <RadioButton
@@ -142,6 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="none"
+                android:contentDescription="Check no language"
                 android:theme="@style/MyRadioButton" />
 
         </RadioGroup>
@@ -154,6 +167,7 @@
             android:minHeight="60dp"
             android:layout_marginTop="20dp"
             android:text="Start Checkout by URL"
+            android:contentDescription="Start checkout by url"
             android:textAllCaps="false"
             android:textSize="15sp"
             android:textColor="@color/white"

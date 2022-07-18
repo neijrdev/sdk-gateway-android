@@ -266,4 +266,6 @@
     <string name="paylivre_gateway_sdk_is_outdated">Feature not available for this version of Paylivre Gateway SDK.</string>
     <string name="label_favored">Favored</string>
     <string name="message_copied_value">%1$s copied successfully</string>
+    <string name="withdrawal_limits_error">You have exceeded your daily withdrawal limit.</string>
+    <string name="withdrawal_limits_error_content">Only one withdrawal can be made per day with a maximum value of %1$s.</string>
 </resources>

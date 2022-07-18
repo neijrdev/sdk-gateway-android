@@ -453,7 +453,6 @@ class MainViewModel(private val paymentRepository: PaymentRepository) : ViewMode
     fun checkStatusDepositSuccess(response: CheckStatusDepositResponse) {
         _checkStatusDepositResponse.value = response
         setCheckStatusDepositLoading(false)
-
     }
 
     private fun checkStatusDepositFailure(error: ErrorTransaction) {

@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.databinding.FragmentAlertLimitWithdrawBinding
 import com.paylivre.sdk.gateway.android.domain.model.Currency
+import com.paylivre.sdk.gateway.android.domain.model.LIMIT_VALUE_WITHDRAW_BRL
+import com.paylivre.sdk.gateway.android.domain.model.LIMIT_VALUE_WITHDRAW_USD
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyBRL
 import com.paylivre.sdk.gateway.android.utils.formatToCurrencyUSD
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-
-const val LIMIT_VALUE_WITHDRAW_USD = "100000"
-const val LIMIT_VALUE_WITHDRAW_BRL = "500000"
 
 class AlertLimitWithdraw : Fragment() {
     private var _binding: FragmentAlertLimitWithdrawBinding? = null

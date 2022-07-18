@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ActivityScenario.ActivityAction
 import androidx.test.core.app.launchActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
@@ -94,34 +96,6 @@ class PaymentActivityTest {
     @After
     fun tearDown() {
         stopKoin()
-    }
-
-
-
-    @Test
-    fun `PaymentActivity, withdraw - PIX, given invalid document and email navigate to Form`() {
-        val textViewTitleForm = activity!!.findViewById<TextView>(R.id.textViewTitleForm)
-
-        val editTextEmail = activity!!.findViewById<EditText>(R.id.editEmail)
-        val textViewErrorEmail = activity!!.findViewById<TextView>(R.id.textViewErrorEmail)
-        val editTextDocument = activity!!.findViewById<TextInputEditText>(R.id.editDocument)
-        val textViewErrorDocument = activity!!.findViewById<TextView>(R.id.textViewErrorDocument)
-        val btnStartPayment = activity!!.findViewById<Button>(R.id.btnStartPayment)
-
-        editTextEmail.setText("test@")
-        editTextDocument.setText("6131758107")
-
-        btnStartPayment.performClick()
-
-        assertEquals("Email inválido.",
-            textViewErrorEmail?.text.toString())
-
-        assertEquals("Documento inválido.",
-            textViewErrorDocument?.text.toString())
-
-        assertEquals("Preencha os campos abaixo para continuar",
-            textViewTitleForm?.text.toString())
-
     }
 
 

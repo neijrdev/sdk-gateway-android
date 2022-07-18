@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerTitle"
+        android:id="@+id/containerTitleWithdrawStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -60,7 +60,7 @@
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerTitle">
+        app:layout_constraintTop_toBottomOf="@id/containerTitleWithdrawStatus">
 
         <TextView
             android:id="@+id/txtLabelStatusInMerchant"

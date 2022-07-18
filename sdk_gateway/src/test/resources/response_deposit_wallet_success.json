@@ -1,0 +1,23 @@
+{
+  "full_name":"User Gateway Test",
+  "document_number":"61317581075",
+  "kyc_limits":{
+    "available_amount":9999998807089,
+    "limit":9999999999999,
+    "used_limit":1192910,
+    "kyc_level":"3",
+    "kyc_level_name":"Gold"
+  },
+  "original_amount":500,
+  "original_currency":"BRL",
+  "final_amount":500,
+  "converted_amount":0,
+  "taxes":0,
+  "receivable_url":null,
+  "deposit_type_id":5,
+  "redirect_url":null,
+  "billet_digitable_line":null,
+  "billet_due_date":null,
+  "deposit_id":null,
+  "transaction_id":58665
+}

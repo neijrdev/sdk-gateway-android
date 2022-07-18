@@ -186,7 +186,6 @@ class InsertProofWireTransferFragment : Fragment() {
             logEventsService.setLogEventAnalytics("Btn_SubmitTransferProof")
 
             val file = File(uriProofFile?.path)
-
             mainViewModel.insertTransferProof(
                 InsertTransferProofDataRequest(
                     file = file!!,

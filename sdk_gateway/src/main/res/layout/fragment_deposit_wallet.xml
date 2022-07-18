@@ -11,7 +11,7 @@
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".ui.transactions.finishscreen.deposit.wallet.DepositBilletFragment">
+    tools:context=".ui.transactions.finishscreen.deposit.wallet.DepositWalletFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

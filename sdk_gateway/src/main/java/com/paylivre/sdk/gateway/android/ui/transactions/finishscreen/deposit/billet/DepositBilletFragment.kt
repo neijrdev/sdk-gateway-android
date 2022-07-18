@@ -48,7 +48,7 @@ fun setBilletBarCodeFragment(
 class DepositBilletFragment : Fragment() {
     private var _binding: FragmentDepositBilletBinding? = null
     val mainViewModel: MainViewModel by sharedViewModel()
-    private val logEventsService : LogEventsService by inject()
+    private val logEventsService: LogEventsService by inject()
     private val binding get() = _binding!!
     private var language: String? = null
 
@@ -78,48 +78,17 @@ class DepositBilletFragment : Fragment() {
         //Set Log Analytics
         logEventsService.setLogFinishScreen(Operation.DEPOSIT, Types.BILLET)
 
-        mainViewModel.language.observe(viewLifecycleOwner, { language = it })
-
-        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner) {
-            if (it == true) {
-                binding.containerLoadingStatusDeposit.visibility = View.VISIBLE
-                binding.fragmentDepositStatus.visibility = View.GONE
-            }
-        }
-
-        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
-            val transactionStatusId = it.data?.deposit_status_id
-
-            binding.containerLoadingStatusDeposit.visibility = View.GONE
-
-            setTransactionStatus(
-                this,
-                StatusTransactionFragment(),
-                R.id.fragmentDepositStatus,
-                binding.fragmentDepositStatus,
-                transactionStatusId
-            )
-        }
-
+        mainViewModel.language.observe(viewLifecycleOwner) { language = it }
 
         mainViewModel.statusResponseTransaction.observe(viewLifecycleOwner) {
-
             val limitsKycString = Gson().toJson(it.data?.kyc_limits)
-
             binding.containerLoadingStatusDeposit.visibility = View.GONE
-
             binding.containerBackMerchantAndInstructions.visibility = View.VISIBLE
-
             if (it.data?.deposit_id != null) {
                 mainViewModel.checkStatusDeposit(it.data?.deposit_id)
             }
-
             val currency = it.data?.original_currency
-
             val billetDueDateFormatted = getBilletDueDateFormatted(it.data?.billet_due_date)
-
-
-
             setBilletBarCodeFragment(
                 this,
                 BilletBarCodeFragment(),
@@ -146,6 +115,28 @@ class DepositBilletFragment : Fragment() {
             )
         }
 
+        mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.containerLoadingStatusDeposit.visibility = View.VISIBLE
+                binding.fragmentDepositStatus.visibility = View.GONE
+            }
+        }
+
+        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
+            val transactionStatusId = it.data?.deposit_status_id
+
+            binding.containerLoadingStatusDeposit.visibility = View.GONE
+
+            setTransactionStatus(
+                this,
+                StatusTransactionFragment(),
+                R.id.fragmentDepositStatus,
+                binding.fragmentDepositStatus,
+                transactionStatusId
+            )
+        }
+
     }
+
 
 }

@@ -1,7 +1,5 @@
 package com.paylivre.sdk.gateway.android.ui.error
 
-import android.view.View
-import androidx.navigation.Navigation
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.order.ErrorTransaction
 import com.paylivre.sdk.gateway.android.data.model.order.checkIsErrorApiToken
@@ -18,7 +16,7 @@ fun checkIsErrorKycLimits(errorMessage: String?): Boolean {
     } else false
 }
 
-fun handleNavigateToErrorScreen(view: View, error: ErrorTransaction?) {
+fun getErrorScreen(error: ErrorTransaction?): Int {
     val isErrorApiToken = checkIsErrorApiToken(error)
     val isErrorKYCLimits = checkIsErrorKycLimits(error?.original_message)
     val isErrorKycUserBlocked = error?.original_message == "User is blocked by Kyc"
@@ -26,22 +24,18 @@ fun handleNavigateToErrorScreen(view: View, error: ErrorTransaction?) {
     when {
         //Error Invalid Api Token -> Deposit Wallet
         isErrorApiToken -> {
-            Navigation.findNavController(view)
-                .navigate(R.id.navigation_form_start_payment)
+            return R.id.navigation_form_start_payment
         }
         //Error KYC user not limit
         isErrorKYCLimits -> {
-            Navigation.findNavController(view)
-                .navigate(R.id.navigation_error_kyc_limit)
+            return R.id.navigation_error_kyc_limit
         }
         //Error KYC User Blocked
         isErrorKycUserBlocked -> {
-            Navigation.findNavController(view)
-                .navigate(R.id.navigation_error_kyc_user_blocked)
+            return R.id.navigation_error_kyc_user_blocked
         }
         else -> {
-            Navigation.findNavController(view)
-                .navigate(R.id.navigation_fatal_error)
+            return R.id.navigation_fatal_error
         }
     }
 }

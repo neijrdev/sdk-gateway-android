@@ -14,7 +14,7 @@ import com.paylivre.sdk.gateway.android.databinding.FragmentLoadingTransactionBi
 import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Type
 import com.paylivre.sdk.gateway.android.services.log.LogEventsService
-import com.paylivre.sdk.gateway.android.ui.error.handleNavigateToErrorScreen
+import com.paylivre.sdk.gateway.android.ui.error.getErrorScreen
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -66,10 +66,6 @@ class LoadingTransaction : Fragment() {
                         Navigation.findNavController(view)
                             .navigate(R.id.navigation_finish_screen_deposit_pix)
                     }
-                    Type.WALLET.code.toString() -> {
-                        Navigation.findNavController(view)
-                            .navigate(R.id.navigation_finish_screen_deposit_wallet)
-                    }
                     Type.BILLET.code.toString() -> {
                         Navigation.findNavController(view)
                             .navigate(R.id.navigation_finish_screen_deposit_billet)
@@ -78,9 +74,10 @@ class LoadingTransaction : Fragment() {
                         Navigation.findNavController(view)
                             .navigate(R.id.navigation_finish_screen_deposit_wiretransfer)
                     }
-                    else -> {
+
+                    else -> { //Type.WALLET.code.toString()
                         Navigation.findNavController(view)
-                            .navigate(R.id.navigation_transaction_completion)
+                            .navigate(R.id.navigation_finish_screen_deposit_wallet)
                     }
                 }
             }
@@ -94,7 +91,7 @@ class LoadingTransaction : Fragment() {
             if (isSuccess == true) {
                 navigateToFinishScreen()
             } else {
-                handleNavigateToErrorScreen(view, statusTransactionResponse.error)
+                Navigation.findNavController(view).navigate(getErrorScreen(statusTransactionResponse.error))
             }
         }
 

@@ -1,28 +1,24 @@
 {
-  "full_name": "User Gateway Test",
-  "document_number": "61317581075",
-  "kyc_limits": {
-    "available_amount": 9998499,
-    "limit": 9999999,
-    "used_limit": 1500,
-    "kyc_level": "3",
-    "kyc_level_name": "Gold"
+  "full_name":"User Gateway Test",
+  "document_number":"61317581075",
+  "kyc_limits":{
+    "available_amount":9999998879966,
+    "limit":9999999999999,
+    "used_limit":1120033,
+    "kyc_level":"3",
+    "kyc_level_name":"Gold"
   },
-  "final_amount": 500,
-  "origin_amount": 500,
-  "original_currency": "BRL",
-  "currency": "BRL",
-  "converted_amount": 500,
-  "taxes": null,
-  "order": {
-    "status": "New",
-    "merchant_approval_status_id": 2,
-    "merchant_approval_status_name": "Completed"
-  },
-  "withdrawal": {
-    "id": 407,
-    "status_id": 0,
-    "status_name": "New"
-  },
-  "redirect_url": "https:\/\/www.merchant_to_you.com"
+  "original_amount":500,
+  "original_currency":"BRL",
+  "final_amount":500,
+  "converted_amount":0,
+  "taxes":0,
+  "receivable_url":"00020101021226580014BR.GOV.BCB.PIX0136b46359c8-3eaa-4b42-a3c6-0972a9c4a2265204000053039865406111.115802BR5912Pay Livrepix6014Belo Horizonte610830380403620605029X6304BFA4",
+  "deposit_type_id":4,
+  "redirect_url":null,
+  "billet_digitable_line":null,
+  "billet_due_date":null,
+  "deposit_id":14371,
+  "order_id":18301,
+  "transaction_id":null
 }

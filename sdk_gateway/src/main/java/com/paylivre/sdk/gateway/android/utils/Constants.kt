@@ -1,6 +1,6 @@
 package com.paylivre.sdk.gateway.android.utils
 
-
+//const val API_HOST_ENVIRONMENT_DEV = "stoplight.io"
 const val API_HOST_ENVIRONMENT_DEV = "api.dev.paylivre.com"
 const val API_HOST_ENVIRONMENT_PRODUCTION = "api.paylivre.com"
 const val API_HOST_ENVIRONMENT_PLAYGROUND = "api.playground.paylivre.com"

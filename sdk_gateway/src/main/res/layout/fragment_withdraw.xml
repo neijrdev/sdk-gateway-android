@@ -62,7 +62,7 @@
                 app:layout_constraintRight_toRightOf="parent">
 
                 <TextView
-                    android:id="@+id/TitleWithdrawPix"
+                    android:id="@+id/titleWithdrawType"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/avenir_next_lt_pro_bold"
@@ -84,7 +84,7 @@
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TitleWithdrawPix"
+                    app:layout_constraintTop_toBottomOf="@id/titleWithdrawType"
                     tools:layout="@layout/fragment_status_withdraw" />
 
 
@@ -102,7 +102,7 @@
 
 
                 <TextView
-                    android:id="@+id/TxtViewCheckOrderWithdrawInEmail"
+                    android:id="@+id/txtViewCheckOrderWithdrawInEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
@@ -117,7 +117,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/TxtViewMessageMerchantApprovalPending"
+                    android:id="@+id/txtViewMessageMerchantApprovalPending"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir_next_lt_pro_regular"
@@ -129,7 +129,7 @@
                     android:textAlignment="center"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TxtViewCheckOrderWithdrawInEmail"
+                    app:layout_constraintTop_toBottomOf="@id/txtViewCheckOrderWithdrawInEmail"
                     />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,7 +140,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TxtViewMessageMerchantApprovalPending" />
+                    app:layout_constraintTop_toBottomOf="@id/txtViewMessageMerchantApprovalPending" />
 
                 <View
                     android:id="@+id/dividerLineContainerTerms"

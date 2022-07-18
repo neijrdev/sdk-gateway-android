@@ -1,6 +1,8 @@
 package com.paylivre.sdk.gateway.android.domain.model
 import com.paylivre.sdk.gateway.android.R
 
+const val LIMIT_VALUE_WITHDRAW_USD = "100000"
+const val LIMIT_VALUE_WITHDRAW_BRL = "500000"
 
 enum class WithdrawTypes(val code: Int) {
     PIX(4),

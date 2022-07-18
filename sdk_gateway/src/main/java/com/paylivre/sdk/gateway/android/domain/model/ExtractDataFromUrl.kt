@@ -16,7 +16,6 @@ fun getBaseHost(url: String): String {
     val uri: Uri = Uri.parse(url)
     val uriScheme = uri.scheme
     val urlHttpPrefix = "${uriScheme}://"
-    println("uri.path: ${uri.path}")
     return if (uri.host != null) {
         urlHttpPrefix + uri.host.toString()
     } else ""

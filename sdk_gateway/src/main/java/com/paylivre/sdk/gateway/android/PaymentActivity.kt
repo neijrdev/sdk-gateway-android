@@ -282,7 +282,6 @@ class PaymentActivity : AppCompatActivity() {
                 R.id.navigation_fatal_error,
                 R.id.navigation_loading,
                 R.id.navigation_loading_transaction,
-                R.id.navigation_transaction_completion,
                 R.id.navigation_finish_screen_deposit_pix,
                 R.id.navigation_finish_screen_withdraw_pix,
                 R.id.navigation_finish_screen_deposit_wallet,

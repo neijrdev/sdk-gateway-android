@@ -27,7 +27,6 @@ fun TextView.makeBold(vararg texts: DataMakeBold) {
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,
                 )
             }
-
         }
         this.setText(spannableString, TextView.BufferType.SPANNABLE)
     } catch (error: Exception) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:contentDescription="MenuMain-screen"
+    android:contentDescription="Main menu screen"
     android:padding="20dp"
     tools:context=".MenuMainActivity">
 
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/secondary"
-        android:contentDescription="button-FORM_GENERATE_DATA"
+        android:contentDescription="Form generate data"
         android:minHeight="70dp"
         android:text="Generate Data to Start Checkout\n(Params or Url)"
         android:textAllCaps="false"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/secondary"
-        android:contentDescription="button-INSERT_URL"
+        android:contentDescription="Insert URL"
         android:minHeight="70dp"
         android:text="Insert URL to Start Checkout"
         android:textAllCaps="false"

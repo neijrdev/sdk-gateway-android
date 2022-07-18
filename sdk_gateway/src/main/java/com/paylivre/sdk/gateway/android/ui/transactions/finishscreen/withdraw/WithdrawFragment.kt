@@ -1,7 +1,6 @@
 package com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import com.paylivre.sdk.gateway.android.databinding.FragmentWithdrawBinding
 import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Types
 import com.paylivre.sdk.gateway.android.domain.model.WithdrawTypes
+import com.paylivre.sdk.gateway.android.services.countdowntimer.CountDownTimerService
 import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.ui.form.AcceptTerms
 import com.paylivre.sdk.gateway.android.ui.transactions.data.TransactionDataFragment
@@ -27,7 +27,8 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 const val TIMER_INTERVAL_IN_MILLIS: Long = 1000;
 const val TIMER_FINAL_CHECK_IN_MILLIS: Long = 1000 * 121;
 
-class WithdrawFragment : Fragment() {
+
+class WithdrawFragment() : Fragment() {
     private var _binding: FragmentWithdrawBinding? = null
     val mainViewModel: MainViewModel by sharedViewModel()
     private val binding get() = _binding!!
@@ -36,9 +37,9 @@ class WithdrawFragment : Fragment() {
     private var merchantApprovalStatusId: Int? = null
     private var finalAmount: Int? = null
     private var token: String? = null
-    private lateinit var countDownTimer: CountDownTimer
     private var countDownTimerIsExpired: Boolean = false
-    private val logEventsService : LogEventsService by inject()
+    private val logEventsService: LogEventsService by inject()
+    private val countDownTimerService: CountDownTimerService by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,43 +65,42 @@ class WithdrawFragment : Fragment() {
     }
 
 
-    fun setLoadingStatusWithdraw() {
+    private fun setLoadingStatusWithdraw() {
         when {
             merchantApprovalStatusId ==
                     MerchantApprovalStatusOrder.PENDING.code -> {
-                binding.TxtViewMessageMerchantApprovalPending.visibility = View.VISIBLE
+                binding.txtViewMessageMerchantApprovalPending.visibility = View.VISIBLE
                 binding.fragmentCheckingWithdrawLoading.visibility = View.GONE
-                binding.TxtViewCheckOrderWithdrawInEmail.visibility = View.GONE
+                binding.txtViewCheckOrderWithdrawInEmail.visibility = View.GONE
             }
             countDownTimerIsExpired -> {
-                binding.TxtViewMessageMerchantApprovalPending.visibility = View.GONE
+                binding.txtViewMessageMerchantApprovalPending.visibility = View.GONE
                 binding.fragmentCheckingWithdrawLoading.visibility = View.GONE
-                binding.TxtViewCheckOrderWithdrawInEmail.visibility = View.VISIBLE
+                binding.txtViewCheckOrderWithdrawInEmail.visibility = View.VISIBLE
             }
             else -> {
-                binding.TxtViewMessageMerchantApprovalPending.visibility = View.GONE
+                binding.txtViewMessageMerchantApprovalPending.visibility = View.GONE
                 binding.fragmentCheckingWithdrawLoading.visibility = View.VISIBLE
-                binding.TxtViewCheckOrderWithdrawInEmail.visibility = View.GONE
+                binding.txtViewCheckOrderWithdrawInEmail.visibility = View.GONE
             }
         }
     }
 
+    private fun onFinishCountDownTimer() {
+        countDownTimerIsExpired = true
+        setLoadingStatusWithdraw()
+    }
+
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(TIMER_FINAL_CHECK_IN_MILLIS,
-            TIMER_INTERVAL_IN_MILLIS) {
-            override fun onTick(millisUntilFinished: Long) {
+        countDownTimerService.startTimer(
+            TIMER_FINAL_CHECK_IN_MILLIS,
+            TIMER_INTERVAL_IN_MILLIS,
+            { millisUntilFinished ->
                 val seconds = millisUntilFinished / 1000
                 dispatchCheckStatusWithdraw(seconds)
-            }
-
-            override fun onFinish() {
-                //Hidden loading check status withdraw
-                countDownTimerIsExpired = true
-                setLoadingStatusWithdraw()
-            }
-        }
-
-        countDownTimer.start()
+            },
+            { onFinishCountDownTimer() }
+        )
     }
 
     private fun setDataOrderWithdraw(
@@ -147,13 +147,13 @@ class WithdrawFragment : Fragment() {
             val withdrawTitleLabel = if (withdrawalTypeId == WithdrawTypes.PIX.code) "PIX"
             else getString(R.string.type_wallet)
 
-            binding.TitleWithdrawPix.text = withdrawTitleLabel
+            binding.titleWithdrawType.text = withdrawTitleLabel
 
             binding.fragmentWithdrawStatus.visibility = View.VISIBLE
 
-            if (withdrawalTypeId == WithdrawTypes.PIX.code){
-               binding.instructionsPix.container.visibility = View.VISIBLE
-               binding.instructionsWallet.container.visibility = View.GONE
+            if (withdrawalTypeId == WithdrawTypes.PIX.code) {
+                binding.instructionsPix.container.visibility = View.VISIBLE
+                binding.instructionsWallet.container.visibility = View.GONE
 
             } else {
                 binding.instructionsPix.container.visibility = View.GONE
@@ -165,7 +165,7 @@ class WithdrawFragment : Fragment() {
         mainViewModel.checkStatusOrderDataResponse.observe(viewLifecycleOwner) {
             merchantApprovalStatusId = it.data?.order?.merchant_approval_status_id
 
-            //Insert date for withdrawal status
+            //Insert data for withdrawal status
             if (it.isSuccess == true) {
                 mainViewModel.setStatusWithdrawOrder(
                     StatusWithdrawOrder(
@@ -178,7 +178,7 @@ class WithdrawFragment : Fragment() {
 
             }
             if (it.isSuccess == true && it.data?.final_amount != null) {
-                countDownTimer.cancel()
+                countDownTimerService.cancel()
 
                 binding.fragmentCheckingWithdrawLoading.visibility = View.GONE
                 binding.containerFragmentTransactionData.visibility = View.VISIBLE
@@ -210,7 +210,7 @@ class WithdrawFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        countDownTimer.cancel()
+        countDownTimerService.cancel()
         super.onDestroy()
     }
 }

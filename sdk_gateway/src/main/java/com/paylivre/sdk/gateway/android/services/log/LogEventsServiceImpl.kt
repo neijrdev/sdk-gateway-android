@@ -26,7 +26,6 @@ class LogEventsServiceImpl {
                     if (param?.first != null && param?.second != null) {
                         val paramKey = param.first
                         val paramValue = param.second
-                        println("eventName: $eventName, key: $paramKey, value: $paramValue")
                         customEventAnalytics.put(paramKey, paramValue)
                         Sentry.setExtra(paramKey, paramKey)
                     }

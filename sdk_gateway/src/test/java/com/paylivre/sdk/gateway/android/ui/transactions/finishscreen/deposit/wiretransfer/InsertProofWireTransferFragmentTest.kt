@@ -10,25 +10,19 @@ import android.widget.TextView
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.FileTestsUtils
 import com.paylivre.sdk.gateway.android.R
 import com.paylivre.sdk.gateway.android.data.model.order.ResponseCommonTransactionData
 import com.paylivre.sdk.gateway.android.data.model.order.StatusTransactionResponse
-import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferProofDataResponse
+import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferProofDataRequest
 import com.paylivre.sdk.gateway.android.domain.model.OriginTypeInsertProof
-import com.paylivre.sdk.gateway.android.getOrAwaitValueTest
 import com.paylivre.sdk.gateway.android.services.log.LogEventsService
-import com.paylivre.sdk.gateway.android.services.log.LogEventsServiceImpl
 import com.paylivre.sdk.gateway.android.services.log.LogEventsServiceImplTest
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import com.paylivre.sdk.gateway.android.viewmodel.MockMainViewModel
-import io.mockk.coEvery
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import okhttp3.mockwebserver.MockWebServer
+import io.mockk.*
 import org.junit.*
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
@@ -38,6 +32,8 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.io.File
+import java.net.URI
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.O_MR1], qualifiers = "pt-port")
@@ -189,22 +185,50 @@ class InsertProofWireTransferFragmentTest {
     }
 
     @Test
-    fun `CASE 03, test btnSubmit`() {
+    fun `CASE 04, test btnSubmit`() {
+        val mockMainViewModel: MainViewModel = mockk()
+        val logEventsServiceImpl = LogEventsServiceImplTest()
+        val uriMocked: Uri =
+            Uri.parse("file:///storage/emulated/0/Android/data/com.example.paylivre.sdk.gateway/files/DCIM/IMG_20220603_001948249.jpg")
+
+        loadKoinModules(module(override = true) {
+            single<LogEventsService> {
+                logEventsServiceImpl
+            }
+            viewModel {
+                mockMainViewModel
+            }
+        })
+
+        coEvery {
+            mockMainViewModel.proof_image_uri
+        } returns MutableLiveData(null)
+
+        coEvery {
+            mockMainViewModel.statusResponseTransaction
+        } returns MutableLiveData(getMockStatusTransactionResponseSuccess())
+
+        coEvery {
+            mockMainViewModel.origin_type_insert_proof
+        } returns MutableLiveData(null)
+
+        coEvery {
+            mockMainViewModel.setProofImageUri(any())
+        } returns Unit
+
+        coEvery {
+            mockMainViewModel.insertTransferProof(any())
+        } returns Unit
+
         val fragmentArgs = Bundle()
         val fragment = launchFragmentInContainer<InsertProofWireTransferFragment>(fragmentArgs,
             themeResId = R.style.Theme_SDKGatewayAndroid)
 
         fragment.onFragment { insertProofWireTransferFragment ->
             //GIVEN
-            val mockStatusTransactionResponse = getMockStatusTransactionResponseSuccess()
-            insertProofWireTransferFragment.mainViewModel.setStatusTransactionResponse(
-                mockStatusTransactionResponse
-            )
-
             val mockIntent = Intent()
-            val uri: Uri =
-                Uri.parse("file:///storage/emulated/0/Android/data/com.example.paylivre.sdk.gateway/files/DCIM/IMG_20220603_001948249.jpg")
-            mockIntent.data = uri
+
+            mockIntent.data = uriMocked
             insertProofWireTransferFragment.handleImagePickerSuccess(mockIntent)
             val btnSubmit =
                 insertProofWireTransferFragment.view?.findViewById<Button>(R.id.btnSubmit)
@@ -214,22 +238,22 @@ class InsertProofWireTransferFragmentTest {
             //To run childFragmentManager transactions
             insertProofWireTransferFragment.childFragmentManager.executePendingTransactions()
 
-            Assert.assertEquals(InsertTransferProofDataResponse(
-                id = null,
-                proof = null,
-                wallet_id = null,
-                user_id = null,
-                deposit_status_id = null,
-                loading = true,
-                error = null,
-                isSuccess = null
-            ),
-                insertProofWireTransferFragment.mainViewModel.transfer_proof_response.getOrAwaitValueTest())
+            verify {
+                mockMainViewModel.setProofImageUri(uriMocked)
+            }
+
+            verify {
+                mockMainViewModel.insertTransferProof(InsertTransferProofDataRequest(
+                    file = File(uriMocked.path),
+                    order_id = 17128,
+                    token = "JDJ5JDEwJHkxdXRra1MubTZCaXZSRzI3Tzd3US4uNEt5aWhiMFFYVVBiZy9XTU1pZG5DQ0dzTkdpQ29h"
+                ))
+            }
         }
     }
 
     @Test
-    fun `CASE 04, test handleImagePicker`() {
+    fun `CASE 05, test handleImagePicker`() {
         val fragmentArgs = Bundle()
         val fragment = launchFragmentInContainer<InsertProofWireTransferFragment>(fragmentArgs,
             themeResId = R.style.Theme_SDKGatewayAndroid)

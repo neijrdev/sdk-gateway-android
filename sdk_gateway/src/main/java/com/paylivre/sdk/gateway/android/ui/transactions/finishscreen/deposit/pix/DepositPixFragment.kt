@@ -24,8 +24,11 @@ import com.paylivre.sdk.gateway.android.utils.START_TIME_IN_MILLIS
 import androidx.core.text.HtmlCompat
 import com.paylivre.sdk.gateway.android.domain.model.Operation
 import com.paylivre.sdk.gateway.android.domain.model.Types
+import com.paylivre.sdk.gateway.android.services.countdowntimer.CountDownTimerService
 import com.paylivre.sdk.gateway.android.services.log.LogEventsService
 import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.*
+import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.TIMER_FINAL_CHECK_IN_MILLIS
+import com.paylivre.sdk.gateway.android.ui.transactions.finishscreen.withdraw.TIMER_INTERVAL_IN_MILLIS
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.lang.Exception
@@ -38,14 +41,13 @@ val START_TIME_IN_MINUTES = TimeUnit.MILLISECONDS.toMinutes(START_TIME_IN_MILLIS
 class DepositPixFragment : Fragment() {
     private var _binding: FragmentDepositPixBinding? = null
     val mainViewModel: MainViewModel by sharedViewModel()
-    private val logEventsService : LogEventsService by inject()
+    private val logEventsService: LogEventsService by inject()
     private val binding get() = _binding!!
     private var minutesToExpirePix: Long = -1
     private var depositId: Int? = 0
     private var statusDepositId: Int? = 1
     private var language: String? = null
-
-    private lateinit var countDownTimer: CountDownTimer
+    private val countDownTimerService: CountDownTimerService by inject()
 
     private fun setLastStatusDepositPix(response: CheckStatusDepositResponse?) {
         val statusCodeDepositPix = response?.data?.deposit_status_id
@@ -95,8 +97,11 @@ class DepositPixFragment : Fragment() {
     }
 
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(START_TIME_IN_MILLIS, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
+        countDownTimerService.startTimer(
+            START_TIME_IN_MILLIS,
+            1000,
+            { millisUntilFinished ->
+
                 val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
 
@@ -106,19 +111,18 @@ class DepositPixFragment : Fragment() {
                 binding.textViewTimeExpirePix.text = getString(
                     R.string.formatted_time, minutes, seconds,
                 )
-            }
-
-            override fun onFinish() {
+            },
+            {
                 Log.d(TAG, "onFinish: called")
                 finishCheckStartStatus()
             }
-        }
-
-        countDownTimer.start()
+        )
     }
 
+
     private fun finishCheckStartStatus() {
-        countDownTimer.cancel()
+        countDownTimerService.cancel()
+
         binding.containerCodePixAndCheckStatus.visibility = View.GONE
 
         setTransactionStatus(
@@ -133,7 +137,7 @@ class DepositPixFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentDepositPixBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -182,7 +186,7 @@ class DepositPixFragment : Fragment() {
 
         var codePix = ""
 
-        mainViewModel.language.observe(viewLifecycleOwner, { language = it })
+        mainViewModel.language.observe(viewLifecycleOwner) { language = it }
 
         mainViewModel.checkStatusDepositLoading.observe(viewLifecycleOwner) {
             if (it == true) {
@@ -192,12 +196,6 @@ class DepositPixFragment : Fragment() {
                 binding.textLastStatusDepositPix.visibility = View.VISIBLE
                 binding.containerCheckingStatus.visibility = View.GONE
             }
-        }
-
-        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
-            statusDepositId = it?.data?.deposit_status_id
-            checkStatusDepositPix(it)
-            setLastStatusDepositPix(it)
         }
 
         binding.textCodePix.setOnClickListener {
@@ -238,6 +236,12 @@ class DepositPixFragment : Fragment() {
             )
         }
 
+        mainViewModel.checkStatusDepositResponse.observe(viewLifecycleOwner) {
+            statusDepositId = it?.data?.deposit_status_id
+            checkStatusDepositPix(it)
+            setLastStatusDepositPix(it)
+        }
+
         binding.btnCopyCodePix.setOnClickListener {
             //Set Log Analytics
             logEventsService.setLogEventAnalytics("Btn_CopyCodePix")
@@ -247,7 +251,7 @@ class DepositPixFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        countDownTimer.cancel()
+        countDownTimerService.cancel()
 
         super.onDestroy()
     }

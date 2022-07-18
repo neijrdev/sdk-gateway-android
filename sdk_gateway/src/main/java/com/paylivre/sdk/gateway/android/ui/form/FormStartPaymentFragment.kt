@@ -12,6 +12,7 @@ import com.paylivre.sdk.gateway.android.databinding.FormStartPaymentBinding
 import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.Animation
@@ -27,7 +28,6 @@ import com.paylivre.sdk.gateway.android.ui.howToGenerateApiToken.HowToGenerateAp
 import com.paylivre.sdk.gateway.android.utils.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-
 
 class FormStartPaymentFragment : Fragment(), IOnBackPressed {
 
@@ -144,7 +144,7 @@ class FormStartPaymentFragment : Fragment(), IOnBackPressed {
             operation = it
             if (it == Operation.WITHDRAW.code) {
                 //Timer to show Alert about Withdraw Limit
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     binding.alertLimitWithdraw.visibility = View.VISIBLE
                     binding.containerForm.startAnimation(slideDownAnimationForm)
                     binding.alertLimitWithdraw.startAnimation(slideDownAnimationAlert)

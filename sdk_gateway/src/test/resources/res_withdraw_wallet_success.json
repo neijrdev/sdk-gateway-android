@@ -1,0 +1,16 @@
+{
+  "full_name":"User Gateway Test",
+  "document_number":"61317581075",
+  "original_currency":"BRL",
+  "currency":"BRL",
+  "auto_approve":true,
+  "order":{
+    "id":17419,
+    "status":"New",
+    "status_id":0,
+    "order_type_id":7
+  },
+  "withdrawal_type_id":5,
+  "redirect_url":null,
+  "token":"JDJ5JDEwJE0uemhQNHdJUzFFdm9OaEdwNW1LZGVPUlQyNzJNZ1ouMEhiSzdDTzRiVnRGaUY5RDRGVks2"
+}

@@ -51,4 +51,18 @@ interface ApiService {
         @Path("token")
         token: String,
     ): Call<ResponseBody>
+
+//    @POST("/mocks/neijrdev/gateway/30370850/api/v2/gateway")
+//    fun newTransactionGateway(
+//        @Body
+//        requestBody: RequestBody
+//    ): Call<ResponseBody>
+//
+//    @GET("/mocks/neijrdev/gateway/30370850/api/v2/gateway/status/{order_id}/{token}")
+//    fun checkStatusOrder(
+//        @Path("order_id")
+//        order_id: Int,
+//        @Path("token")
+//        token: String,
+//    ): Call<ResponseBody>
 }

@@ -4,6 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Nei/sdk-gateway-android/app/src/main/res/layout/activity_form.xml" value="0.1431159420289855" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_form.xml" value="0.4" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_insert_url.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_menu_main.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_preview_data.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_register_for_result.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/activity_web_view.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/app/src/main/res/layout/dropdown_item.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/sdk_gateway/src/main/res/layout/form_start_payment.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_error_kyc_limit.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_error_kyc_user_blocked.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_fatal_error.xml" value="0.35625" />
+        <entry key="..\:/Users/usuario/MFAP_Coder/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_how_to_generate_api_token.xml" value="0.35625" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/checked.xml" value="0.16111111111111112" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/square_checkbox.xml" value="0.16111111111111112" />
         <entry key="..\:/paylivre/example/app/src/main/res/drawable/unchecked.xml" value="0.16111111111111112" />
@@ -131,7 +143,7 @@
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_wallet_completion_screen.xml" value="0.4" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_withdraw.xml" value="0.264" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/fragment_withdraw_pix.xml" value="0.165625" />
-        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/header_title.xml" value="0.6185567010309279" />
+        <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/header_title.xml" value="0.42857142857142855" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/info_withdraw_pix.xml" value="0.35362997658079626" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/info_withdraw_wallet.xml" value="0.171875" />
         <entry key="..\:/paylivre/sdk-gateway-android/sdk_gateway/src/main/res/layout/instructions_deposit_billet_finish_screen.xml" value="0.17612612612612613" />

@@ -1,0 +1,34 @@
+{
+  "operation":5,
+  "operation_name":"Withdrawal",
+  "full_name":"User Gateway Test",
+  "document_number":"61317581075",
+  "final_amount":500,
+  "original_amount":500,
+  "original_currency":"BRL",
+  "currency":"BRL",
+  "converted_amount":500,
+  "taxes":null,
+  "kyc_limits":{
+    "available_amount":9999999909408,
+    "limit":9999999999999,
+    "used_limit":90591,
+    "kyc_level":"3",
+    "kyc_level_name":"Gold"
+  },
+  "order":{
+    "id":17419,
+    "type":7,
+    "type_name":"Wallet Withdrawal",
+    "status":"Approved",
+    "status_id":2,
+    "merchant_approval_status_id":2,
+    "merchant_approval_status_name":"Completed"
+  },
+  "withdrawal_type_id":5,
+  "withdrawal":{
+    "id":null,
+    "status_id":null,
+    "status_name":null
+  }
+}

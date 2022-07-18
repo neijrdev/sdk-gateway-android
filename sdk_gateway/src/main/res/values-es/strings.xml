@@ -265,4 +265,6 @@
     <string name="paylivre_gateway_sdk_is_outdated">Característica no disponible para esta versión de Paylivre Gateway SDK.</string>
     <string name="label_favored">Favorecido</string>
     <string name="message_copied_value">%1$s copiado correctamente</string>
+    <string name="withdrawal_limits_error">Ha excedido su límite de retiro diario.</string>
+    <string name="withdrawal_limits_error_content">Solo se puede realizar un retiro por día con un valor máximo de %1$s.</string>
 </resources>
