@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_color_paylivre_sdk"
+    android:contentDescription="@string/withdraw_loading_screen"
     tools:context=".ui.transactions.finishscreen.withdraw.WithdrawLoadingFragment">
 
     <androidx.fragment.app.FragmentContainerView

@@ -37,7 +37,7 @@ class MockMainViewModel(
     var paymentRepository = PaymentRepository(remoteDataSource)
     var mainViewModel = MainViewModel(paymentRepository)
 
-    val mockedAppModule: Module = module(override = true) {
+    val mockedAppModule: Module = module {
         single<LogEventsService> {
             LogEventsService
         }

@@ -13,6 +13,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/avenir_next_lt_pro_bold"
         android:text="@string/title_types_operation"
+        android:contentDescription="@string/title_types_operation"
         android:textAlignment="textStart"
         android:textColor="@color/secondary_color_paylivre_sdk"
         android:textSize="16sp"
@@ -46,7 +47,8 @@
             <FrameLayout
                 android:id="@+id/buttonType1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/type_pix"/>
 
         </RelativeLayout>
 
@@ -60,7 +62,8 @@
             <FrameLayout
                 android:id="@+id/buttonType2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/type_billet"/>
 
         </RelativeLayout>
 
@@ -74,7 +77,8 @@
             <FrameLayout
                 android:id="@+id/buttonType3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/type_wiretransfer"/>
 
         </RelativeLayout>
 
@@ -88,7 +92,8 @@
             <FrameLayout
                 android:id="@+id/buttonType4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/type_wallet"/>
 
         </RelativeLayout>
 

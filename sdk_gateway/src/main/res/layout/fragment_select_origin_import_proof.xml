@@ -83,6 +83,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:indeterminate="true"
+            android:contentDescription="@string/loading_animation"
             app:indicatorColor="@color/primary_color_paylivre_sdk"
             app:indicatorSize="50dp"
             app:trackThickness="5dp" />
@@ -98,6 +99,7 @@
             android:paddingHorizontal="5dp"
             android:paddingVertical="2dp"
             android:text="@string/requesting_email"
+            android:contentDescription="@string/requesting_email"
             android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="18sp"
             android:textStyle="bold" />

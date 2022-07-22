@@ -168,7 +168,6 @@ fun getStringKeyResponseError(error: String): KeysResponseError {
             )
         }
 
-
         else -> KeysResponseError(
             keyMessage = genericError, keyMessageDetails = ""
         )

@@ -196,6 +196,7 @@
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="2dp"
                             android:text="@string/checking_status_loading"
+                            android:contentDescription="@string/checking_status_loading"
                             android:textColor="@color/grey_dark_color_paylivre_sdk"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -206,6 +207,7 @@
                             android:layout_height="18dp"
                             android:indeterminate="true"
                             app:indicatorColor="@color/primary_color_paylivre_sdk"
+                            android:contentDescription="@string/loading_animation"
                             app:indicatorSize="18dp"
                             app:trackThickness="2dp" />
 

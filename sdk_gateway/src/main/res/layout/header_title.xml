@@ -21,6 +21,7 @@
         android:lineHeight="18dp"
         android:paddingVertical="15dp"
         android:text="@string/go_back_title"
+        android:contentDescription="@string/go_back_action"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="16dp"
@@ -61,6 +62,7 @@
                 android:fontFamily="@font/avenir_next_lt_pro_bold"
                 android:singleLine="true"
                 android:text="@string/deposit"
+                android:contentDescription="@string/operation_type"
                 android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="16sp" />
 
@@ -73,6 +75,7 @@
                     android:id="@+id/logoMerchant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/merchant_logo"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginEnd="20dp"
                     android:adjustViewBounds="true"
@@ -88,7 +91,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center_vertical"
                     android:background="@color/white_color_paylivre_sdk"
-                    android:contentDescription="TODO"
+                    android:contentDescription="@string/country_flag_language"
                     android:scaleType="centerCrop"
                     android:src="@drawable/current_lang"
                     tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
@@ -107,6 +110,7 @@
             android:fontFamily="@font/avenir_next_lt_pro_regular"
             android:singleLine="true"
             android:text=""
+            android:contentDescription="@string/app_version"
             android:textColor="@color/secondary_color_paylivre_sdk"
             android:textSize="10sp" />
 

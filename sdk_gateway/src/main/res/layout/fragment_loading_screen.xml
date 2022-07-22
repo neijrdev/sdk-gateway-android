@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="@string/loading_screen"
     tools:context=".ui.loading.LoadingScreenFragment">
 
 
@@ -37,6 +38,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:indeterminate="true"
+                android:contentDescription="@string/loading_animation"
                 app:indicatorColor="@color/primary_color_paylivre_sdk"
                 app:indicatorSize="50dp"
                 app:trackThickness="5dp" />
@@ -52,6 +54,7 @@
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="2dp"
                 android:text="@string/checking_data"
+                android:contentDescription="@string/checking_data"
                 android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="18sp"
                 android:textStyle="bold" />

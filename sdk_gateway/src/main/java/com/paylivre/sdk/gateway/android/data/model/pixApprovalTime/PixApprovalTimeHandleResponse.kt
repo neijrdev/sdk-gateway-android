@@ -15,7 +15,7 @@ fun checkInternStatusOk(status: String): Boolean {
 
 fun getResponseJson(response: Response<ResponseBody>): PixApprovalTimeResponse {
     val message = response.body()?.string()
-
+    println("message: $message")
     //Log error Sentry
     addSentryBreadcrumb("original_response_average_pix_approval_time",
         message.toString())

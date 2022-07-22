@@ -3,7 +3,6 @@ package com.paylivre.sdk.gateway.android.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.FileTestsUtils
-import com.paylivre.sdk.gateway.android.data.model.order.ResponseCommonTransactionData
 import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferProofDataRequest
 import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferProofDataResponse
 import com.paylivre.sdk.gateway.android.getOrAwaitValueTest

@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Normal"
+            android:contentDescription="@string/pix_approval_time_title"
             android:lineHeight="13sp"
             android:gravity="center"
             android:paddingVertical="2dp"
@@ -35,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Média de 0 minutos e 0 segundos para conclusão"
+            android:contentDescription="@string/pix_approval_time_content"
             android:lineHeight="18sp"
             android:textSize="13sp" />
     </LinearLayout>
@@ -46,7 +48,8 @@
 <!--        android:indeterminate="true"-->
 <!--        android:visibility="gone"-->
 <!--        app:indicatorColor="@color/primary_color_paylivre_sdk"-->
-<!--        app:indicatorSize="20dp"-->
+<!--    android:contentDescription="@string/loading_animation"-->
+    <!--        app:indicatorSize="20dp"-->
 <!--        app:layout_constraintLeft_toLeftOf="parent"-->
 <!--        app:layout_constraintRight_toRightOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/containerFragmentPixApprovalTime"-->

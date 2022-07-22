@@ -3,20 +3,22 @@ package com.paylivre.sdk.gateway.android.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.gson.Gson
 import com.paylivre.sdk.gateway.android.FileTestsUtils
+import com.paylivre.sdk.gateway.android.data.ApiServiceMock
+import com.paylivre.sdk.gateway.android.data.MockCallResponseBody
+import com.paylivre.sdk.gateway.android.data.PaymentRepository
+import com.paylivre.sdk.gateway.android.data.api.RemoteDataSource
 import com.paylivre.sdk.gateway.android.data.model.order.*
-import com.paylivre.sdk.gateway.android.domain.model.ErrorTags.*
 import com.paylivre.sdk.gateway.android.getOrAwaitValueTest
+import com.paylivre.sdk.gateway.android.services.log.LogEventsServiceImpl
+import com.paylivre.sdk.gateway.android.ui.viewmodel.MainViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
-
 
 
 @RunWith(MockitoJUnitRunner::class)
@@ -30,18 +32,18 @@ class NewOrderGatewayTest {
     @Test
     fun `mainViewModel newOrderGateway success`() = runBlocking {
         //GIVEN
-        val server = MockWebServer()
-        server.start()
-
         val responseExpectedString = fileTestsUtils
             .loadJsonAsString("res_check_status_deposit_success.json")
 
-        server.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(responseExpectedString)
-        )
-        val mockMainViewModel = MockMainViewModel(server)
+        var logEventsService = LogEventsServiceImpl.Companion
+        val mockCallResponseBody =
+            MockCallResponseBody(code = 200, rawResponseBodySuccess = responseExpectedString)
+        val apiService = ApiServiceMock(mockCallResponseBody = mockCallResponseBody)
+
+        var remoteDataSource = RemoteDataSource(apiService, logEventsService)
+        var paymentRepository = PaymentRepository(remoteDataSource)
+        var mainViewModel = MainViewModel(paymentRepository)
+
 
         val requestExpected =
             fileTestsUtils.loadJsonAsString("request_deposit_pix_transaction.json")
@@ -50,11 +52,9 @@ class NewOrderGatewayTest {
 
         //WHEN
         //Check Deposit Status
-        mockMainViewModel.mainViewModel.newOrderGateway(expectedRequestBody)
+        mainViewModel.newOrderGateway(expectedRequestBody)
 
         //THEN
-        val request1 = server.takeRequest()
-        val requestBody = Gson().fromJson(request1.body.readUtf8(), OrderDataRequest::class.java)
         val responseDataExpected =
             Gson().fromJson(responseExpectedString, ResponseCommonTransactionData::class.java)
 
@@ -65,18 +65,10 @@ class NewOrderGatewayTest {
             error = null,
         )
 
-        //check Endpoint path is correct
-        Assert.assertEquals("/api/v2/gateway", request1.path)
-
-        //check Request data is correct
-        Assert.assertEquals(expectedRequestBody, requestBody)
-
         //check the value returned to livedata
         Assert.assertEquals(
             responseExpected,
-            mockMainViewModel.mainViewModel.statusResponseTransaction.getOrAwaitValueTest()
+            mainViewModel.statusResponseTransaction.getOrAwaitValueTest()
         )
-
-        server.shutdown()
     }
 }

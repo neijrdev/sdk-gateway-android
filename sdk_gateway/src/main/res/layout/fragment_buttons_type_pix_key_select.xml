@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/title_types_operation"
+        android:contentDescription="@string/title_types_operation"
         android:textAlignment="textStart"
         android:textColor="@color/secondary_color_paylivre_sdk"
         android:textSize="16sp"
@@ -45,7 +46,8 @@
             <FrameLayout
                 android:id="@+id/buttonTypePix1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/select_pix_key_cpf_cnpj"/>
 
         </RelativeLayout>
 
@@ -59,7 +61,8 @@
             <FrameLayout
                 android:id="@+id/buttonTypePix2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/select_pix_key_email" />
 
         </RelativeLayout>
 
@@ -73,7 +76,8 @@
             <FrameLayout
                 android:id="@+id/buttonTypePix3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/select_pix_key_phone" />
 
         </RelativeLayout>
 
@@ -86,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="5dp"
-        android:text="Campo obrigatório."
+        android:text="@string/required_field"
         android:textAlignment="textStart"
         android:textColor="@color/danger_color_paylivre_sdk"
         android:textSize="14sp"

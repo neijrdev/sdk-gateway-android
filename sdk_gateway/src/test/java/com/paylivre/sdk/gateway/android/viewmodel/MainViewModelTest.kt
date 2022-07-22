@@ -182,12 +182,13 @@ class MainViewModelTest {
             isLoading = false,
             isSuccess = false,
             data = null,
-            error = ErrorTransaction(message = "title_unexpected_error",
-                messageDetails = "title_unexpected_error_body",
+            error = ErrorTransaction(
+                message = "invalid_data_error",
+                messageDetails = "",
                 error = null,
                 errors = null,
-                errorTags = "UX000",
-                original_message = null)
+                errorTags = null,
+                original_message = "title_unexpected_error")
         ), mockMainViewModel.mainViewModel.checkStatusOrderDataResponse.getOrAwaitValueTest())
 
         server.shutdown()

@@ -32,6 +32,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/avenir_next_lt_pro_bold"
                 android:text="@string/label_about_generate_api_token"
+                android:contentDescription="@string/generate_api_token_title"
                 android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="18sp" />
 
@@ -43,6 +44,7 @@
                 android:fontFamily="@font/avenir_next_lt_pro_regular"
                 android:lineHeight="25sp"
                 android:text="@string/instructions_how_to_generate_api_token"
+                android:contentDescription="@string/generate_api_token_text"
                 android:textColor="@color/secondary_color_paylivre_sdk"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -64,6 +66,7 @@
         android:fontFamily="@font/avenir_next_lt_pro_regular"
         android:minHeight="60dp"
         android:text="@string/close"
+        android:contentDescription="@string/close_how_to_generate_api_token"
         android:textAllCaps="false"
         android:textColor="@color/primary_color_paylivre_sdk"
         android:textSize="16sp"

@@ -1,6 +1,6 @@
 package com.paylivre.sdk.gateway.android.data
 
-import com.paylivre.sdk.gateway.android.data.api.RemoteDataSource
+import com.paylivre.sdk.gateway.android.data.api.RemoteDataSourceService
 import com.paylivre.sdk.gateway.android.data.model.deposit.CheckStatusDepositResponse
 import com.paylivre.sdk.gateway.android.data.model.order.*
 import com.paylivre.sdk.gateway.android.data.model.pixApprovalTime.PixApprovalTimeResponse
@@ -10,7 +10,7 @@ import com.paylivre.sdk.gateway.android.data.model.transferProof.InsertTransferP
 import com.paylivre.sdk.gateway.android.data.model.transaction.CheckStatusTransactionResponse
 import java.lang.Exception
 
-class PaymentRepository(private val remoteDataSource: RemoteDataSource) {
+class PaymentRepository(private val remoteDataSource: RemoteDataSourceService) {
 
     fun getPixApprovalTime(
         getApprovalTimeSuccess: (response: PixApprovalTimeResponse) -> Unit,
@@ -23,7 +23,6 @@ class PaymentRepository(private val remoteDataSource: RemoteDataSource) {
                 } else if (error !== null) {
                     getApprovalTimeFailure(error)
                 }
-
             }
         } catch (error: Exception) {
             getApprovalTimeFailure(error)
@@ -47,7 +46,6 @@ class PaymentRepository(private val remoteDataSource: RemoteDataSource) {
             getServiceStatusFailure(error)
         }
     }
-
 
     fun newTransaction(
         orderDataRequest: OrderDataRequest,
@@ -147,7 +145,7 @@ class PaymentRepository(private val remoteDataSource: RemoteDataSource) {
                 }
             }
         } catch (error: Exception) {
-            ErrorTransaction("error_request_generic", null, null)
+            requestFailure(ErrorTransaction(error.message, null, null))
         }
     }
 
